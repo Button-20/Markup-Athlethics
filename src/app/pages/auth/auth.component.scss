@@ -1,0 +1,56 @@
+.logo {
+  width: 2rem;
+  height: 2rem;
+}
+
+img[alt="Basketball Stuff"] {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.col-7.position-relative {
+  padding: 5em;
+}
+
+.col-7.position-relative::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.left-section h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 150%; /* 4.5rem */
+  letter-spacing: -0.06rem;
+}
+
+.left-section h1 ~ p {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.03rem;
+}
+
+.closeButton {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.right-section > .row {
+  margin: 5em 7em;
+}

@@ -1,0 +1,124 @@
+<!-- Header Section -->
+<header class="row g-0 mx-0 mt-0 mx-md-7 mt-md-3">
+  <div
+    class="col-12 d-flex align-items-center justify-content-center justify-content-md-between border-bottom border-1 border-opacity-25 border-light pb-sm-0 pb-md-3 py-3 py-md-0"
+  >
+    <a
+      href="#"
+      class="text-decoration-none fw-500 text-white d-flex gap-2 align-items-center"
+    >
+      <img
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATEAAAClCAMAAAADOzq7AAAAllBMVEXMIik3iVD/8i0AAADJACnuuCz/9i3/9Czc3TYgglJXlk3OLSz/8zhBjVH/+y9cVxDGuyPq3in//i/z5yvXzCbMGCvuuzT/9ziJghj57CzMwiSsox6TjBp6dBZ+eBa4riCclBsiIQZCPwwNDAIyLwlybBRQTA7g1Siwpx83NAprZhMjIgahmBxiXREZFwTv4ypKRg0dGwVwhq2bAAADkUlEQVR4nO3a2VajQBhFYYTuortVEkkcSNQ4D+0Qff+Xa6CDxgUaz1Wdi73vkivWt/iLYki2E1LaThDTQkwNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBT2072f5DSfnLwk5QOksNASofJTkpKO4iJ2YqFsxD7EIazFcuzIvYhDOcqFmbZNI99EIO5ihVHmelYuoqV59mF51iaiuV7WZZVsY9iMFOxMK/FxpZjaSpWjGqxU8uxNBXLa7DsErFvV+8tmm4d9xeeYvXeomnuuJCZip23YiPHsbQUa/cWTUzlN2v3Fk0zw7G0FGv3Fk3HhmNpKZauwLKrMvaR9HMUW+0tmpZ+K5mj2Gpv0bTwW8hii+VFv/L1Tey6HHg3Efe8iyyWT29uRr2y92bjXou4twKxz7FQXWdid3EnNbZYmpbTK8XrNI28tMUXq5ey+WaoVfe30XdoBmL1xbH6+z2weRF/t2Eh1ozmw2av6yr6CZbaiKWheNzg9TD1uAFwEatHc/L0FdhjYbKZ9RFL83L2/JnX08RhINuMxOrRDMeDXs+zMv6K32UlVo/mctQHOw4mA9lmJpYWZz2wO48Vv8tOrL+UvSD2Rfl0YBnb81nEUjuxtUdja+uYzXWyyU1s8FqJ2KetPa9ez+qVkpdYcfLOtPbc7MnpJPMSC2vnVbl2EXD6ksxKLIw7otdlSMPkvvvp9AGGlVjRPSYbpc2GIg/dZF4ZjaWVWPdm9207UXZPZ42+u3YSC4v/POP3TX6xWsyMPld0Elt9bvHhUX6oLto/OceGqhqai+rjKp8Xp83fPi/HjcTCXS1z0n/3UTbD6nM7biRWvtTbiCGY4jYzuh33EcuX9SVxeIEP6Y3P7biPWDh7nXy2WOXFkc3tuJHYSf7F4JWLsclY+oht+J4iuNxb1mI5Ke0kv0gr2fpNSlvJ7hYp7SImhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmq7yR/S+gdv5BsbptJDfQAAAABJRU5ErkJggg=="
+        alt="logo"
+        class="flag"
+      />
+      Ghana
+      <i class="bi bi-chevron-down fs-12"></i>
+    </a>
+
+    <div class="d-none align-items-center gap-2 d-md-flex">
+      <button class="btn btn-primary">Sign up</button>
+      <button class="btn btn-secondary">Login</button>
+    </div>
+  </div>
+  <nav
+    class="col-12 d-flex align-items-center justify-content-between justify-content-between mt-3 px-3 px-md-0"
+  >
+    <a class="text-decoration-none" id="mobile-menu">
+      <img src="assets/images/menu.png" alt="menu" class="menu-icon" />
+    </a>
+    <div class="d-flex align-items-center gap-3">
+      <img src="assets/images/logo.png" alt="logo" class="logo" />
+      <p class="mb-0">Markup Athletics</p>
+    </div>
+    <div class="d-flex align-items-center gap-4">
+      <ul class="d-none align-items-center gap-4 mb-0 d-md-flex">
+        <li class="nav-item" *ngFor="let item of navigations">
+          <a
+            [routerLink]="item.route"
+            routerLinkActive="active"
+            class="nav-link"
+            >{{ item.name }}</a
+          >
+        </li>
+      </ul>
+      <div class="search position-relative d-flex align-items-center">
+        <img src="assets/images/search.png" alt="search" id="search" />
+        <div class="search-container" id="search-container">
+          <div class="search-input">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Search" />
+            <i class="bi bi-x fs-24"></i>
+          </div>
+          <div class="result-section">
+            <h6 class="mb-0 border-bottom border-white py-4">
+              Search Result (1)
+            </h6>
+            <ul class="m-0 p-0">
+              <li class="list-unstyled my-3">
+                <a href="#" class="text-decoration-none text-white">Soccer</a>
+              </li>
+            </ul>
+          </div>
+          <div class="category-section">
+            <h6 class="mb-0 py-4">Browse through categories</h6>
+            <ul class="m-0 p-0">
+              <li class="list-unstyled border-top border-white py-3">
+                <a href="#" class="text-decoration-none text-white">
+                  <img src="assets/images/sport1.jpg" alt="football" />
+                  Soccer</a
+                >
+              </li>
+              <li
+                class="list-unstyled border-top border-bottom border-white py-3"
+              >
+                <a href="#" class="text-decoration-none text-white">
+                  <img src="assets/images/sport1.jpg" alt="football" />
+                  Soccer</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-menu">
+  <div class="col-12 country mb-3">
+    <a
+      href="#"
+      class="text-decoration-none fw-500 text-white d-flex gap-2 align-items-center"
+    >
+      <img
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATEAAAClCAMAAAADOzq7AAAAllBMVEXMIik3iVD/8i0AAADJACnuuCz/9i3/9Czc3TYgglJXlk3OLSz/8zhBjVH/+y9cVxDGuyPq3in//i/z5yvXzCbMGCvuuzT/9ziJghj57CzMwiSsox6TjBp6dBZ+eBa4riCclBsiIQZCPwwNDAIyLwlybBRQTA7g1Siwpx83NAprZhMjIgahmBxiXREZFwTv4ypKRg0dGwVwhq2bAAADkUlEQVR4nO3a2VajQBhFYYTuortVEkkcSNQ4D+0Qff+Xa6CDxgUaz1Wdi73vkivWt/iLYki2E1LaThDTQkwNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBT2072f5DSfnLwk5QOksNASofJTkpKO4iJ2YqFsxD7EIazFcuzIvYhDOcqFmbZNI99EIO5ihVHmelYuoqV59mF51iaiuV7WZZVsY9iMFOxMK/FxpZjaSpWjGqxU8uxNBXLa7DsErFvV+8tmm4d9xeeYvXeomnuuJCZip23YiPHsbQUa/cWTUzlN2v3Fk0zw7G0FGv3Fk3HhmNpKZauwLKrMvaR9HMUW+0tmpZ+K5mj2Gpv0bTwW8hii+VFv/L1Tey6HHg3Efe8iyyWT29uRr2y92bjXou4twKxz7FQXWdid3EnNbZYmpbTK8XrNI28tMUXq5ey+WaoVfe30XdoBmL1xbH6+z2weRF/t2Eh1ozmw2av6yr6CZbaiKWheNzg9TD1uAFwEatHc/L0FdhjYbKZ9RFL83L2/JnX08RhINuMxOrRDMeDXs+zMv6K32UlVo/mctQHOw4mA9lmJpYWZz2wO48Vv8tOrL+UvSD2Rfl0YBnb81nEUjuxtUdja+uYzXWyyU1s8FqJ2KetPa9ez+qVkpdYcfLOtPbc7MnpJPMSC2vnVbl2EXD6ksxKLIw7otdlSMPkvvvp9AGGlVjRPSYbpc2GIg/dZF4ZjaWVWPdm9207UXZPZ42+u3YSC4v/POP3TX6xWsyMPld0Elt9bvHhUX6oLto/OceGqhqai+rjKp8Xp83fPi/HjcTCXS1z0n/3UTbD6nM7biRWvtTbiCGY4jYzuh33EcuX9SVxeIEP6Y3P7biPWDh7nXy2WOXFkc3tuJHYSf7F4JWLsclY+oht+J4iuNxb1mI5Ke0kv0gr2fpNSlvJ7hYp7SImhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmq7yR/S+gdv5BsbptJDfQAAAABJRU5ErkJggg=="
+        alt="logo"
+        class="flag"
+      />
+      Ghana
+      <i class="bi bi-chevron-down fs-12"></i>
+    </a>
+  </div>
+  <a class="ps-3" id="close-menu">
+    <i class="bi bi-x-lg text-white"></i>
+  </a>
+  <ul class="m-0 mobile-menu-items px-4">
+    <li>
+      <a href="#">Login</a>
+    </li>
+    <li>
+      <a href="#" class="active">Sign Up</a>
+    </li>
+    <li *ngFor="let item of navigations">
+      <a [routerLink]="item.route">{{ item.name }}</a>
+    </li>
+    <li>
+      <a href="terms-and-conditions.html">Terms of Use</a>
+    </li>
+    <li>
+      <a href="terms-and-conditions.html">Privacy Policy</a>
+    </li>
+  </ul>
+</div>
+<!-- Header Section -->

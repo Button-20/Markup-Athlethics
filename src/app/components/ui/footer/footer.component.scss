@@ -1,0 +1,55 @@
+.logo {
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
+}
+
+.logo ~ p {
+  font-family: "Staatliches";
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+footer {
+  background: linear-gradient(90deg, #2a2a2e 0%, #1a1a1e 100%);
+}
+
+footer > .row {
+  width: calc(100% - 15rem);
+  margin-inline: auto;
+}
+
+footer .col-md-2 img {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  margin-right: 0.7em;
+}
+
+.copyright {
+  order: 1;
+}
+
+@media screen and (max-width: 48em) {
+  footer {
+    background: linear-gradient(90deg, #2a2a2e 0%, #1a1a1e 100%);
+  }
+
+  footer > .row {
+    width: calc(100% - 3rem);
+  }
+
+  footer > .col-md-10 p {
+    font-size: 1.5rem;
+  }
+
+  footer .col-md-2 img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+  }
+
+  .copyright {
+    order: 2;
+  }
+}
