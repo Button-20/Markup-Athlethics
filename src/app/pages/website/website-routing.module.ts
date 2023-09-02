@@ -5,6 +5,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { HomeComponent } from './home/home.component';
 import { WebsiteComponent } from './website.component';
 import { FaqsComponent } from './faqs/faqs.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
         path: 'faqs',
         component: FaqsComponent,
       },
+      {
+        path: 'contact-us',
+        component: ContactUsComponent,
+      }
     ],
   },
 ];

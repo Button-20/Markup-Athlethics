@@ -9,6 +9,7 @@ import { FaqsComponent } from './faqs/faqs.component';
 import { HomeComponent } from './home/home.component';
 import { WebsiteRoutingModule } from './website-routing.module';
 import { WebsiteComponent } from './website.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { WebsiteComponent } from './website.component';
     WebsiteComponent,
     CategoriesComponent,
     FaqsComponent,
+    ContactUsComponent,
   ],
   imports: [
     CommonModule,
