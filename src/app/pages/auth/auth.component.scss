@@ -3,6 +3,12 @@
   height: 2rem;
 }
 
+.logo ~ p {
+  font-family: "Staatliches";
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
 img[alt="Basketball Stuff"] {
   width: 100%;
   height: 100%;

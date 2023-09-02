@@ -9,12 +9,14 @@ import { NgxIntlTelephoneInputModule } from 'ngx-intl-telephone-input';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordComponent } from './password/password.component';
+import { ServicesModule } from 'src/app/services/services.module';
 
 @NgModule({
   declarations: [AuthComponent, SignupComponent, ConfirmEmailComponent, LoginComponent, PasswordComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
+    ServicesModule,
     ReactiveFormsModule,
     NgxIntlTelephoneInputModule,
   ],
