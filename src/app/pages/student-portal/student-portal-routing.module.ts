@@ -20,6 +20,10 @@ const routes: Routes = [
     ],
   },
   {
+    path: 'complete-profile',
+    loadChildren: () => import('./complete-profile/complete-profile.module').then(m => m.CompleteProfileModule),
+  },
+  {
     path: '**',
     redirectTo: 'dashboard',
     pathMatch: 'full',

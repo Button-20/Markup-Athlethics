@@ -1,0 +1,93 @@
+<form class="profile-form">
+  <small class="opacity-50 fw-bold">Profile picture</small>
+  <div class="my-3 mb-4">
+    <img src="assets/images/profile-user.png" alt="profile" />
+  </div>
+  <button class="btn upload mb-5">Upload profile image here</button>
+  <div class="row g-4">
+    <div class="col-6">
+      <label class="opacity-50 fw-bold" for="nationality"
+        >Select Nationality</label
+      >
+      <button class="select-menu mt-2" (click)="toggleSelectMenu($event)">
+        <div class="select-btn">
+          <span class="selected-item">Ghanaian</span>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <ul class="select-list">
+          <li class="select-item">Ghanaian</li>
+          <li class="select-item">Nigerian</li>
+          <li class="select-item">South African</li>
+        </ul>
+      </button>
+    </div>
+    <div class="col-6">
+      <label class="opacity-50 fw-bold">Date of birth</label>
+      <input
+        type="text"
+        class="form-control mb-4 mt-2"
+        placeholder="MM/DD/YY"
+      />
+    </div>
+    <div class="col-6">
+      <label class="opacity-50 fw-bold">Height (cm)</label>
+      <input
+        type="text"
+        class="form-control mb-4 mt-2"
+        placeholder="eg 162 cm"
+      />
+    </div>
+    <div class="col-6">
+      <label class="opacity-50 fw-bold">Weight (lb)</label>
+      <input
+        type="text"
+        class="form-control mb-4 mt-2"
+        placeholder="eg.138 lb"
+      />
+    </div>
+    <div class="col-6">
+      <label class="opacity-50 fw-bold">Educational Level</label>
+      <button class="select-menu mt-2" (click)="toggleSelectMenu($event)">
+        <div class="select-btn">
+          <span class="selected-item">Beginner</span>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <ul class="select-list">
+          <li class="select-item">Beginner</li>
+          <li class="select-item">Intermediate</li>
+          <li class="select-item">Advanced</li>
+        </ul>
+      </button>
+    </div>
+    <div class="col-12">
+      <label class="opacity-50 fw-bold">Interests</label>
+      <div
+        class="select-menu mt-2"
+        id="interests"
+        (click)="toggleSelectMenu($event)"
+      >
+        <div class="select-btn">
+          <span class="selected-item">Select your Interests</span>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <ul class="select-list">
+          <li class="select-item">Nutrition and Cooking</li>
+          <li class="select-item">Fitness and Training</li>
+          <li class="select-item">Sports Science</li>
+          <li class="select-item">Outdoor Activities</li>
+          <li class="select-item">Music</li>
+          <li class="select-item">Charity and community service</li>
+          <li class="select-item">Fashion</li>
+          <li class="select-item">Art</li>
+        </ul>
+      </div>
+      <ul
+        class="d-flex align-items-center flex-wrap mt-3 p-0 gap-2"
+        id="interests-list"
+      ></ul>
+    </div>
+    <div class="col-12 text-end">
+      <button class="btn btn-primary w-50">Save and continue</button>
+    </div>
+  </div>
+</form>
