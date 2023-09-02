@@ -17,7 +17,7 @@ export class ContactFormComponent {
   contactForm: FormGroup = new FormGroup({
     fullname: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required]),
+    phonenumber: new FormControl('', [Validators.required]),
     message: new FormControl('', [Validators.required]),
   });
 
@@ -31,5 +31,27 @@ export class ContactFormComponent {
   emitSubmit() {
     if (this.contactForm.invalid) return;
     this.onSubmit.emit(this.contactForm.value);
+  }
+
+  onPhoneNumberChange(event: any) {
+    this.contactForm.patchValue({
+      phonenumber: event.internationalNumber,
+    });
+  }
+
+  get fullname() {
+    return this.contactForm.get('fullname') as FormControl;
+  }
+
+  get email() {
+    return this.contactForm.get('email') as FormControl;
+  }
+
+  get phonenumber() {
+    return this.contactForm.get('phonenumber') as FormControl;
+  }
+
+  get message() {
+    return this.contactForm.get('message') as FormControl;
   }
 }

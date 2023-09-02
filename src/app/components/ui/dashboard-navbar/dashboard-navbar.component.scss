@@ -1,0 +1,25 @@
+/**************************** NAVBAR ****************************/
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #1a1a1e;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .logo img {
+  width: 40px;
+  height: 40px;
+}
+
+header .profile-dropdown img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 0.5px solid #ffffff2c;
+  padding: 2px;
+}

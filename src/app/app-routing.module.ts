@@ -9,21 +9,30 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./pages/website/website.module').then(m => m.WebsiteModule),
+    loadChildren: () =>
+      import('./pages/website/website.module').then((m) => m.WebsiteModule),
   },
   {
     path: 'auth',
-    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
+    loadChildren: () =>
+      import('./pages/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'student',
+    loadChildren: () =>
+      import('./pages/student-portal/student-portal.module').then(
+        (m) => m.StudentPortalModule
+      ),
   },
   {
     path: '**',
     redirectTo: '',
     pathMatch: 'full',
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

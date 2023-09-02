@@ -1,0 +1,122 @@
+.col-6 {
+  margin-left: 7vw;
+}
+
+.dark-section {
+  background: #1a1a1e;
+  padding: 2rem 0;
+}
+
+.dark-section:nth-child(1) img {
+  padding: 1rem;
+  background: #26262a;
+  border-radius: 50%;
+  border: 2px solid var(--success);
+}
+
+.dark-section:nth-child(2) .percentage {
+  padding: 1rem;
+  border-radius: 50%;
+  position: relative;
+  background: #26262a;
+  z-index: 1;
+  margin-bottom: 1rem;
+}
+
+.dark-section:nth-child(2) .percentage::after {
+  content: "";
+  position: absolute;
+  top: -0.4rem;
+  left: -0.3rem;
+  width: 4rem;
+  height: 4rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  rotate: 220deg;
+  background: conic-gradient(var(--success) 20deg, #3a3a3b 0deg);
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.dark-section:nth-child(2) .bar {
+  width: 100%;
+  height: 0.25rem;
+  background: #232327;
+  border-radius: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.dark-section:nth-child(2) .bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  background: var(--success);
+  border-radius: 0.5rem;
+  animation: progress 10s linear forwards;
+  transition: all 0.3s ease;
+}
+
+#notification-bell {
+  position: relative;
+  z-index: 0;
+}
+
+#notification-bell::after {
+  content: "";
+  position: absolute;
+  background: #fbbc05;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  z-index: 1;
+  bottom: 0;
+  left: 1rem;
+}
+
+@keyframes progress {
+  0% {
+    width: 5%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.search-input {
+  background: #2a2a2e;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  margin-block: 1rem;
+}
+
+.search-input input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  width: 100%;
+}
+
+.notification {
+  position: relative;
+  z-index: 0;
+}
+
+.notification::after {
+  content: "";
+  position: absolute;
+  background: #fbbc05;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  z-index: 1;
+  top: 0.5rem;
+  left: -1rem;
+}

@@ -8,6 +8,14 @@
       name="fullname"
       formControlName="fullname"
     />
+    <div
+      class="text-danger"
+      *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)"
+    >
+      <small *ngIf="fullname.errors?.['required']"
+        >First and last name is required</small
+      >
+    </div>
   </div>
   <div class="input-container">
     <label for="email">Email address</label>
@@ -18,12 +26,19 @@
       name="email"
       formControlName="email"
     />
+    <div
+      class="text-danger"
+      *ngIf="email.invalid && (email.dirty || email.touched)"
+    >
+      <small *ngIf="email.errors?.['required']">Email is required</small>
+      <small *ngIf="email.errors?.['email']">Email is invalid</small>
+    </div>
   </div>
   <div class="input-container">
     <label for="phone">Phone Number</label>
     <div class="phone-input">
       <intl-telephone-input
-        [preferredCountries]="[CountryISO.Pakistan, CountryISO.India]"
+        [preferredCountries]="[CountryISO.Ghana, CountryISO.UnitedStates]"
         [enablePlaceholder]="true"
         [searchCountryFlag]="true"
         [separateDialCode]="true"
@@ -31,11 +46,18 @@
         [searchCountryField]="SearchCountryField.All"
         [phoneValidation]="false"
         [numberFormat]="PhoneNumberFormat.International"
-        [inputId]="'phone'"
-        formControlName="phone"
         [className]="'form-input-select'"
+        (onChange)="onPhoneNumberChange($event)"
       >
       </intl-telephone-input>
+    </div>
+    <div
+      class="text-danger"
+      *ngIf="phonenumber.invalid && (phonenumber.dirty || phonenumber.touched)"
+    >
+      <small *ngIf="phonenumber.errors?.['required']"
+        >Phone number is required</small
+      >
     </div>
   </div>
   <div class="input-container">
@@ -48,6 +70,14 @@
       placeholder="Type your message here..."
       formControlName="message"
     ></textarea>
+    <div
+      class="text-danger"
+      *ngIf="message.invalid && (message.dirty || message.touched)"
+    >
+      <small *ngIf="message.errors?.['required']">Message is required</small>
+    </div>
   </div>
-  <button class="submit-btn">Send Message</button>
+  <button class="submit-btn" [disabled]="contactForm.invalid">
+    Send Message
+  </button>
 </form>

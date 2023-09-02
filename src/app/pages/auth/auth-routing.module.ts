@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth.component';
+import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
+import { PasswordComponent } from './password/password.component';
 import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
@@ -13,11 +15,19 @@ const routes: Routes = [
         component: SignupComponent,
       },
       {
+        path: 'password',
+        component: PasswordComponent,
+      },
+      {
         path: '',
         redirectTo: 'signup',
         pathMatch: 'full',
       },
     ],
+  },
+  {
+    path: 'confirm-email',
+    component: ConfirmEmailComponent,
   },
   {
     path: '**',

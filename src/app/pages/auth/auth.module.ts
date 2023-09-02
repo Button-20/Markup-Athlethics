@@ -6,9 +6,12 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { SignupComponent } from './signup/signup.component';
 import { NgxIntlTelephoneInputModule } from 'ngx-intl-telephone-input';
+import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
+import { LoginComponent } from './login/login.component';
+import { PasswordComponent } from './password/password.component';
 
 @NgModule({
-  declarations: [AuthComponent, SignupComponent],
+  declarations: [AuthComponent, SignupComponent, ConfirmEmailComponent, LoginComponent, PasswordComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
