@@ -1,4 +1,15 @@
-<form class="profile-form">
+<div class="d-flex align-items-center justify-content-between mt-5 mb-2">
+  <p class="mb-2 fw-bold mt-4">Personal Data</p>
+  <i class="bi bi-x-lg mt-4 pointer"></i>
+</div>
+<p class="mb-5 opacity-50">
+  Enter the details below to update your personal data.
+</p>
+<form
+  class="profile-form"
+  [formGroup]="profileDataForm"
+  (ngSubmit)="onSubmit()"
+>
   <small class="opacity-50 fw-bold">Profile picture</small>
   <div class="my-3 mb-4">
     <img src="assets/images/profile-user.png" alt="profile" />
@@ -11,13 +22,19 @@
       >
       <button class="select-menu mt-2" (click)="toggleSelectMenu($event)">
         <div class="select-btn">
-          <span class="selected-item">Ghanaian</span>
+          <span class="selected-item">
+            {{ profileDataForm.value.nationality || "Select Nationality" }}
+          </span>
           <i class="bi bi-chevron-down"></i>
         </div>
         <ul class="select-list">
-          <li class="select-item">Ghanaian</li>
-          <li class="select-item">Nigerian</li>
-          <li class="select-item">South African</li>
+          <li
+            class="select-item"
+            *ngFor="let nationality of nationalities"
+            (click)="selectItem(nationality, 'nationality')"
+          >
+            {{ nationality }}
+          </li>
         </ul>
       </button>
     </div>
@@ -49,13 +66,19 @@
       <label class="opacity-50 fw-bold">Educational Level</label>
       <button class="select-menu mt-2" (click)="toggleSelectMenu($event)">
         <div class="select-btn">
-          <span class="selected-item">Beginner</span>
+          <span class="selected-item">
+            {{ profileDataForm.value.education_level || "Select Level" }}
+          </span>
           <i class="bi bi-chevron-down"></i>
         </div>
         <ul class="select-list">
-          <li class="select-item">Beginner</li>
-          <li class="select-item">Intermediate</li>
-          <li class="select-item">Advanced</li>
+          <li
+            class="select-item"
+            *ngFor="let level of educationLevels"
+            (click)="selectItem(level, 'education_level')"
+          >
+            {{ level }}
+          </li>
         </ul>
       </button>
     </div>
@@ -64,27 +87,42 @@
       <div
         class="select-menu mt-2"
         id="interests"
-        (click)="toggleSelectMenu($event)"
+        (click)="toggleSelectMenu($event, false)"
       >
         <div class="select-btn">
           <span class="selected-item">Select your Interests</span>
           <i class="bi bi-chevron-down"></i>
         </div>
         <ul class="select-list">
-          <li class="select-item">Nutrition and Cooking</li>
-          <li class="select-item">Fitness and Training</li>
-          <li class="select-item">Sports Science</li>
-          <li class="select-item">Outdoor Activities</li>
-          <li class="select-item">Music</li>
-          <li class="select-item">Charity and community service</li>
-          <li class="select-item">Fashion</li>
-          <li class="select-item">Art</li>
+          <li
+            class="select-item"
+            *ngFor="let interest of interests"
+            (click)="addInterest(interest)"
+            [ngClass]="{
+              selected: profileDataForm.value.interests.includes(interest)
+            }"
+          >
+            {{ interest }}
+          </li>
         </ul>
       </div>
-      <ul
-        class="d-flex align-items-center flex-wrap mt-3 p-0 gap-2"
-        id="interests-list"
-      ></ul>
+      <ul class="d-flex align-items-center flex-wrap mt-3 p-0 gap-2">
+        <li
+          class="me-3 list-unstyled"
+          *ngFor="let interest of profileDataForm.value.interests"
+        >
+          <span class="badge bg-dark p-3 position-relative">
+            {{ interest }}
+            <img
+              src="assets/images/minus-circle.png"
+              alt="x"
+              class="ms-2 position-absolute pointer"
+              style="top: -10px; right: -10px; z-index: 1"
+              (click)="removeInterest(interest)"
+            />
+          </span>
+        </li>
+      </ul>
     </div>
     <div class="col-12 text-end">
       <button class="btn btn-primary w-50">Save and continue</button>

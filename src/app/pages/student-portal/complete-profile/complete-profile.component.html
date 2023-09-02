@@ -9,80 +9,48 @@
       potential to a wider audience, including college coaches, recruiters, and
       sports enthusiasts.
     </p>
-    <p class="mb-2">20% Profile Set up</p>
+    <p class="mb-2">{{ progress }}% Profile Set up</p>
     <div class="progress mb-5">
       <div
         class="progress-bar"
         role="progressbar"
-        style="width: 20%; background-color: #96fc58; border-radius: 10px"
-        aria-valuenow="20"
+        style="background-color: #96fc58; border-radius: 10px"
+        [ngStyle]="{ width: progress + '%' }"
+        attr.aria-valuenow="{{ progress }}"
         aria-valuemin="0"
         aria-valuemax="100"
       ></div>
     </div>
 
     <div class="row g-0 gap-4">
-      <div class="col-12 row g-0 gap-2">
+      <div class="col-12 row g-0 gap-2" *ngFor="let item of steps">
         <div class="col-1">
-          <img src="assets/images/check-circle.png" alt="1" />
+          <img
+            [src]="
+              progress < item.progress
+                ? 'assets/images/x-circle.png'
+                : 'assets/images/check-circle.png'
+            "
+            alt="1"
+          />
         </div>
         <div class="col">
-          <p class="mb-2 fw-bold">Profile Data (Bio)</p>
-          <p class="mb-0 opacity-50">
-            Enter personal details like your age and height
+          <p
+            class="mb-2 fw-bold"
+            [ngClass]="{
+              'opacity-50': progress < item.progress
+            }"
+          >
+            {{ item.name }}
           </p>
-        </div>
-      </div>
-      <div class="col-12 row g-0 gap-2">
-        <div class="col-1">
-          <img src="assets/images/x-circle.png" alt="1" />
-        </div>
-        <div class="col opacity-50">
-          <p class="mb-2 fw-bold">Educational Background</p>
           <p class="mb-0 opacity-50">
-            Fill in with details about your education
+            {{ item.description }}
           </p>
-        </div>
-      </div>
-      <div class="col-12 row g-0 gap-2">
-        <div class="col-1">
-          <img src="assets/images/x-circle.png" alt="1" />
-        </div>
-        <div class="col opacity-50">
-          <p class="mb-2 fw-bold">Athletic Background</p>
-          <p class="mb-0 opacity-50">
-            Fill in with details about the category of sports you play
-          </p>
-        </div>
-      </div>
-      <div class="col-12 row g-0 gap-2">
-        <div class="col-1">
-          <img src="assets/images/x-circle.png" alt="1" />
-        </div>
-        <div class="col opacity-50">
-          <p class="mb-2 fw-bold">Image uploads</p>
-          <p class="mb-0 opacity-50">Upload athletic profile images</p>
-        </div>
-      </div>
-      <div class="col-12 row g-0 gap-2">
-        <div class="col-1">
-          <img src="assets/images/x-circle.png" alt="1" />
-        </div>
-        <div class="col opacity-50">
-          <p class="mb-2 fw-bold">Video upload</p>
-          <p class="mb-0 opacity-50">Upload tryout videos</p>
         </div>
       </div>
     </div>
   </div>
   <div class="col-8 right-section p-5">
-    <div class="d-flex align-items-center justify-content-between mt-5 mb-2">
-      <p class="mb-2 fw-bold mt-4">Personal Data</p>
-      <i class="bi bi-x-lg mt-4 pointer"></i>
-    </div>
-    <p class="mb-5 opacity-50">
-      Enter the details below to update your personal data.
-    </p>
     <router-outlet></router-outlet>
   </div>
 </div>

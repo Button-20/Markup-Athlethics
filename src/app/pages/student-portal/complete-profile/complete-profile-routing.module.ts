@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AthleticBackgroundComponent } from './athletic-background/athletic-background.component';
 import { CompleteProfileComponent } from './complete-profile.component';
+import { EducationalBackgroundComponent } from './educational-background/educational-background.component';
 import { ProfileDataComponent } from './profile-data/profile-data.component';
 
 const routes: Routes = [
@@ -11,6 +13,14 @@ const routes: Routes = [
       {
         path: 'profile-data',
         component: ProfileDataComponent,
+      },
+      {
+        path: 'educational-background',
+        component: EducationalBackgroundComponent,
+      },
+      {
+        path: 'athletic-background',
+        component: AthleticBackgroundComponent,
       },
       {
         path: '',
