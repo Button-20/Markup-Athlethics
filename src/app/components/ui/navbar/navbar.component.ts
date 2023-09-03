@@ -45,6 +45,8 @@ export class NavbarComponent {
     const menuIcon = document.querySelector('#mobile-menu') as HTMLElement;
     const menu = document.querySelector('.mobile-menu') as HTMLElement;
     const closeIcon = document.querySelector('#close-menu') as HTMLElement;
+    const menuItems = document.querySelectorAll(".mobile-menu-items a");
+
 
     // Add event listener to search icon
     searchIcon.addEventListener('click', () => {
@@ -63,8 +65,11 @@ export class NavbarComponent {
     });
 
     // Add event listener to close icon
-    closeIcon.addEventListener('click', () => {
-      menu.classList.remove('active');
+    menuItems.forEach((menuItem) => {
+      closeIcon.addEventListener('click', () => {
+        menu.classList.remove('active');
+      });
     });
+
   }
 }
