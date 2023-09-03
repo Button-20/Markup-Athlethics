@@ -1,1 +1,487 @@
-<p>athletic-background works!</p>
+<div class="d-flex align-items-center justify-content-between mt-5 mb-2">
+  <p class="mb-2 fw-bold mt-4">Athletic Background</p>
+  <i class="bi bi-x-lg mt-4 pointer"></i>
+</div>
+<p class="mb-5 opacity-50">
+  Enter the details below to update your athletic background
+</p>
+<form class="profile-form" [formGroup]="profileDataForm">
+  <div class="row g-4">
+    <div class="col-12 pb-4 border-bottom border-light">
+      <label class="opacity-50 fw-bold"
+        >Select category of sports played
+      </label>
+      <button
+        class="select-menu mt-2"
+        id="interests"
+        (click)="toggleSelectMenu($event, false)"
+      >
+        <div class="select-btn" style="pointer-events: none">
+          <span class="selected-item">Select category of sports</span>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <ul class="select-list">
+          <li
+            class="select-item"
+            *ngFor="let sport of sports"
+            (click)="addSport(sport)"
+            [ngClass]="{
+              selected: profileDataForm.value.sports.includes(sport)
+            }"
+          >
+            {{ sport }}
+          </li>
+        </ul>
+      </button>
+      <ul
+        class="d-flex align-items-center flex-wrap mt-3 p-0 gap-2"
+        id="interests-list"
+      >
+        <li
+          class="me-3 list-unstyled"
+          *ngFor="let sport of profileDataForm.value.sports"
+        >
+          <span class="badge bg-dark p-3 position-relative">
+            {{ sport }}
+            <img
+              src="assets/images/minus-circle.png"
+              alt="x"
+              class="ms-2 position-absolute pointer"
+              style="top: -10px; right: -10px; z-index: 1"
+              (click)="removeSport(sport)"
+            />
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-12 mb-3 border-bottom border-light">
+      <p class="mb-0 opacity-50 fw-bold mb-1">Soccer</p>
+      <p class="mb-0 opacity-50 fw-bold">
+        Enter the details about your athletic abilities
+      </p>
+      <div class="row g-0 gx-5 mt-5">
+        <div class="col-6 pb-4">
+          <label class="opacity-50">Skill level </label>
+          <button
+            class="select-menu mt-2"
+            id="interests"
+            (click)="toggleSelectMenu($event)"
+          >
+            <div class="select-btn" style="pointer-events: none">
+              <span class="selected-item">{{
+                profileDataForm.value.soccer_skill_level || "Select skill level"
+              }}</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <ul class="select-list">
+              <li
+                class="select-item"
+                *ngFor="let skill of skillLevels"
+                (click)="
+                  profileDataForm.patchValue({ soccer_skill_level: skill })
+                "
+              >
+                {{ skill }}
+              </li>
+            </ul>
+          </button>
+        </div>
+        <div class="col-6 pb-4">
+          <label class="opacity-50">Position Played</label>
+          <button
+            class="select-menu mt-2"
+            id="interests"
+            (click)="toggleSelectMenu($event)"
+          >
+            <div class="select-btn" style="pointer-events: none">
+              <span class="selected-item">
+                {{
+                  profileDataForm.value.soccer_position_played ||
+                    "Select position played"
+                }}
+              </span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <ul class="select-list">
+              <li
+                class="select-item"
+                *ngFor="let position of positions"
+                (click)="
+                  profileDataForm.patchValue({
+                    soccer_position_played: position
+                  })
+                "
+              >
+                {{ position }}
+              </li>
+            </ul>
+          </button>
+        </div>
+      </div>
+
+      <p class="mb-0 opacity-50 fw-bold mb-5">Set your level of skill</p>
+      <div class="row g-0 gx-5">
+        <div class="col-6">
+          <div class="mb-5">
+            <p class="mb-0 pb-3 mb-3 border-bottom border-light">Pace</p>
+            <div class="mb-3">
+              <label class="form-label">Acceleration</label>
+              <div class="d-flex align-items-center gap-3">
+                0%
+                <div class="d-flex align-items-center position-relative w-100">
+                  <input
+                    type="range"
+                    class="range"
+                    (input)="onSliderInput($event)"
+                    min="0"
+                    max="100"
+                    value="0"
+                    #acceleration
+                  />
+                  <span class="value">
+                    {{ acceleration.value }}
+                  </span>
+                </div>
+                100%
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Sprint Speed</label>
+              <div class="d-flex align-items-center gap-3">
+                0%
+                <div class="d-flex align-items-center position-relative w-100">
+                  <input
+                    type="range"
+                    class="range"
+                    (input)="onSliderInput($event)"
+                    min="0"
+                    max="100"
+                    value="0"
+                    #sprintSpeed
+                  />
+                  <span class="value">
+                    {{ sprintSpeed.value }}
+                  </span>
+                </div>
+                100%
+              </div>
+            </div>
+          </div>
+          <p class="mb-0 pb-3 mb-3 border-bottom border-light">Passing</p>
+          <div class="mb-4">
+            <label class="form-label">Vision</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #vision
+                />
+                <span class="value">
+                  {{ vision.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Crossing</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #crossing
+                />
+                <span class="value">
+                  {{ crossing.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Accuracy</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #accuracy
+                />
+                <span class="value">
+                  {{ accuracy.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Short Passing</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #shortPassing
+                />
+                <span class="value">
+                  {{ shortPassing.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Long Passing</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #longCrossing
+                />
+                <span class="value">
+                  {{ longCrossing.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Curve</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #curve
+                />
+                <span class="value">
+                  {{ curve.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <p class="mb-0 pb-3 mb-3 border-bottom border-light">Shooting</p>
+          <div class="mb-4">
+            <label class="form-label">Positioning</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #positioning
+                />
+                <span class="value">
+                  {{ positioning.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Finishing</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #finishing
+                />
+                <span class="value">
+                  {{ finishing.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Shot Power</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #power
+                />
+                <span class="value">
+                  {{ power.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Long Shots</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #longShots
+                />
+                <span class="value">
+                  {{ longShots.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Volleys</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #volleys
+                />
+                <span class="value">
+                  {{ volleys.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <label class="opacity-50 fw-bold">Athletic achievements</label>
+      <input
+        type="text"
+        class="form-control mb-4 mt-2"
+        placeholder="Tell us about your athletic achievements"
+      />
+    </div>
+    <div class="col-12 mb-3">
+      <p class="mb-0 opacity-50 fw-bold mb-1">References</p>
+      <p class="mb-0 opacity-50 fw-bold">
+        Enter the details about your references
+      </p>
+    </div>
+    <div class="col-6">
+      <label class="opacity-50 fw-bold">Name of reference</label>
+      <input
+        type="text"
+        class="form-control mb-4 mt-2"
+        placeholder="eg John Doe"
+      />
+    </div>
+    <div class="col-6">
+      <label class="opacity-50 fw-bold">Graduation Year</label>
+      <input
+        type="email"
+        class="form-control mb-4 mt-2"
+        placeholder="eg. johndoe@gmail.com"
+      />
+    </div>
+    <div class="col-12">
+      <label class="opacity-50 fw-bold"
+        >Letters of recommendation (Optional)</label
+      >
+      <div
+        class="position-relative image-upload"
+        id="transcript-container"
+        [ngClass]="{ 'd-none': transcriptImg }"
+      >
+        <input
+          type="file"
+          accept="image/*"
+          (change)="dropImage($event)"
+          (drop)="dropImage($event)"
+          (dragover)="onDragOver($event)"
+          name="image"
+          multiple="false"
+          id="transcript"
+        />
+        <label for="transcript" class="w-100 mb-0">
+          <img src="assets/images/upload.png" alt="image upload" class="mb-3" />
+          <p class="mb-0">
+            <span class="text-danger">Click to upload</span> or drag and drop
+          </p>
+        </label>
+      </div>
+      <div
+        class="position-relative"
+        id="transcript-preview"
+        [ngClass]="{ 'd-none': !transcriptImg }"
+      >
+        <img [src]="transcriptImg" alt="" class="w-100" />
+        <button
+          class="btn btn-primary w-25 mt-3"
+          id="transcript-btn"
+          (click)="
+            transcriptImg = null;
+            profileDataForm.patchValue({ transcript: null })
+          "
+        >
+          <i class="bi bi-trash me-2"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="col-12 text-end">
+      <button class="btn btn-primary w-50">Save and continue</button>
+    </div>
+  </div>
+</form>

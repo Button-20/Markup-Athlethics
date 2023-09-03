@@ -1,0 +1,183 @@
+.profile-form {
+  .form-control {
+    background: #2a2a2e;
+    border: 1px solid #fff;
+    border-radius: 0.5rem;
+    color: #fff;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &::placeholder {
+      color: #fff;
+      opacity: 0.5;
+    }
+  }
+
+  .select-menu {
+    position: relative;
+    outline: none;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: start;
+
+    .select-btn {
+      background: #2a2a2e;
+      border: 1px solid #fff;
+      border-radius: 0.5rem;
+      color: #fff;
+      padding: 0.4rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .select-list {
+      border-radius: 0.1875rem;
+      background: #2a2a2e;
+      padding: 0.5rem;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+      z-index: 100;
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+
+    &#interests .select-list .select-item.selected::after {
+      content: "";
+      position: absolute;
+      background: var(--success);
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      z-index: 1;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.profile-form .select-menu .select-list li {
+  list-style: none;
+  padding: 0.5rem 1.25rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 0.875rem;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.54);
+  color: hsla(0, 0%, 100%, 0.54);
+}
+
+.profile-form .select-menu .select-list li:hover {
+  background: #3a3a3b;
+}
+
+.profile-form .select-menu#interests .select-list {
+  bottom: auto;
+  top: 100%;
+}
+
+.profile-form .badge.bg-dark {
+  background: #1a1a1e;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.profile-form .select-menu#interests .select-list .select-item.selected {
+  position: relative;
+}
+
+.profile-form
+  .select-menu#interests
+  .select-list
+  .select-item.selected::before {
+  content: "";
+  position: absolute;
+  background: var(--success);
+  border: 2px solid #1a1a1e;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  z-index: 2;
+  top: 50%;
+  right: 1.12rem;
+  transform: translateY(-50%);
+}
+
+/****************************** COMPLETE PROFILE 2 ******************************/
+.image-upload label {
+  cursor: pointer;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px dashed #e4e7ec;
+  text-align: center;
+  padding: 1.2rem 1.5rem;
+  margin-block: 1rem;
+}
+
+.image-upload input {
+  position: absolute;
+  opacity: 0;
+  background: red;
+  width: 100%;
+  z-index: 1;
+  height: 100%;
+  cursor: pointer;
+}
+
+#transcript-preview {
+  width: 100%;
+  height: 15em;
+  border: 1px dashed #e4e7ec;
+}
+
+#transcript-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+#transcript-preview .btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.range {
+  width: 100%;
+  height: 3px;
+  appearance: none;
+  background: #e9ecee;
+  border-radius: 1rem;
+  outline: none;
+}
+
+.range::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #bf2e1b;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #e9ecee;
+}
+
+.range ~ .value {
+  position: absolute;
+  z-index: 2;
+  font-family: Montserrat;
+  font-size: 0.75rem;
+  font-weight: 700;
+  pointer-events: none;
+  left: calc(0% + 5px);
+}
