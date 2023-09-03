@@ -54,7 +54,10 @@
         </li>
       </ul>
     </div>
-    <div class="col-12 mb-3 border-bottom border-light">
+    <div
+      class="col-12 mb-3 border-bottom border-light"
+      *ngIf="profileDataForm.value.sports.includes('Soccer')"
+    >
       <p class="mb-0 opacity-50 fw-bold mb-1">Soccer</p>
       <p class="mb-0 opacity-50 fw-bold">
         Enter the details about your athletic abilities
