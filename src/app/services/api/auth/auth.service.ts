@@ -18,7 +18,7 @@ export class AuthService {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        const resp: any = await this.api.post('auth/login', user);
+        const resp: any = await this.api.post('login', user);
         this.globals.toast.success(resp.message);
         this.globals.spinner.hide();
         resolve(resp);
@@ -34,7 +34,7 @@ export class AuthService {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        const resp: any = await this.api.post('auth/regi', user);
+        const resp: any = await this.api.post('register', user);
         this.globals.toast.success(resp.message);
         this.globals.spinner.hide();
         resolve(resp);
@@ -74,7 +74,7 @@ export class AuthService {
   async logout() {
     return await new Promise(async (resolve, reject) => {
       try {
-        // const resp: any = await this.api.get('logout');
+        const resp: any = await this.api.get('logout');
         this.globals.storage.logOutUser();
         resolve(true);
       } catch (err) {

@@ -42,6 +42,7 @@ export class SignupComponent {
     this.signupForm.value.phone =
       this.signupForm.value.phone.internationalNumber;
     this.globals.storage.setRegistrationDetails(this.signupForm.value);
+    this.globals.router.navigate(['/auth/password']);
   }
 
   get fullname() {
