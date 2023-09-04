@@ -14,6 +14,7 @@ export class AthleticBackgroundComponent {
     athletic_skill_level: new FormControl('', [Validators.required]),
     athletic_position_played: new FormControl('', [Validators.required]),
     letters: new FormControl([]),
+    references: new FormControl([]),
   });
 
   sports: string[] = ['Soccer', 'Basketball', 'Athletics'];
@@ -93,19 +94,26 @@ export class AthleticBackgroundComponent {
     }
   }
 
+  addReference() {
+    const references = this.profileDataForm.get('references') as FormControl;
+    references.value.push({
+      name: '',
+      email: '',
+    });
+  }
+
   dropImage(event: any) {
     event.preventDefault();
     event.stopPropagation();
-    this.profileDataForm.patchValue({
-      letters: event.dataTransfer?.files || event.target.files,
-    });
-    this.files = event.dataTransfer?.files || event.target.files;
+    this.files = [...(event.dataTransfer?.files || event.target.files)];
 
-    if (!this.profileDataForm.value.letters) return;
+    this.profileDataForm.patchValue({
+      letters: this.files,
+    });
   }
 
-  removeFile(index: number) {
-    console.log(this.files);
+  removeFile(e: any, index: number) {
+    e.preventDefault();
     this.files.splice(index, 1);
     this.profileDataForm.patchValue({
       letters: this.files,

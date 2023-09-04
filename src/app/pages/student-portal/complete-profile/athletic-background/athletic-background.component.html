@@ -651,25 +651,27 @@
           Enter the details about your references
         </p>
       </div>
-      <a href="#" class="text-white opacity-50 fw-bold"
+      <a class="text-white opacity-50 fw-bold pointer" (click)="addReference()"
         >Add another reference</a
       >
     </div>
-    <div class="col-6">
-      <label class="opacity-50 fw-bold">Name of reference</label>
-      <input
-        type="text"
-        class="form-control mb-4 mt-2"
-        placeholder="eg John Doe"
-      />
-    </div>
-    <div class="col-6">
-      <label class="opacity-50 fw-bold">Graduation Year</label>
-      <input
-        type="email"
-        class="form-control mb-4 mt-2"
-        placeholder="eg. johndoe@gmail.com"
-      />
+    <div class="row g-0 gx-4" *ngFor="let reference of profileDataForm.value.references; let i = index">
+      <div class="col-6">
+        <label class="opacity-50 fw-bold">Name of reference</label>
+        <input
+          type="text"
+          class="form-control mb-4 mt-2"
+          placeholder="eg John Doe"
+        />
+      </div>
+      <div class="col-6">
+        <label class="opacity-50 fw-bold">Email Address of reference</label>
+        <input
+          type="email"
+          class="form-control mb-4 mt-2"
+          placeholder="eg. johndoe@gmail.com"
+        />
+      </div>
     </div>
     <div class="col-12">
       <label class="opacity-50 fw-bold"
@@ -694,7 +696,10 @@
           </p>
         </label>
       </div>
-      <div class="col-6 py-2 file" *ngFor="let file of profileDataForm.value.letters; let i = index">
+      <div
+        class="col-6 py-2 file"
+        *ngFor="let file of profileDataForm.value.letters; let i = index"
+      >
         <div class="d-flex align-items-start justify-content-between">
           <div class="d-flex align-items-start">
             <i class="bi bi-file-earmark"></i>
@@ -718,7 +723,10 @@
               </div>
             </div>
           </div>
-          <a href="#" class="opacity-50 text-white" (click)="removeFile(i)"
+          <a
+            href="#"
+            class="opacity-50 text-white"
+            (click)="removeFile($event, i)"
             >Delete</a
           >
         </div>
