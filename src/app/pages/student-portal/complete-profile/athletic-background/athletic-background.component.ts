@@ -11,6 +11,8 @@ export class AthleticBackgroundComponent {
     sports: new FormControl([], [Validators.required]),
     soccer_skill_level: new FormControl('', [Validators.required]),
     soccer_position_played: new FormControl('', [Validators.required]),
+    athletic_skill_level: new FormControl('', [Validators.required]),
+    athletic_position_played: new FormControl('', [Validators.required]),
     transcript: new FormControl(null),
   });
 
@@ -18,6 +20,7 @@ export class AthleticBackgroundComponent {
 
   sports: string[] = ['Soccer', 'Basketball', 'Athletics'];
   skillLevels: string[] = ['Beginner', 'Intermediate', 'Advanced'];
+  athleticPositions: string[] = ['100m', '200m', '400m', '800m', '1500m'];
   positions: string[] = ['Defender', 'Striker'];
 
   toggleSelectMenu(event: any, closeOnSelect: boolean = true) {

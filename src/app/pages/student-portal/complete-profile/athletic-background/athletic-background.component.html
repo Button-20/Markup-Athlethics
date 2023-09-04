@@ -408,6 +408,234 @@
         </div>
       </div>
     </div>
+    <div
+      class="col-12 mb-3 border-bottom border-light"
+      *ngIf="profileDataForm.value.sports.includes('Athletics')"
+    >
+      <p class="mb-0 opacity-50 fw-bold mb-1">Athletics</p>
+      <p class="mb-0 opacity-50 fw-bold">
+        Enter the details about your athletic abilities
+      </p>
+      <div class="row g-0 gx-5 mt-5">
+        <div class="col-6 pb-4">
+          <label class="opacity-50">Skill level </label>
+          <button
+            class="select-menu mt-2"
+            id="interests"
+            (click)="toggleSelectMenu($event)"
+          >
+            <div class="select-btn" style="pointer-events: none">
+              <span class="selected-item">{{
+                profileDataForm.value.athletic_skill_level ||
+                  "Select skill level"
+              }}</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <ul class="select-list">
+              <li
+                class="select-item"
+                *ngFor="let skill of skillLevels"
+                (click)="
+                  profileDataForm.patchValue({ athletic_skill_level: skill })
+                "
+              >
+                {{ skill }}
+              </li>
+            </ul>
+          </button>
+        </div>
+        <div class="col-6 pb-4">
+          <label class="opacity-50">Position Played</label>
+          <button
+            class="select-menu mt-2"
+            id="interests"
+            (click)="toggleSelectMenu($event)"
+          >
+            <div class="select-btn" style="pointer-events: none">
+              <span class="selected-item">
+                {{
+                  profileDataForm.value.athletic_position_played ||
+                    "Select position played"
+                }}
+              </span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <ul class="select-list">
+              <li
+                class="select-item"
+                *ngFor="let position of athleticPositions"
+                (click)="
+                  profileDataForm.patchValue({
+                    athletic_position_played: position
+                  })
+                "
+              >
+                {{ position }}
+              </li>
+            </ul>
+          </button>
+        </div>
+      </div>
+
+      <p class="mb-0 opacity-50 fw-bold mb-5">Set your level of skill</p>
+      <div class="row g-0 gx-5">
+        <div class="col-6">
+          <p class="mb-0 pb-3 mb-3 border-bottom border-light">Shooting</p>
+          <div class="mb-4">
+            <label class="form-label">Positioning</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #ath_positioning
+                />
+                <span class="value">
+                  {{ ath_positioning.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Finishing</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #ath_finishing
+                />
+                <span class="value">
+                  {{ ath_finishing.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Shot Power</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #ath_power
+                />
+                <span class="value">
+                  {{ ath_power.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Long Shots</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #ath_longShots
+                />
+                <span class="value">
+                  {{ ath_longShots.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Volleys</label>
+            <div class="d-flex align-items-center gap-3">
+              0%
+              <div class="d-flex align-items-center position-relative w-100">
+                <input
+                  type="range"
+                  class="range"
+                  (input)="onSliderInput($event)"
+                  min="0"
+                  max="100"
+                  value="0"
+                  #ath_volleys
+                />
+                <span class="value">
+                  {{ ath_volleys.value }}
+                </span>
+              </div>
+              100%
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-5">
+            <p class="mb-0 pb-3 mb-3 border-bottom border-light">Pace</p>
+            <div class="mb-3">
+              <label class="form-label">Acceleration</label>
+              <div class="d-flex align-items-center gap-3">
+                0%
+                <div class="d-flex align-items-center position-relative w-100">
+                  <input
+                    type="range"
+                    class="range"
+                    (input)="onSliderInput($event)"
+                    min="0"
+                    max="100"
+                    value="0"
+                    #acceleration
+                  />
+                  <span class="value">
+                    {{ acceleration.value }}
+                  </span>
+                </div>
+                100%
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Sprint Speed</label>
+              <div class="d-flex align-items-center gap-3">
+                0%
+                <div class="d-flex align-items-center position-relative w-100">
+                  <input
+                    type="range"
+                    class="range"
+                    (input)="onSliderInput($event)"
+                    min="0"
+                    max="100"
+                    value="0"
+                    #sprintspeed
+                  />
+                  <span class="value">
+                    {{ sprintspeed.value }}
+                  </span>
+                </div>
+                100%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="col-12">
       <label class="opacity-50 fw-bold">Athletic achievements</label>
       <input
@@ -416,11 +644,16 @@
         placeholder="Tell us about your athletic achievements"
       />
     </div>
-    <div class="col-12 mb-3">
-      <p class="mb-0 opacity-50 fw-bold mb-1">References</p>
-      <p class="mb-0 opacity-50 fw-bold">
-        Enter the details about your references
-      </p>
+    <div class="col-12 mb-3 d-flex justify-content-between">
+      <div>
+        <p class="mb-0 opacity-50 fw-bold mb-1">References</p>
+        <p class="mb-0 opacity-50 fw-bold">
+          Enter the details about your references
+        </p>
+      </div>
+      <a href="#" class="text-white opacity-50 fw-bold"
+        >Add another reference</a
+      >
     </div>
     <div class="col-6">
       <label class="opacity-50 fw-bold">Name of reference</label>
@@ -443,7 +676,7 @@
         >Letters of recommendation (Optional)</label
       >
       <div
-        class="position-relative image-upload"
+        class="position-relative image-upload mb-3"
         id="transcript-container"
         [ngClass]="{ 'd-none': transcriptImg }"
       >
@@ -464,22 +697,30 @@
           </p>
         </label>
       </div>
-      <div
-        class="position-relative"
-        id="transcript-preview"
-        [ngClass]="{ 'd-none': !transcriptImg }"
-      >
-        <img [src]="transcriptImg" alt="" class="w-100" />
-        <button
-          class="btn btn-primary w-25 mt-3"
-          id="transcript-btn"
-          (click)="
-            transcriptImg = null;
-            profileDataForm.patchValue({ transcript: null })
-          "
-        >
-          <i class="bi bi-trash me-2"></i>
-        </button>
+      <div class="col-6 py-2 file">
+        <div class="d-flex align-items-start justify-content-between">
+          <div class="d-flex align-items-start">
+            <i class="bi bi-file-earmark"></i>
+            <div>
+              <p class="mb-0 ms-3 opacity-50">john doe recommendation letter</p>
+              <p class="mb-0 ms-3 opacity-50">200 KB</p>
+              <div class="d-flex align-items-center gap-3 ms-3">
+                <div class="progress w-100">
+                  <div
+                    class="progress-bar bg-primary"
+                    role="progressbar"
+                    style="width: 100%"
+                    aria-valuenow="100"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+                <span>100%</span>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="opacity-50 text-white">Delete</a>
+        </div>
       </div>
     </div>
 
