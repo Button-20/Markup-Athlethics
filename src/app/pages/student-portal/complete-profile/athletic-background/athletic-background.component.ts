@@ -13,15 +13,15 @@ export class AthleticBackgroundComponent {
     soccer_position_played: new FormControl('', [Validators.required]),
     athletic_skill_level: new FormControl('', [Validators.required]),
     athletic_position_played: new FormControl('', [Validators.required]),
-    transcript: new FormControl(null),
+    letters: new FormControl([]),
   });
-
-  transcriptImg: any;
 
   sports: string[] = ['Soccer', 'Basketball', 'Athletics'];
   skillLevels: string[] = ['Beginner', 'Intermediate', 'Advanced'];
   athleticPositions: string[] = ['100m', '200m', '400m', '800m', '1500m'];
   positions: string[] = ['Defender', 'Striker'];
+
+  files: any[] = [];
 
   toggleSelectMenu(event: any, closeOnSelect: boolean = true) {
     // close other dropdown options
@@ -97,15 +97,19 @@ export class AthleticBackgroundComponent {
     event.preventDefault();
     event.stopPropagation();
     this.profileDataForm.patchValue({
-      transcript: event.dataTransfer?.files[0] || event.target.files[0],
+      letters: event.dataTransfer?.files || event.target.files,
     });
+    this.files = event.dataTransfer?.files || event.target.files;
 
-    if (!this.profileDataForm.value.transcript) return;
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      this.transcriptImg = reader.result;
+    if (!this.profileDataForm.value.letters) return;
+  }
+
+  removeFile(index: number) {
+    console.log(this.files);
+    this.files.splice(index, 1);
+    this.profileDataForm.patchValue({
+      letters: this.files,
     });
-    reader.readAsDataURL(this.profileDataForm.value.transcript);
   }
 
   onDragOver(event: any) {
@@ -123,6 +127,6 @@ export class AthleticBackgroundComponent {
     const valueContainer = input.nextElementSibling;
     valueContainer.style.left = `calc(${percent}% + (${
       8 - percent * 0.265 - 1.5
-      }px))`;
+    }px))`;
   }
 }
