@@ -15,9 +15,14 @@ export class PasswordComponent {
         Validators.required,
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/),
       ]),
-      confirmPassword: new FormControl('', [Validators.required]),
+      password_confirmation: new FormControl('', [Validators.required]),
     },
-    { validators: this.passwordMatchValidator('password', 'confirmPassword') }
+    {
+      validators: this.passwordMatchValidator(
+        'password',
+        'password_confirmation'
+      ),
+    }
   );
 
   showPassword: boolean = false;
@@ -71,7 +76,7 @@ export class PasswordComponent {
     return this.passwordForm.get('password') as FormControl;
   }
 
-  get confirmPassword() {
-    return this.passwordForm.get('confirmPassword') as FormControl;
+  get password_confirmation() {
+    return this.passwordForm.get('password_confirmation') as FormControl;
   }
 }
