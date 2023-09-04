@@ -4,10 +4,7 @@ import * as CryptoJs from 'crypto-js';
 import { Variables } from './variable';
 
 const SecureStorage = require('secure-web-storage');
-const {
-  ACCESS_TOKEN,
-  USER_DETAIL,
-} = Variables;
+const { ACCESS_TOKEN, USER_DETAIL, REGISTRATION_DETAIL } = Variables;
 
 @Injectable({
   providedIn: 'root',
@@ -88,11 +85,25 @@ export class StorageService {
     this.secureStorage.removeItem(USER_DETAIL);
   }
 
+  setRegistrationDetails(res: any): any {
+    this.secureStorage.setItem(REGISTRATION_DETAIL, res);
+  }
+
+  getRegistrationDetails(): any {
+    let res = this.secureStorage.getItem(REGISTRATION_DETAIL);
+    if (res) {
+      return res;
+    }
+    return null;
+  }
+
+  clearRegistrationDetails(): any {
+    this.secureStorage.removeItem(REGISTRATION_DETAIL);
+  }
+
   removeAccessToken(): any {
     this.secureStorage.removeItem(ACCESS_TOKEN);
   }
-
-
 
   setData(key: string, value: any) {
     let data = JSON.stringify(value);
@@ -110,7 +121,6 @@ export class StorageService {
   clearAllStorage() {
     this.secureStorage.clear();
   }
-
 
   logOutUser() {
     this.clearAllStorage();

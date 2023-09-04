@@ -5,6 +5,8 @@ import {
   PhoneNumberFormat,
   SearchCountryField,
 } from 'ngx-intl-telephone-input';
+import { AuthService } from 'src/app/services/api/auth/auth.service';
+import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'app-signup',
@@ -28,8 +30,18 @@ export class SignupComponent {
   PhoneNumberFormat = PhoneNumberFormat;
   separateDialCode = false;
 
-  onSubmit() {
-    console.log(this.signupForm.value);
+  constructor(
+    private globals: GlobalsService
+  ) {}
+
+  async onSubmit() {
+    if (this.signupForm.invalid) {
+      this.globals.toast.error('Please fill the form correctly');
+      return;
+    }
+    this.signupForm.value.phone =
+      this.signupForm.value.phone.internationalNumber;
+    this.globals.storage.setRegistrationDetails(this.signupForm.value);
   }
 
   get fullname() {

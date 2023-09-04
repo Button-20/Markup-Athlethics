@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/api/auth/auth.service';
+import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'app-password',
@@ -21,10 +23,22 @@ export class PasswordComponent {
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
 
-  constructor() {}
+  constructor(
+    private authService: AuthService,
+    private globals: GlobalsService
+  ) {}
 
-  onSubmit() {
-    console.log(this.passwordForm.value);
+  async onSubmit() {
+    if (this.passwordForm.invalid) {
+      this.globals.toast.error('Please fill the form correctly');
+      return;
+    }
+    let registrationDetails = this.globals.storage.getRegistrationDetails();
+    registrationDetails = {
+      ...registrationDetails,
+      ...this.passwordForm.value,
+    };
+    await this.authService.register(registrationDetails);
   }
 
   passwordMatchValidator(password: string, confirmPassword: string): any {
