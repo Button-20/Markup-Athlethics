@@ -8,15 +8,15 @@
     <input
       type="text"
       class="form-control"
-      name="fullname"
-      formControlName="fullname"
+      name="name"
+      formControlName="name"
       id="name"
       placeholder="eg. John Doe"
       required
     />
     <small
       class="text-danger"
-      *ngIf="fullname.errors?.['required'] && (fullname.dirty || fullname.touched)"
+      *ngIf="name.errors?.['required'] && (name.dirty || name.touched)"
       >Please enter your first and last name</small
     >
   </div>
@@ -25,15 +25,15 @@
     <input
       type="text"
       class="form-control"
-      name="institution"
-      formControlName="institution"
+      name="institution_name"
+      formControlName="institution_name"
       id="institution"
       placeholder="eg. Example college"
       required
     />
     <small
       class="text-danger"
-      *ngIf="institution.errors?.['required'] && (institution.dirty || institution.touched)"
+      *ngIf="institution_name.errors?.['required'] && (institution_name.dirty || institution_name.touched)"
       >Please enter your institution name</small
     >
   </div>
@@ -42,15 +42,15 @@
     <input
       type="text"
       class="form-control"
-      name="institution_email"
-      formControlName="institution_email"
+      name="email"
+      formControlName="email"
       id="email"
       placeholder="eg.johndoe@examplecollege.com"
       required
     />
     <small
       class="text-danger"
-      *ngIf="institution_email.errors?.['required'] && (institution_email.dirty || institution_email.touched)"
+      *ngIf="email.errors?.['required'] && (email.dirty || email.touched)"
       >Please enter your institution email address</small
     >
   </div>
@@ -59,16 +59,21 @@
     <select
       class="form-select"
       aria-label="Default select example"
-      name="region"
-      formControlName="region"
+      name="county"
+      formControlName="county"
       required
     >
       <option selected value="">Select region</option>
-      <option value="1">North</option>
-      <option value="2">South</option>
-      <option value="3">East</option>
-      <option value="3">West</option>
+      <option value="north">North</option>
+      <option value="south">South</option>
+      <option value="east">East</option>
+      <option value="west">West</option>
     </select>
+    <small
+      class="text-danger"
+      *ngIf="county.errors?.['required'] && (county.dirty || county.touched)"
+      >Please select your region</small
+    >
   </div>
 
   <div class="mb-3">
@@ -83,12 +88,14 @@
       [phoneValidation]="false"
       [numberFormat]="PhoneNumberFormat.International"
       [inputId]="'phone'"
-      formControlName="phone"
+      (onChange)="onPhoneNumberChange($event)"
       [className]="'form-input-select'"
     >
     </intl-telephone-input>
   </div>
-  <button class="btn btn-primary w-100">Next</button>
+  <button class="btn btn-primary w-100" [disabled]="!signupForm.valid">
+    Next
+  </button>
   <p class="mt-3 mb-0 text-center">
     Already have an account?
     <a

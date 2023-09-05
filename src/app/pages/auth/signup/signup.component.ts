@@ -5,7 +5,6 @@ import {
   PhoneNumberFormat,
   SearchCountryField,
 } from 'ngx-intl-telephone-input';
-import { AuthService } from 'src/app/services/api/auth/auth.service';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
@@ -15,14 +14,12 @@ import { GlobalsService } from 'src/app/services/core/globals';
 })
 export class SignupComponent {
   signupForm: FormGroup = new FormGroup({
-    fullname: new FormControl('', [Validators.required]),
-    institution: new FormControl('', [Validators.required]),
-    institution_email: new FormControl('', [
-      Validators.required,
-      Validators.email,
-    ]),
-    region: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required]),
+    institution_name: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    county: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required]),
+    user_type: new FormControl('1', [Validators.required]),
   });
 
   CountryISO = CountryISO;
@@ -30,30 +27,36 @@ export class SignupComponent {
   PhoneNumberFormat = PhoneNumberFormat;
   separateDialCode = false;
 
-  constructor(
-    private globals: GlobalsService
-  ) {}
+  constructor(private globals: GlobalsService) {}
 
   async onSubmit() {
     if (this.signupForm.invalid) {
       this.globals.toast.error('Please fill the form correctly');
       return;
     }
-    this.signupForm.value.phone =
-      this.signupForm.value.phone.internationalNumber;
     this.globals.storage.setRegistrationDetails(this.signupForm.value);
     this.globals.router.navigate(['/auth/password']);
   }
 
-  get fullname() {
-    return this.signupForm.get('fullname') as FormControl;
+  onPhoneNumberChange(event: any) {
+    this.signupForm.patchValue({
+      phone: '+' + event.dialCode + event.phoneNumber,
+    });
   }
 
-  get institution() {
-    return this.signupForm.get('institution') as FormControl;
+  get name() {
+    return this.signupForm.get('name') as FormControl;
   }
 
-  get institution_email() {
-    return this.signupForm.get('institution_email') as FormControl;
+  get institution_name() {
+    return this.signupForm.get('institution_name') as FormControl;
+  }
+
+  get email() {
+    return this.signupForm.get('email') as FormControl;
+  }
+
+  get county() {
+    return this.signupForm.get('county') as FormControl;
   }
 }

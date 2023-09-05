@@ -13,7 +13,9 @@ export class PasswordComponent {
     {
       password: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/),
+        Validators.pattern(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/
+        ),
       ]),
       password_confirmation: new FormControl('', [Validators.required]),
     },
