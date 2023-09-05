@@ -27,6 +27,15 @@ export class AthleticBackgroundComponent {
 
   constructor(private globals: GlobalsService) {}
 
+  onSubmit() {
+    if (this.profileDataForm.invalid) {
+      this.globals.toast.error('Please fill the form correctly');
+      return;
+    }
+    this.globals.storage.setProfileDetailsForm(this.profileDataForm.value);
+    this.globals.router.navigate(['/student/complete-profile/academic']);
+  }
+
   gotoDashboard() {
     this.globals.router.navigate(['/student/dashboard']);
   }

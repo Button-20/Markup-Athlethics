@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { getNames } from 'country-list';
 import { User } from './IApp';
 import { SpinnerService } from './spinner';
 import { StorageService } from './storage';
@@ -10,6 +11,8 @@ import { ToasterService } from './toaster';
 })
 export class GlobalsService {
   user: User | null = null;
+  countries: Array<any> = [];
+
   constructor(
     public storage: StorageService,
     public router: Router,
@@ -17,6 +20,7 @@ export class GlobalsService {
     public spinner: SpinnerService
   ) {
     this.user = this.storage.getUserDetails() || null;
+    this.countries = getNames();
   }
 
   async loggedOut() {

@@ -17,9 +17,8 @@ export class SignupComponent {
     name: new FormControl('', [Validators.required]),
     institution_name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    county: new FormControl('', [Validators.required]),
+    country: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required]),
-    user_type: new FormControl('1', [Validators.required]),
   });
 
   CountryISO = CountryISO;
@@ -27,7 +26,7 @@ export class SignupComponent {
   PhoneNumberFormat = PhoneNumberFormat;
   separateDialCode = false;
 
-  constructor(private globals: GlobalsService) {}
+  constructor(public globals: GlobalsService) {}
 
   async onSubmit() {
     if (this.signupForm.invalid) {
@@ -40,7 +39,7 @@ export class SignupComponent {
 
   onPhoneNumberChange(event: any) {
     this.signupForm.patchValue({
-      phone: '+' + event.dialCode + event.phoneNumber,
+      phone: '+' + event.dialCode + ' ' + event.phoneNumber,
     });
   }
 
@@ -56,7 +55,7 @@ export class SignupComponent {
     return this.signupForm.get('email') as FormControl;
   }
 
-  get county() {
-    return this.signupForm.get('county') as FormControl;
+  get country() {
+    return this.signupForm.get('country') as FormControl;
   }
 }

@@ -29,12 +29,12 @@ export class AuthService {
       }
     });
   }
-  
-  async register(user: User) {
+
+  async register(user: User, type: string = 'student') {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        const resp: any = await this.api.post('register', user);
+        const resp: any = await this.api.post(`register-${type}`, user);
         this.globals.toast.success(resp.message);
         this.globals.spinner.hide();
         resolve(resp);

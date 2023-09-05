@@ -55,23 +55,22 @@
     >
   </div>
   <div class="form-input mb-3">
-    <label for="name" class="form-label">Select region </label>
+    <label for="name" class="form-label">Select Country </label>
     <select
       class="form-select"
       aria-label="Default select example"
-      name="county"
-      formControlName="county"
+      name="country"
+      formControlName="country"
       required
     >
-      <option selected value="">Select region</option>
-      <option value="north">North</option>
-      <option value="south">South</option>
-      <option value="east">East</option>
-      <option value="west">West</option>
+      <option selected value="">Select Country</option>
+      <option *ngFor="let country of globals.countries" [value]="country">
+        {{ country }}
+      </option>
     </select>
     <small
       class="text-danger"
-      *ngIf="county.errors?.['required'] && (county.dirty || county.touched)"
+      *ngIf="country.errors?.['required'] && (country.dirty || country.touched)"
       >Please select your region</small
     >
   </div>

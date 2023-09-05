@@ -4,7 +4,8 @@ import * as CryptoJs from 'crypto-js';
 import { Variables } from './variable';
 
 const SecureStorage = require('secure-web-storage');
-const { ACCESS_TOKEN, USER_DETAIL, REGISTRATION_DETAIL } = Variables;
+const { ACCESS_TOKEN, USER_DETAIL, REGISTRATION_DETAIL, PROFILE_DETAIL_FORM } =
+  Variables;
 
 @Injectable({
   providedIn: 'root',
@@ -60,6 +61,10 @@ export class StorageService {
     return null;
   }
 
+  removeAccessToken(): any {
+    this.secureStorage.removeItem(ACCESS_TOKEN);
+  }
+
   isAuthenticated(): boolean {
     let token = this.getAccessToken();
     if (token != null) {
@@ -101,8 +106,20 @@ export class StorageService {
     this.secureStorage.removeItem(REGISTRATION_DETAIL);
   }
 
-  removeAccessToken(): any {
-    this.secureStorage.removeItem(ACCESS_TOKEN);
+  setProfileDetailsForm(res: any): any {
+    this.secureStorage.setItem(PROFILE_DETAIL_FORM, res);
+  }
+
+  getProfileDetailsForm(): any {
+    let res = this.secureStorage.getItem(PROFILE_DETAIL_FORM);
+    if (res) {
+      return res;
+    }
+    return null;
+  }
+
+  clearProfileDetailsForm(): any {
+    this.secureStorage.removeItem(PROFILE_DETAIL_FORM);
   }
 
   setData(key: string, value: any) {

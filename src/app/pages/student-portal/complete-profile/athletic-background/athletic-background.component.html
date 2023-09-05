@@ -5,7 +5,7 @@
 <p class="mb-5 opacity-50">
   Enter the details below to update your athletic background
 </p>
-<form class="profile-form" [formGroup]="profileDataForm">
+<form class="profile-form" [formGroup]="profileDataForm" (ngSubmit)="onSubmit()">
   <div class="row g-4">
     <div class="col-12 pb-4 border-bottom border-light">
       <label class="opacity-50 fw-bold"
@@ -655,7 +655,10 @@
         >Add another reference</a
       >
     </div>
-    <div class="row g-0 gx-4" *ngFor="let reference of profileDataForm.value.references; let i = index">
+    <div
+      class="row g-0 gx-4"
+      *ngFor="let reference of profileDataForm.value.references; let i = index"
+    >
       <div class="col-6">
         <label class="opacity-50 fw-bold">Name of reference</label>
         <input
@@ -734,7 +737,9 @@
     </div>
 
     <div class="col-12 text-end">
-      <button class="btn btn-primary w-50">Save and continue</button>
+      <button class="btn btn-primary w-50" [disabled]="!profileDataForm.valid">
+        Save and continue
+      </button>
     </div>
   </div>
 </form>
