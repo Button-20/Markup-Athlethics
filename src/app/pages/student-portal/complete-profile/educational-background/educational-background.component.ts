@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'app-educational-background',
@@ -25,6 +26,8 @@ export class EducationalBackgroundComponent {
     'Art',
   ];
 
+  constructor(private globals: GlobalsService) {}
+
   toggleSelectMenu(event: any, closeOnSelect: boolean = true) {
     // close other dropdown options
     event.preventDefault();
@@ -40,7 +43,8 @@ export class EducationalBackgroundComponent {
       }
     });
 
-    if (mainElement.nodeName !== 'BUTTON') mainElement = mainElement.parentNode.parentNode;
+    if (mainElement.nodeName !== 'BUTTON')
+      mainElement = mainElement.parentNode.parentNode;
 
     // add show class to dropdown options
     for (let i = 0; i < mainElement.children.length; i++) {
@@ -79,6 +83,10 @@ export class EducationalBackgroundComponent {
     if (activityIndex !== -1) {
       activities.value.splice(activityIndex, 1);
     }
+  }
+
+  gotoDashboard() {
+    this.globals.router.navigate(['/student/dashboard']);
   }
 
   dropImage(event: any) {

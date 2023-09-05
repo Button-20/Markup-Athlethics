@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'app-athletic-background',
@@ -23,6 +24,12 @@ export class AthleticBackgroundComponent {
   positions: string[] = ['Defender', 'Striker'];
 
   files: any[] = [];
+
+  constructor(private globals: GlobalsService) {}
+
+  gotoDashboard() {
+    this.globals.router.navigate(['/student/dashboard']);
+  }
 
   toggleSelectMenu(event: any, closeOnSelect: boolean = true) {
     // close other dropdown options

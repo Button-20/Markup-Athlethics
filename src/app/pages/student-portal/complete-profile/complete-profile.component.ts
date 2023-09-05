@@ -71,4 +71,6 @@ export class CompleteProfileComponent {
         ? 100
         : 0;
   }
+
+
 }

@@ -1,0 +1,89 @@
+/****************************** COMPLETE PROFILE 2 ******************************/
+.image-upload label {
+  cursor: pointer;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px dashed #e4e7ec;
+  text-align: center;
+  padding: 1.2rem 1.5rem;
+  margin-block: 1rem;
+}
+
+.image-upload input {
+  position: absolute;
+  opacity: 0;
+  background: red;
+  width: 100%;
+  z-index: 1;
+  height: 100%;
+  cursor: pointer;
+}
+
+#transcript-preview {
+  width: 100%;
+  height: 15em;
+  border: 1px dashed #e4e7ec;
+}
+
+#transcript-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+#transcript-preview .btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.range {
+  width: 100%;
+  height: 3px;
+  appearance: none;
+  background: #e9ecee;
+  border-radius: 1rem;
+  outline: none;
+}
+
+.range::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #bf2e1b;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #e9ecee;
+}
+
+.range ~ .value {
+  position: absolute;
+  z-index: 2;
+  font-family: Montserrat;
+  font-size: 0.75rem;
+  font-weight: 700;
+  pointer-events: none;
+  left: calc(0% + 5px);
+}
+
+.file i {
+  opacity: 0.54;
+  background: #88f63d;
+  border-radius: 1.75rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+}
+
+.file .progress {
+  height: 10px;
+}
+
+.file .progress .progress-bar {
+  background: #88f63d !important;
+  border-radius: 0.5rem;
+}
