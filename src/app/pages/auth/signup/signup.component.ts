@@ -19,6 +19,7 @@ export class SignupComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     country: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required]),
+    status: new FormControl('1'),
   });
 
   CountryISO = CountryISO;

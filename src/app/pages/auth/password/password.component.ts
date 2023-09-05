@@ -46,6 +46,8 @@ export class PasswordComponent {
       ...this.passwordForm.value,
     };
     await this.authService.register(registrationDetails);
+    this.globals.storage.clearRegistrationDetails();
+    this.globals.router.navigate(['/student/dashboard']);
   }
 
   passwordMatchValidator(password: string, confirmPassword: string): any {

@@ -35,7 +35,9 @@ export class AuthService {
       try {
         this.globals.spinner.show();
         const resp: any = await this.api.post(`register-${type}`, user);
-        this.globals.toast.success(resp.message);
+        this.globals.toast.success('🎉 Registration successful!!');
+        this.globals.storage.setAccessToken(resp.token);
+        this.globals.storage.setUserDetails(resp.user);
         this.globals.spinner.hide();
         resolve(resp);
       } catch (err: any) {
