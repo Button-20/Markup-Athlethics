@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
+import { PasswordResetSuccessComponent } from './password-reset-success/password-reset-success.component';
 import { PasswordComponent } from './password/password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignupComponent } from './signup/signup.component';
@@ -37,8 +39,16 @@ const routes: Routes = [
     component: ConfirmEmailComponent,
   },
   {
-    path: 'reset-password',
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+  },
+  {
+    path: 'reset-password/:token',
     component: ResetPasswordComponent,
+  },
+  {
+    path: 'password-reset-success',
+    component: PasswordResetSuccessComponent,
   },
   {
     path: '**',

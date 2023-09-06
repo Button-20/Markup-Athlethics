@@ -33,6 +33,15 @@ export class NavbarComponent {
     },
   ];
 
+  mobileNavigations: { name: string; route: string }[] = [
+    ...this.navigations,
+    {
+      name: 'Terms of Use',
+      route: '/terms-of-use',
+    },
+    { name: 'Privacy Policy', route: '/terms-of-use' },
+  ];
+
   ngOnInit() {
     this.initNavbar();
   }
@@ -45,8 +54,7 @@ export class NavbarComponent {
     const menuIcon = document.querySelector('#mobile-menu') as HTMLElement;
     const menu = document.querySelector('.mobile-menu') as HTMLElement;
     const closeIcon = document.querySelector('#close-menu') as HTMLElement;
-    const menuItems = document.querySelectorAll(".mobile-menu-items a");
-
+    const menuItems = document.querySelectorAll('.mobile-menu-items a');
 
     // Add event listener to search icon
     searchIcon.addEventListener('click', () => {
@@ -70,6 +78,10 @@ export class NavbarComponent {
         menu.classList.remove('active');
       });
     });
+  }
 
+  closeMenu() {
+    const menu = document.querySelector('.mobile-menu') as HTMLElement;
+    menu.classList.remove('active');
   }
 }

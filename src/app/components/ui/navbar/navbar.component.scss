@@ -196,6 +196,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
+    overflow-y: auto;
     z-index: 999;
     transform: translateX(-100%);
     display: block;

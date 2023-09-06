@@ -10,9 +10,10 @@ import { ContactFormComponent } from './forms/contact-form/contact-form.componen
 import { DashboardNavbarComponent } from './ui/dashboard-navbar/dashboard-navbar.component';
 import { FooterComponent } from './ui/footer/footer.component';
 import { NavbarComponent } from './ui/navbar/navbar.component';
+import { NoDataComponent } from './ui/no-data/no-data.component';
 import { SidebarComponent } from './ui/sidebar/sidebar.component';
 import { SocialsHangingComponent } from './ui/socials-hanging/socials-hanging.component';
-import { NoDataComponent } from './ui/no-data/no-data.component';
+import { PasswordFormComponent } from './forms/password-form/password-form.component';
 
 const components: Array<any> = [
   NavbarComponent,
@@ -23,7 +24,9 @@ const components: Array<any> = [
   NewsContainerComponent,
   ContactFormComponent,
   DashboardNavbarComponent,
-  SidebarComponent,NoDataComponent
+  SidebarComponent,
+  NoDataComponent,
+  PasswordFormComponent
 ];
 
 @NgModule({

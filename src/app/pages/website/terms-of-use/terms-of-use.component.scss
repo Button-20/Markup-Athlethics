@@ -1,0 +1,46 @@
+/****************** TERMS AND CONDITIONS SECTION *******************/
+.terms-and-conditions {
+  width: min(100%, 72.875rem);
+  margin-inline: auto;
+  padding-top: 3em;
+}
+
+.terms-and-conditions h2 {
+  opacity: 0.54;
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 130%;
+  letter-spacing: 0.06rem;
+}
+
+.terms-and-conditions p {
+  text-align: justify;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 130%; /* 1.95rem */
+  letter-spacing: 0.03rem;
+  opacity: 0.54;
+}
+
+@media screen and (max-width: 48em) {
+  .terms-and-conditions::before {
+    display: none;
+  }
+
+  /****************** TERMS AND CONDITIONS SECTION *******************/
+  .terms-and-conditions {
+    width: min(100%, 20.4375rem);
+    margin-inline: auto;
+    padding-top: 3em;
+  }
+
+  .terms-and-conditions h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .terms-and-conditions p {
+    letter-spacing: 0.0175rem;
+    font-size: 0.875rem;
+  }
+}

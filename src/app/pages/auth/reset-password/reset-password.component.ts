@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/api/auth/auth.service';
+import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'app-reset-password',
@@ -8,17 +8,17 @@ import { AuthService } from 'src/app/services/api/auth/auth.service';
   styleUrls: ['./reset-password.component.scss'],
 })
 export class ResetPasswordComponent {
-  resetForm: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-  });
+  token: string = '';
 
-  constructor(private authService: AuthService) {}
-
-  async onSubmit() {
-    await this.authService.forgotPassword(this.resetForm.value);
+  constructor(
+    private authService: AuthService,
+    private globals: GlobalsService
+  ) {
+    this.token = this.globals.router.url.split('/').pop() || '';
   }
 
-  get email() {
-    return this.resetForm.get('email') as FormControl;
+  async onSubmit(event: any) {
+    event.token = this.token;
+    await this.authService.resetPassword(event);
   }
 }

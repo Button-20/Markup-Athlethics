@@ -110,14 +110,8 @@
     <li>
       <a class="active" routerLink="/auth/signup">Sign Up</a>
     </li>
-    <li *ngFor="let item of navigations">
-      <a [routerLink]="item.route">{{ item.name }}</a>
-    </li>
-    <li>
-      <a href="terms-and-conditions.html">Terms of Use</a>
-    </li>
-    <li>
-      <a href="terms-and-conditions.html">Privacy Policy</a>
+    <li *ngFor="let item of mobileNavigations">
+      <a [routerLink]="item.route" (click)="closeMenu()">{{ item.name }}</a>
     </li>
   </ul>
 </div>

@@ -81,7 +81,7 @@ export class AuthService {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        const resp: any = await this.api.post('auth/forgot-password', {
+        const resp: any = await this.api.post('forgot-password', {
           email,
         });
         this.globals.spinner.hide();
@@ -99,7 +99,7 @@ export class AuthService {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        const resp: any = await this.api.post('auth/reset-password', {
+        const resp: any = await this.api.post('reset-password', {
           email,
         });
         this.globals.spinner.hide();
@@ -117,7 +117,7 @@ export class AuthService {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        await this.api.get('logout');
+        await this.api.post('logout', {});
         this.globals.storage.logOutUser();
         this.globals.spinner.hide();
         resolve(true);

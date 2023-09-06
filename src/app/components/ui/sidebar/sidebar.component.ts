@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/api/auth/auth.service';
-import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'sidebar',
@@ -31,11 +30,8 @@ export class SidebarComponent {
     },
   ];
 
-  constructor(
-    private authService: AuthService,
-    private globals: GlobalsService
-  ) { }
-  
+  constructor(private authService: AuthService) {}
+
   async logout() {
     await this.authService.logout();
   }
