@@ -31,11 +31,17 @@ export class ContactFormComponent {
   emitSubmit() {
     if (this.contactForm.invalid) return;
     this.onSubmit.emit(this.contactForm.value);
+    this.contactForm.reset({
+      fullname: '',
+      email: '',
+      phonenumber: '',
+      message: '',
+    });
   }
 
   onPhoneNumberChange(event: any) {
     this.contactForm.patchValue({
-      phonenumber: event.internationalNumber,
+      phonenumber: '+' + event.dialCode + ' ' + event.phoneNumber,
     });
   }
 
