@@ -9,15 +9,15 @@
     <input
       type="text"
       class="form-control"
-      name="institution_email"
-      formControlName="institution_email"
+      name="email"
+      formControlName="email"
       id="email"
       placeholder="eg.johndoe@examplecollege.com"
       required
     />
     <small
       class="text-danger"
-      *ngIf="institution_email.errors?.['required'] && (institution_email.dirty || institution_email.touched)"
+      *ngIf="email.errors?.['required'] && (email.dirty || email.touched)"
       >Please enter your institution email address</small
     >
   </div>

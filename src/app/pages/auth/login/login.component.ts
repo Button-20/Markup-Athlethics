@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/api/auth/auth.service';
+import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'app-login',
@@ -9,22 +10,23 @@ import { AuthService } from 'src/app/services/api/auth/auth.service';
 })
 export class LoginComponent {
   loginForm: FormGroup = new FormGroup({
-    institution_email: new FormControl('', [
-      Validators.required,
-      Validators.email,
-    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
   showPassword: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private globals: GlobalsService
+  ) {}
 
   async onSubmit() {
     await this.authService.login(this.loginForm.value);
+    this.globals.router.navigate(['/student/dashboard']);
   }
 
-  get institution_email() {
-    return this.loginForm.get('institution_email') as FormControl;
+  get email() {
+    return this.loginForm.get('email') as FormControl;
   }
 
   get password() {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'app-profile-data',
@@ -28,7 +29,7 @@ export class ProfileDataComponent {
 
   nationalities: string[] = ['Ghanaian', 'Nigerian', 'South African'];
 
-  constructor() {}
+  constructor(public globals: GlobalsService) {}
 
   onSubmit() {
     console.log(this.profileDataForm.value);
@@ -93,5 +94,9 @@ export class ProfileDataComponent {
   selectItem(item: string, type: string) {
     const formControl = this.profileDataForm.get(type) as FormControl;
     formControl.setValue(item);
+  }
+
+  goBack() {
+    this.globals.router.navigate(['/student/dashboard']);
   }
 }

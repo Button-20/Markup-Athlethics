@@ -6,6 +6,7 @@ import { EducationalBackgroundComponent } from './educational-background/educati
 import { ImageUploadsComponent } from './image-uploads/image-uploads.component';
 import { ProfileDataComponent } from './profile-data/profile-data.component';
 import { VideoUploadsComponent } from './video-uploads/video-uploads.component';
+import { ProfileCompleteComponent } from './profile-complete/profile-complete.component';
 
 const routes: Routes = [
   {
@@ -32,12 +33,17 @@ const routes: Routes = [
         path: 'video-uploads',
         component: VideoUploadsComponent,
       },
+
       {
         path: '',
         redirectTo: 'profile-data',
         pathMatch: 'full',
       },
     ],
+  },
+  {
+    path: 'profile-complete',
+    component: ProfileCompleteComponent,
   },
   {
     path: '**',

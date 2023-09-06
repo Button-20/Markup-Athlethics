@@ -12,6 +12,7 @@ import { FooterComponent } from './ui/footer/footer.component';
 import { NavbarComponent } from './ui/navbar/navbar.component';
 import { SidebarComponent } from './ui/sidebar/sidebar.component';
 import { SocialsHangingComponent } from './ui/socials-hanging/socials-hanging.component';
+import { NoDataComponent } from './ui/no-data/no-data.component';
 
 const components: Array<any> = [
   NavbarComponent,
@@ -22,7 +23,7 @@ const components: Array<any> = [
   NewsContainerComponent,
   ContactFormComponent,
   DashboardNavbarComponent,
-  SidebarComponent,
+  SidebarComponent,NoDataComponent
 ];
 
 @NgModule({

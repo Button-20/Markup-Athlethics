@@ -9,9 +9,10 @@ import { EducationalBackgroundComponent } from './educational-background/educati
 import { AthleticBackgroundComponent } from './athletic-background/athletic-background.component';
 import { ImageUploadsComponent } from './image-uploads/image-uploads.component';
 import { VideoUploadsComponent } from './video-uploads/video-uploads.component';
+import { ProfileCompleteComponent } from './profile-complete/profile-complete.component';
 
 @NgModule({
-  declarations: [CompleteProfileComponent, ProfileDataComponent, EducationalBackgroundComponent, AthleticBackgroundComponent, ImageUploadsComponent, VideoUploadsComponent],
+  declarations: [CompleteProfileComponent, ProfileDataComponent, EducationalBackgroundComponent, AthleticBackgroundComponent, ImageUploadsComponent, VideoUploadsComponent, ProfileCompleteComponent],
   imports: [CommonModule, CompleteProfileRoutingModule, ReactiveFormsModule],
 })
 export class CompleteProfileModule {}

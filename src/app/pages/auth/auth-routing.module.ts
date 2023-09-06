@@ -4,6 +4,7 @@ import { AuthComponent } from './auth.component';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordComponent } from './password/password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
         path: 'password',
         component: PasswordComponent,
       },
+
       {
         path: '',
         redirectTo: 'signup',
@@ -33,6 +35,10 @@ const routes: Routes = [
   {
     path: 'confirm-email',
     component: ConfirmEmailComponent,
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent,
   },
   {
     path: '**',

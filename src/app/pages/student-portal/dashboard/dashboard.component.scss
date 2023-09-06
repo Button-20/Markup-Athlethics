@@ -7,7 +7,7 @@
   padding: 2rem 0;
 }
 
-.dark-section:nth-child(1) img {
+.dark-section img[alt="profile"] {
   padding: 1rem;
   background: #26262a;
   border-radius: 50%;
@@ -119,4 +119,15 @@
   z-index: 1;
   top: 0.5rem;
   left: -1rem;
+}
+
+.warning-notif::after {
+  position: absolute;
+  content: "";
+  background: #fbbc05;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 0.4375rem;
+  border-radius: 0.5rem;
 }
