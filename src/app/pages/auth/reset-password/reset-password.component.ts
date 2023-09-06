@@ -9,16 +9,20 @@ import { GlobalsService } from 'src/app/services/core/globals';
 })
 export class ResetPasswordComponent {
   token: string = '';
+  email: string = '';
 
   constructor(
     private authService: AuthService,
     private globals: GlobalsService
   ) {
     this.token = this.globals.router.url.split('/').pop() || '';
+    this.email = this.globals.activatedRoute.snapshot.queryParams?.['email'] || '';
   }
 
   async onSubmit(event: any) {
     event.token = this.token;
+    event.email = this.email;
     await this.authService.resetPassword(event);
+    this.globals.router.navigate(['/auth/password-reset-success']);
   }
 }

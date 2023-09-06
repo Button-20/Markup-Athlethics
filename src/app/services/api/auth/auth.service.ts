@@ -95,12 +95,25 @@ export class AuthService {
     });
   }
 
-  async resetPassword({ email }: { email: string }) {
+  async resetPassword({
+    email,
+    token,
+    password,
+    password_confirmation,
+  }: {
+    email: string;
+    token: string;
+    password: string;
+    password_confirmation: string;
+  }) {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
         const resp: any = await this.api.post('reset-password', {
           email,
+          token,
+          password,
+          password_confirmation,
         });
         this.globals.spinner.hide();
         this.globals.toast.success('🎉 Password reset link sent to your email');

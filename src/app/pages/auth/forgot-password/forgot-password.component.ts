@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/api/auth/auth.service';
 
 @Component({
@@ -16,6 +16,9 @@ export class ForgotPasswordComponent {
 
   async onSubmit() {
     await this.authService.forgotPassword(this.resetForm.value);
+    this.resetForm.reset({
+      email: '',
+    });
   }
 
   get email() {

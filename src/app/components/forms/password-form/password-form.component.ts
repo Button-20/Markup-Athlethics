@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GlobalsService } from 'src/app/services/core/globals';
 
@@ -8,9 +8,10 @@ import { GlobalsService } from 'src/app/services/core/globals';
   styleUrls: ['./password-form.component.scss'],
 })
 export class PasswordFormComponent {
-  @Input() submitForm: EventEmitter<any> = new EventEmitter<any>();
+  @Output() submitForm: EventEmitter<any> = new EventEmitter<any>();
   @Input() firstInputLabel: string = 'Password';
   @Input() secondInputLabel: string = 'Confirm Password';
+  @Input() submitButtonLabel: string = 'Sign up';
 
   passwordForm: FormGroup = new FormGroup(
     {
@@ -40,7 +41,8 @@ export class PasswordFormComponent {
       this.globals.toast.error('Please fill the form correctly');
       return;
     }
-    let registrationDetails = this.globals.storage.getRegistrationDetails();
+    let registrationDetails =
+      this.globals.storage.getRegistrationDetails() || {};
     registrationDetails = {
       ...registrationDetails,
       ...this.passwordForm.value,
