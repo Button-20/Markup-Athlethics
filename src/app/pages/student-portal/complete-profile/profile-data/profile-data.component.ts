@@ -14,7 +14,10 @@ export class ProfileDataComponent {
     interests: new FormControl([], [Validators.required]),
     education_level: new FormControl('', [Validators.required]),
     profile_picture: new FormControl('', [Validators.required]),
-    date_of_birth: new FormControl('', [Validators.required]),
+    date_of_birth: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^\d{2}-\d{2}-\d{2}$/),
+    ]),
     height: new FormControl('', [Validators.required]),
     weight: new FormControl('', [Validators.required]),
   });
@@ -34,10 +37,16 @@ export class ProfileDataComponent {
 
   nationalities: string[] = ['Ghanaian', 'Nigerian', 'South African'];
 
-  constructor(public globals: GlobalsService, private usersService: UsersService) {}
+  constructor(
+    public globals: GlobalsService,
+    private usersService: UsersService
+  ) {}
 
-  onSubmit() {
-    console.log(this.profileDataForm.value);
+  async onSubmit() {
+    await this.usersService.postStudentData(this.profileDataForm.value);
+    this.globals.router.navigate([
+      '/student/complete-profile/educational-background',
+    ]);
   }
 
   toggleSelectMenu(event: any, closeOnSelect: boolean = true) {
@@ -103,5 +112,29 @@ export class ProfileDataComponent {
 
   goBack() {
     this.globals.router.navigate(['/student/dashboard']);
+  }
+
+  imageUpload(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const profile_picture = this.profileDataForm.get(
+        'profile_picture'
+      ) as FormControl;
+      profile_picture.setValue(reader.result);
+    };
+  }
+
+  get date_of_birth() {
+    return this.profileDataForm.get('date_of_birth') as FormControl;
+  }
+
+  get height() {
+    return this.profileDataForm.get('height') as FormControl;
+  }
+
+  get weight() {
+    return this.profileDataForm.get('weight') as FormControl;
   }
 }

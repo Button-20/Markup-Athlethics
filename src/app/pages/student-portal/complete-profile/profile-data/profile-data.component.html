@@ -1,8 +1,6 @@
 <div class="d-flex align-items-center justify-content-between mt-5 mb-2">
   <p class="mb-2 fw-bold mt-4">Personal Data</p>
-  <i class="bi bi-x-lg mt-4 pointer"
-  (click)="goBack()"
-  ></i>
+  <i class="bi bi-x-lg mt-4 pointer" (click)="goBack()"></i>
 </div>
 <p class="mb-5 opacity-50">
   Enter the details below to update your personal data.
@@ -14,9 +12,23 @@
 >
   <small class="opacity-50 fw-bold">Profile picture</small>
   <div class="my-3 mb-4">
-    <img src="assets/images/profile-user.png" alt="profile" />
+    <img
+      [src]="
+        profileDataForm.value.profile_picture ||
+        'assets/images/profile-user.png'
+      "
+      alt="profile"
+    />
   </div>
-  <button class="btn upload mb-5">Upload profile image here</button>
+  <label class="btn upload mb-5" type="button" for="img-upload">
+    Upload profile image here
+  </label>
+  <input
+    type="file"
+    class="d-none"
+    id="img-upload"
+    (change)="imageUpload($event)"
+  />
   <div class="row g-4">
     <div class="col-6">
       <label class="opacity-50 fw-bold" for="nationality"
@@ -46,7 +58,22 @@
         type="text"
         class="form-control mb-4 mt-2"
         placeholder="MM/DD/YY"
+        formControlName="date_of_birth"
       />
+      <div
+        class="text-danger"
+        *ngIf="
+          date_of_birth.invalid &&
+          (date_of_birth.touched || date_of_birth.dirty)
+        "
+      >
+        <small *ngIf="date_of_birth.errors?.['required']"
+          >Date of birth is required</small
+        >
+        <small *ngIf="date_of_birth.errors?.['pattern']">
+          Date of birth is invalid
+        </small>
+      </div>
     </div>
     <div class="col-6">
       <label class="opacity-50 fw-bold">Height (cm)</label>
@@ -54,7 +81,14 @@
         type="text"
         class="form-control mb-4 mt-2"
         placeholder="eg 162 cm"
+        formControlName="height"
       />
+      <div
+        class="text-danger"
+        *ngIf="height.invalid && (height.touched || height.dirty)"
+      >
+        <small *ngIf="height.errors?.['required']">Height is required</small>
+      </div>
     </div>
     <div class="col-6">
       <label class="opacity-50 fw-bold">Weight (lb)</label>
@@ -62,7 +96,14 @@
         type="text"
         class="form-control mb-4 mt-2"
         placeholder="eg.138 lb"
+        formControlName="weight"
       />
+      <div
+        class="text-danger"
+        *ngIf="weight.invalid && (weight.touched || weight.dirty)"
+      >
+        <small *ngIf="weight.errors?.['required']">Weight is required</small>
+      </div>
     </div>
     <div class="col-6">
       <label class="opacity-50 fw-bold">Educational Level</label>
@@ -127,7 +168,9 @@
       </ul>
     </div>
     <div class="col-12 text-end">
-      <button class="btn btn-primary w-50">Save and continue</button>
+      <button class="btn btn-primary w-50" [disabled]="profileDataForm.invalid">
+        Save and continue
+      </button>
     </div>
   </div>
 </form>
