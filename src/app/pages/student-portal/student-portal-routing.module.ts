@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NewsComponent } from './news/news.component';
-import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { StudentPortalComponent } from './student-portal.component';
 
@@ -17,14 +16,16 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        component: ProfileComponent,
+        loadChildren: () =>
+          import('./profile/profile.module').then((m) => m.ProfileModule),
       },
       {
         path: 'news',
-        component: NewsComponent
-      }, {
+        component: NewsComponent,
+      },
+      {
         path: 'settings',
-        component: SettingsComponent
+        component: SettingsComponent,
       },
       {
         path: '',

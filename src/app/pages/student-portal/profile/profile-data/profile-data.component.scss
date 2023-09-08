@@ -1,0 +1,134 @@
+.profile-form {
+  .form-control {
+    background: #2a2a2e;
+    border: 1px solid #fff;
+    border-radius: 0.5rem;
+    color: #fff;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &::placeholder {
+      color: #fff;
+      opacity: 0.5;
+    }
+  }
+
+  .select-menu {
+    position: relative;
+    outline: none;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: start;
+
+    .select-btn {
+      background: #2a2a2e;
+      border: 1px solid #fff;
+      border-radius: 0.5rem;
+      color: #fff;
+      padding: 0.4rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .select-list {
+      border-radius: 0.1875rem;
+      background: #2a2a2e;
+      padding: 0.5rem;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+      z-index: 100;
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+
+  .radio-input {
+    display: flex;
+    align-items: center;
+
+    input[type="checkbox"] {
+      display: none;
+
+      & ~ label.radio-btn {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        border: 1px solid #fff;
+        opacity: 0.5;
+        cursor: pointer;
+        margin-right: 1.5rem;
+        transition: all 0.3s ease;
+        position: relative;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      &:checked ~ label.radio-btn {
+        background: var(--success);
+        opacity: 1;
+        border: none;
+
+        &::after {
+          content: "";
+          position: absolute;
+          width: 0.8rem;
+          height: 0.8rem;
+          border-radius: 50%;
+          z-index: 1;
+          border: 1px solid #000;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+}
+
+.profile-form .select-menu .select-list li {
+  list-style: none;
+  padding: 0.5rem 1.25rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 0.875rem;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.54);
+  color: hsla(0, 0%, 100%, 0.54);
+}
+
+.profile-form .select-menu .select-list li:hover {
+  background: #3a3a3b;
+}
+
+.profile-form .badge.bg-dark {
+  background: #1a1a1e;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+img[alt="profile"] {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: 2px solid var(--success);
+  object-fit: cover;
+  padding: 2px;
+}
+
+.btn.upload {
+  border: 1px solid rgba(255, 255, 255, 0.54);
+  padding: 0.625rem 1.25rem;
+  width: 20rem;
+}

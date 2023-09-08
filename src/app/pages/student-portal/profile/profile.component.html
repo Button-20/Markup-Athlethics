@@ -1,1 +1,44 @@
-<p>profile works!</p>
+<div class="row g-0 justify-content-end flex-nowrap me-5">
+  <div class="col-11">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <img
+          src="assets/images/user-success.svg"
+          alt="dashboard"
+          class="me-2"
+        />
+        <p class="mb-0 opacity-50">Profile</p>
+      </div>
+      <a href="#" class="opacity-50 text-white">View full profile</a>
+    </div>
+    <div
+      class="d-flex align-items-center border-bottom border-light justify-content-between gap-2 my-3 py-4"
+    >
+      <a
+        *ngFor="let nav of navigations"
+        routerLink="/student/profile{{ nav.route }}"
+        [ngClass]="{ 'active': nav.name === currentNav.name }"
+        class="opacity-50 text-white text-decoration-none"
+      >
+        {{ nav.name }}
+      </a>
+    </div>
+    <div class="col-8">
+      <div
+        class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3"
+      >
+        <div>
+          <p class="mb-3">
+            {{ currentNav.name.replace(" (Bio)", "") }}
+          </p>
+          <p class="mb-0 opacity-50">
+            Edit the details below to update your
+            {{ currentNav.name.replace(" (Bio)", "") | lowercase }}.
+          </p>
+        </div>
+        <button class="btn btn-secondary">Edit</button>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

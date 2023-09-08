@@ -1,0 +1,107 @@
+<form
+  class="profile-form"
+  [formGroup]="profileDataForm"
+  (ngSubmit)="onSubmit()"
+>
+  <small class="opacity-50 fw-bold">Profile picture</small>
+  <div class="my-3 mb-4">
+    <img src="assets/images/profile-user.png" alt="profile" />
+  </div>
+  <button class="btn upload mb-5">Upload profile image here</button>
+  <div class="row g-4">
+    <div class="col-6">
+      <label class="opacity-50 fw-bold" for="nationality"
+        >Select Nationality</label
+      >
+      <button class="select-menu mt-2" (click)="toggleSelectMenu($event)">
+        <div class="select-btn">
+          <span class="selected-item">
+            {{ profileDataForm.value.nationality || "Select Nationality" }}
+          </span>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <ul class="select-list">
+          <li
+            class="select-item"
+            *ngFor="let nationality of nationalities"
+            (click)="selectItem(nationality, 'nationality')"
+          >
+            {{ nationality }}
+          </li>
+        </ul>
+      </button>
+    </div>
+    <div class="col-6">
+      <label class="opacity-50 fw-bold">Date of birth</label>
+      <input
+        type="text"
+        class="form-control mb-4 mt-2"
+        placeholder="MM/DD/YY"
+      />
+    </div>
+    <div class="col-6">
+      <label class="opacity-50 fw-bold">Height (cm)</label>
+      <input
+        type="text"
+        class="form-control mb-4 mt-2"
+        placeholder="eg 162 cm"
+      />
+    </div>
+    <div class="col-6">
+      <label class="opacity-50 fw-bold">Weight (lb)</label>
+      <input
+        type="text"
+        class="form-control mb-4 mt-2"
+        placeholder="eg.138 lb"
+      />
+    </div>
+    <div class="col-6">
+      <label for="phone" class="opacity-50 fw-bold mb-2">Phone Number</label>
+      <intl-telephone-input
+        [preferredCountries]="[CountryISO.Ghana, CountryISO.UnitedStates]"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [separateDialCode]="true"
+        [enableAutoCountrySelect]="true"
+        [searchCountryField]="SearchCountryField.All"
+        [phoneValidation]="false"
+        [numberFormat]="PhoneNumberFormat.International"
+        [inputId]="'phone'"
+        (onChange)="onPhoneNumberChange($event)"
+        [className]="'form-profile-input'"
+      >
+      </intl-telephone-input>
+    </div>
+    <div class="col-12">
+      <label class="opacity-50 fw-bold mb-2">Interests</label>
+      <div
+        class="d-flex align-items-center justify-content-between flex-wrap gap-3"
+      >
+        <div class="radio-input" *ngFor="let interest of interests">
+          <input
+            type="checkbox"
+            name="interests"
+            id="{{ interest.toLowerCase() }}"
+            (click)="onInterestChange($event)"
+            [checked]="profileDataForm.value.interests.includes(interest)"
+          />
+          <label [for]="interest.toLowerCase()" class="radio-btn"></label>
+          <label [for]="interest.toLowerCase()" class="opacity-50 pointer">{{
+            interest
+          }}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 text-end my-5">
+      <button class="btn btn-secondary" type="button">Cancel</button>
+      <button
+        class="btn btn-primary ms-2"
+        type="submit"
+        [disabled]="!profileDataForm.valid"
+      >
+        Upload profile
+      </button>
+    </div>
+  </div>
+</form>

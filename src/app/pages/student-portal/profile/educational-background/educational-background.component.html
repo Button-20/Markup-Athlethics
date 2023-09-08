@@ -1,0 +1,63 @@
+<form
+  class="profile-form"
+  [formGroup]="profileDataForm"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="row g-4">
+    <div class="col-6">
+      <label class="opacity-50 fw-bold">Course of Study</label>
+      <input
+        type="text"
+        class="form-control mb-4 mt-2"
+        placeholder="eg. Computer Science"
+      />
+    </div>
+    <div class="col-6">
+      <label class="opacity-50 fw-bold">Grade point average (GPA)</label>
+      <input
+        type="text"
+        class="form-control mb-4 mt-2"
+        placeholder="eg. 3.5"
+      />
+    </div>
+    <div class="col-6">
+      <label class="opacity-50 fw-bold">Graduation Year</label>
+      <input
+        type="text"
+        class="form-control mb-4 mt-2"
+        placeholder="eg. 2021"
+      />
+    </div>
+    <div class="col-12">
+      <label class="opacity-50 fw-bold mb-2">Extra curricular activities</label>
+      <div
+        class="d-flex align-items-center justify-content-between flex-wrap gap-3"
+      >
+        <div class="radio-input" *ngFor="let activity of activities">
+          <input
+            type="checkbox"
+            name="interests"
+            id="{{ activity.toLowerCase() }}"
+            (click)="onExtraChange($event)"
+            [checked]="profileDataForm.value.extra_curricular_activities.includes(activities)"
+          />
+          <label [for]="activity.toLowerCase()" class="radio-btn"></label>
+          <label [for]="activity.toLowerCase()" class="opacity-50 pointer">{{
+            activity
+          }}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 text-end my-5">
+      <button class="btn btn-secondary" type="button">Cancel</button>
+      <button
+        class="btn btn-primary ms-2"
+        type="submit"
+        [disabled]="!profileDataForm.valid"
+      >
+        Upload profile
+      </button>
+    </div>
+  </div>
+</form>
