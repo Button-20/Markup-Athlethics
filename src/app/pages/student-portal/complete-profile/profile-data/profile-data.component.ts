@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from 'src/app/services/api/users/users.service';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
@@ -12,6 +13,10 @@ export class ProfileDataComponent {
     nationality: new FormControl('', [Validators.required]),
     interests: new FormControl([], [Validators.required]),
     education_level: new FormControl('', [Validators.required]),
+    profile_picture: new FormControl('', [Validators.required]),
+    date_of_birth: new FormControl('', [Validators.required]),
+    height: new FormControl('', [Validators.required]),
+    weight: new FormControl('', [Validators.required]),
   });
 
   interests: string[] = [
@@ -29,7 +34,7 @@ export class ProfileDataComponent {
 
   nationalities: string[] = ['Ghanaian', 'Nigerian', 'South African'];
 
-  constructor(public globals: GlobalsService) {}
+  constructor(public globals: GlobalsService, private usersService: UsersService) {}
 
   onSubmit() {
     console.log(this.profileDataForm.value);
