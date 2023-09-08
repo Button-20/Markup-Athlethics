@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build && copy .htaccess public\\.htaccess",
     "watch": "ng build --watch --configuration development",
-    "push":  "@echo off && git add . && git commit -m \"$(date)\" && git push origin master",
+    "push":  "@echo off && set /p commit=Commit message: && git add . && git commit -m \"%commit%\" && git push",
     "test": "ng test"
   },
   "private": true,
