@@ -43,7 +43,7 @@ export class ProfileDataComponent {
   ) {}
 
   async onSubmit() {
-    console.log(this.profileDataForm.value);
+    // console.log(this.profileDataForm.value);
     await this.usersService.postStudentData(this.profileDataForm.value);
     this.globals.router.navigate([
       '/student/complete-profile/educational-background',
