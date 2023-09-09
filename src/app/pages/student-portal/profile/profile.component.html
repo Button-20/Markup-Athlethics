@@ -17,7 +17,7 @@
       <a
         *ngFor="let nav of navigations"
         routerLink="/student/profile{{ nav.route }}"
-        [ngClass]="{ 'active': nav.name === currentNav.name }"
+        [ngClass]="{ active: nav.name === currentNav.name }"
         class="opacity-50 text-white text-decoration-none"
       >
         {{ nav.name }}
@@ -25,18 +25,27 @@
     </div>
     <div class="col-8">
       <div
-        class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3"
+        class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3 border-light border-opacity-50 border-2"
       >
         <div>
           <p class="mb-3">
             {{ currentNav.name.replace(" (Bio)", "") }}
           </p>
           <p class="mb-0 opacity-50">
-            Edit the details below to update your
-            {{ currentNav.name.replace(" (Bio)", "") | lowercase }}.
+            {{
+              !currentNav.name.includes("uploads")
+                ? "Edit the details below to update your " +
+                  (currentNav.name.replace(" (Bio)", "") | lowercase)
+                : "Edit your " + (currentNav.name | lowercase)
+            }}
           </p>
         </div>
-        <button class="btn btn-secondary">Edit</button>
+        <button
+          class="btn btn-secondary"
+          *ngIf="!currentNav.name.includes('uploads')"
+        >
+          Edit
+        </button>
       </div>
       <router-outlet></router-outlet>
     </div>

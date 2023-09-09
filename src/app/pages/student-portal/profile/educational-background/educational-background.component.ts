@@ -18,12 +18,15 @@ export class EducationalBackgroundComponent {
     gpa: new FormControl('', [Validators.required]),
     graduation_year: new FormControl([], [Validators.required]),
     extra_curricular_activities: new FormControl([], [Validators.required]),
+    transcripts: new FormControl([], [Validators.required]),
   });
 
   CountryISO = CountryISO;
   SearchCountryField = SearchCountryField;
   PhoneNumberFormat = PhoneNumberFormat;
   separateDialCode = false;
+
+  files: any[] = [];
 
   educationLevels: string[] = ['Beginner', 'Intermediate', 'Advanced'];
 
@@ -108,5 +111,28 @@ export class EducationalBackgroundComponent {
       extras.push(event.target.value);
     }
     formControl.setValue(extras);
+  }
+
+  dropImage(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.files = [...(event.dataTransfer?.files || event.target.files)];
+
+    this.profileDataForm.patchValue({
+      transcripts: this.files,
+    });
+  }
+
+  removeFile(e: any, index: number) {
+    e.preventDefault();
+    this.files.splice(index, 1);
+    this.profileDataForm.patchValue({
+      transcripts: this.files,
+    });
+  }
+
+  onDragOver(event: any) {
+    event.stopPropagation();
+    event.preventDefault();
   }
 }
