@@ -16,7 +16,7 @@ export class ProfileDataComponent {
     profile_picture: new FormControl('', [Validators.required]),
     date_of_birth: new FormControl('', [
       Validators.required,
-      Validators.pattern(/^\d{2}-\d{2}-\d{2}$/),
+      Validators.pattern('^[0-9]{2}/[0-9]{2}/[0-9]{2}$'),
     ]),
     height: new FormControl('', [Validators.required]),
     weight: new FormControl('', [Validators.required]),
@@ -43,8 +43,21 @@ export class ProfileDataComponent {
   ) {}
 
   async onSubmit() {
-    console.log(this.profileDataForm.value);
+    this.profileDataForm.patchValue({
+      profile_picture: await this.usersService.uploadImage({
+        file: this.profileDataForm.value.profile_picture,
+      }),
+    });
     await this.usersService.postStudentData(this.profileDataForm.value);
+    this.profileDataForm.reset({
+      nationality: '',
+      interests: [],
+      education_level: '',
+      profile_picture: '',
+      date_of_birth: '',
+      height: '',
+      weight: '',
+    });
     this.globals.router.navigate([
       '/student/complete-profile/educational-background',
     ]);

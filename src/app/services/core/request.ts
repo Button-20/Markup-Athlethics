@@ -130,4 +130,25 @@ export class RequestService {
       }
     });
   }
+
+  async upload(url: string, data: any) {
+    return await new Promise((resolve, reject) => {
+      try {
+        let requestOptions: any = {
+          method: 'POST',
+          body: data,
+          redirect: 'follow',
+        };
+
+        fetch(environment.cloudinary.url + url, requestOptions)
+          .then((response) => response.json())
+          .then((result) => resolve(result))
+          .catch((error) => {
+            throw new Error(error);
+          });
+      } catch (ex) {
+        reject(ex);
+      }
+    });
+  }
 }
