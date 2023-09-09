@@ -1,0 +1,31 @@
+.image {
+  img {
+    width: 14.625rem;
+    height: 14.625rem;
+    border-radius: 0.3125rem;
+    object-fit: cover;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover{
+      opacity: 0.8;
+    }
+  }
+}
+
+.add-image {
+  label {
+    width: 14.625rem;
+    height: 14.625rem;
+    background: #1a1a1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    i {
+      font-size: 10rem;
+      color: #2a2a2e;
+    }
+  }
+}

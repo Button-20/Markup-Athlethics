@@ -34,6 +34,7 @@ export class UsersService {
         resolve(resp);
       } catch (err: any) {
         this.globals.spinner.hide();
+        this.globals.toast.error(err.message);
         reject(err);
       }
     });
@@ -54,9 +55,9 @@ export class UsersService {
 
         this.globals.spinner.hide();
         resolve(url);
-      } catch (ex: any) {
+      } catch (err: any) {
         this.globals.spinner.hide();
-        reject({ error: ex.error || ex.detail || ex });
+        reject(err.message);
       }
     });
   }

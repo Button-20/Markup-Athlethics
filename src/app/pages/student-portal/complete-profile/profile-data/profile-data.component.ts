@@ -16,7 +16,7 @@ export class ProfileDataComponent {
     profile_picture: new FormControl('', [Validators.required]),
     date_of_birth: new FormControl('', [
       Validators.required,
-      Validators.pattern('^[0-9]{2}/[0-9]{2}/[0-9]{2}$'),
+      Validators.pattern('^[0-9]{4}-[0-9]{2}-[0-9]{2}$'),
     ]),
     height: new FormControl('', [Validators.required]),
     weight: new FormControl('', [Validators.required]),

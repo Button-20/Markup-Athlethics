@@ -1,1 +1,25 @@
-<p>video-uploads works!</p>
+<div class="d-flex gap-5 flex-wrap my-3">
+  <div
+    class="image"
+    *ngFor="let video of profileDataForm.value.videos; let i = index"
+  >
+    <img src="{{ video }}" alt="image" />
+    <div class="text-center mt-3">
+      <a href="#" class="text-white" (click)="removeVideo($event, i)">Delete</a>
+    </div>
+  </div>
+  <div class="add-image">
+    <label for="image">
+      <i class="bi bi-plus-lg"></i>
+    </label>
+    <input
+      type="file"
+      name="image"
+      id="image"
+      class="d-none"
+      accept=".mp4"
+      multiple="false"
+      (change)="onInputChange($event)"
+    />
+  </div>
+</div>
