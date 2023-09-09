@@ -78,9 +78,9 @@
     <div class="col-6">
       <label class="opacity-50 fw-bold">Height (cm)</label>
       <input
-        type="text"
+        type="number"
         class="form-control mb-4 mt-2"
-        placeholder="eg 162 cm"
+        placeholder="eg 162"
         formControlName="height"
       />
       <div
@@ -93,9 +93,9 @@
     <div class="col-6">
       <label class="opacity-50 fw-bold">Weight (lb)</label>
       <input
-        type="text"
+        type="number"
         class="form-control mb-4 mt-2"
-        placeholder="eg.138 lb"
+        placeholder="eg.138"
         formControlName="weight"
       />
       <div
@@ -110,7 +110,7 @@
       <button class="select-menu mt-2" (click)="toggleSelectMenu($event)">
         <div class="select-btn">
           <span class="selected-item">
-            {{ profileDataForm.value.education_level || "Select Level" }}
+            {{ profileDataForm.value.educational_level || "Select Level" }}
           </span>
           <i class="bi bi-chevron-down"></i>
         </div>
@@ -118,7 +118,7 @@
           <li
             class="select-item"
             *ngFor="let level of educationLevels"
-            (click)="selectItem(level, 'education_level')"
+            (click)="selectItem(level, 'educational_level')"
           >
             {{ level }}
           </li>

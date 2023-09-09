@@ -24,7 +24,7 @@ const routes: Routes = [
       import('./pages/student-portal/student-portal.module').then(
         (m) => m.StudentPortalModule
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: '**',

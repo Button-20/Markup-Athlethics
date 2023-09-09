@@ -6,7 +6,6 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { GlobalsService } from '../core/globals';
 
 @Injectable()
@@ -19,7 +18,7 @@ export class TokenInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const token = this.globals.storage.getAccessToken();
 
-    const exceptionUrls = [environment.currencyApiBaseURL];
+    const exceptionUrls: string[] = [];
 
     if (token && !this.includesExceptionUrl(request.url, exceptionUrls)) {
       request = request.clone({

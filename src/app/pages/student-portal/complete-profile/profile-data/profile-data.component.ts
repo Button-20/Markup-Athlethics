@@ -12,7 +12,7 @@ export class ProfileDataComponent {
   profileDataForm: FormGroup = new FormGroup({
     nationality: new FormControl('', [Validators.required]),
     interests: new FormControl([], [Validators.required]),
-    education_level: new FormControl('', [Validators.required]),
+    educational_level: new FormControl('', [Validators.required]),
     profile_picture: new FormControl('', [Validators.required]),
     date_of_birth: new FormControl('', [
       Validators.required,
@@ -52,7 +52,7 @@ export class ProfileDataComponent {
     this.profileDataForm.reset({
       nationality: '',
       interests: [],
-      education_level: '',
+      educational_level: '',
       profile_picture: '',
       date_of_birth: '',
       height: '',

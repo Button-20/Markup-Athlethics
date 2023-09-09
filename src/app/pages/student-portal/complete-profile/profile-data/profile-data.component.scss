@@ -127,3 +127,12 @@ img[alt="profile"] {
   padding: 0.625rem 1.25rem;
   width: 20rem;
 }
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
