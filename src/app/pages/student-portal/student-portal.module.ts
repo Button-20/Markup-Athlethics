@@ -9,9 +9,10 @@ import { StudentPortalComponent } from './student-portal.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { NewsComponent } from './news/news.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
-  declarations: [DashboardComponent, StudentPortalComponent, ProfileComponent, SettingsComponent, NewsComponent],
+  declarations: [DashboardComponent, StudentPortalComponent, ProfileComponent, SettingsComponent, NewsComponent, NotFoundComponent],
   imports: [
     ComponentsModule,
     CommonModule,
