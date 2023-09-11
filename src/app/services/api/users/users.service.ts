@@ -42,13 +42,34 @@ export class UsersService {
     });
   }
 
+  async postEducationalBackgroundData(data: any) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.post(
+          'educational-backgrounds-data',
+          data
+        );
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        this.globals.toast.error(err.message);
+        reject(err);
+      }
+    });
+  }
+
   async uploadImage(data: { file: any }) {
     return await new Promise(async (resolve, reject) => {
       this.globals.spinner.show();
       try {
         const myFormData = new FormData();
         myFormData.append('file', data.file);
-        myFormData.append('upload_preset', environment.cloudinary.upload_preset);
+        myFormData.append(
+          'upload_preset',
+          environment.cloudinary.upload_preset
+        );
         myFormData.append('skipAuthorization', 'true');
 
         const resp: any = await this.api.upload(``, myFormData);

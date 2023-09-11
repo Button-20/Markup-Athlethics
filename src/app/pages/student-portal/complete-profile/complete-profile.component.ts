@@ -48,29 +48,29 @@ export class CompleteProfileComponent {
   progress: number = 0;
 
   constructor(public globals: GlobalsService) {
-    this.progress =
-      this.globals.router.url.split('/')[
-        this.globals.router.url.split('/').length - 1
-      ] === 'profile-data'
-        ? 20
-        : this.globals.router.url.split('/')[
-            this.globals.router.url.split('/').length - 1
-          ] === 'educational-background'
-        ? 40
-        : this.globals.router.url.split('/')[
-            this.globals.router.url.split('/').length - 1
-          ] === 'athletic-background'
-        ? 60
-        : this.globals.router.url.split('/')[
-            this.globals.router.url.split('/').length - 1
-          ] === 'image-uploads'
-        ? 80
-        : this.globals.router.url.split('/')[
-            this.globals.router.url.split('/').length - 1
-          ] === 'video-uploads'
-        ? 100
-        : 0;
+    this.globals.router.events.subscribe(() => {
+      this.progress =
+        this.globals.router.url.split('/')[
+          this.globals.router.url.split('/').length - 1
+        ] === 'profile-data'
+          ? 20
+          : this.globals.router.url.split('/')[
+              this.globals.router.url.split('/').length - 1
+            ] === 'educational-background'
+          ? 40
+          : this.globals.router.url.split('/')[
+              this.globals.router.url.split('/').length - 1
+            ] === 'athletic-background'
+          ? 60
+          : this.globals.router.url.split('/')[
+              this.globals.router.url.split('/').length - 1
+            ] === 'image-uploads'
+          ? 80
+          : this.globals.router.url.split('/')[
+              this.globals.router.url.split('/').length - 1
+            ] === 'video-uploads'
+          ? 100
+          : 0;
+    });
   }
-
-
 }

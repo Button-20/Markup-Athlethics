@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SettingsComponent } from './settings/settings.component';
-import { StudentPortalComponent } from './student-portal.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { StudentPortalComponent } from './student-portal.component';
 
 const routes: Routes = [
   {
@@ -26,17 +25,18 @@ const routes: Routes = [
       },
       {
         path: 'settings',
-        loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)
+        loadChildren: () =>
+          import('./settings/settings.module').then((m) => m.SettingsModule),
       },
       {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
       },
-      {
-        path: '**',
-        component: NotFoundComponent,
-      },
+      // {
+      //   path: '**',
+      //   component: NotFoundComponent,
+      // },
     ],
   },
   {

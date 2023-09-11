@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from 'src/app/services/api/users/users.service';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
@@ -9,11 +10,13 @@ import { GlobalsService } from 'src/app/services/core/globals';
 })
 export class EducationalBackgroundComponent {
   profileDataForm: FormGroup = new FormGroup({
-    activities: new FormControl([], [Validators.required]),
-    transcript: new FormControl(null),
+    course_of_study: new FormControl('', [Validators.required]),
+    gpa: new FormControl('', [Validators.required]),
+    graduation_year: new FormControl('', [Validators.required]),
+    academic_achievement: new FormControl('', [Validators.required]),
+    extra_curricular_activities: new FormControl([], [Validators.required]),
+    transcript_path: new FormControl(null),
   });
-
-  transcriptImg: any;
 
   activities: string[] = [
     'Nutrition and Cooking',
@@ -26,7 +29,32 @@ export class EducationalBackgroundComponent {
     'Art',
   ];
 
-  constructor(private globals: GlobalsService) {}
+  constructor(
+    private globals: GlobalsService,
+    private usersService: UsersService
+  ) {}
+
+  async onSubmit() {
+    this.profileDataForm.patchValue({
+      transcript_path: await this.usersService.uploadImage({
+        file: this.profileDataForm.value.transcript_path,
+      }),
+    });
+    await this.usersService.postEducationalBackgroundData(
+      this.profileDataForm.value
+    );
+    this.profileDataForm.reset({
+      course_of_study: '',
+      gpa: '',
+      graduation_year: '',
+      academic_achievement: '',
+      extra_curricular_activities: [],
+      transcript_path: null,
+    });
+    this.globals.router.navigate([
+      '/student/complete-profile/athletic-background',
+    ]);
+  }
 
   toggleSelectMenu(event: any, closeOnSelect: boolean = true) {
     // close other dropdown options
@@ -43,8 +71,9 @@ export class EducationalBackgroundComponent {
       }
     });
 
-    if (mainElement.nodeName !== 'BUTTON')
+    if (mainElement.nodeName !== 'BUTTON') {
       mainElement = mainElement.parentNode.parentNode;
+    }
 
     // add show class to dropdown options
     for (let i = 0; i < mainElement.children.length; i++) {
@@ -68,7 +97,9 @@ export class EducationalBackgroundComponent {
   }
 
   addActivity(activity: string) {
-    const activities = this.profileDataForm.get('activities') as FormControl;
+    const activities = this.profileDataForm.get(
+      'extra_curricular_activities'
+    ) as FormControl;
     const activityIndex = activities.value.indexOf(activity);
     if (activityIndex === -1) {
       activities.value.push(activity);
@@ -78,7 +109,9 @@ export class EducationalBackgroundComponent {
   }
 
   removeActivity(activity: string) {
-    const activities = this.profileDataForm.get('activities') as FormControl;
+    const activities = this.profileDataForm.get(
+      'extra_curricular_activities'
+    ) as FormControl;
     const activityIndex = activities.value.indexOf(activity);
     if (activityIndex !== -1) {
       activities.value.splice(activityIndex, 1);
@@ -92,20 +125,30 @@ export class EducationalBackgroundComponent {
   dropImage(event: any) {
     event.preventDefault();
     event.stopPropagation();
-    this.profileDataForm.patchValue({
-      transcript: event.dataTransfer?.files[0] || event.target.files[0],
-    });
-
-    if (!this.profileDataForm.value.transcript) return;
+    const file = event.dataTransfer?.files[0] || event.target.files[0];
     const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      this.transcriptImg = reader.result;
-    });
-    reader.readAsDataURL(this.profileDataForm.value.transcript);
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const transcript_path = this.profileDataForm.get(
+        'transcript_path'
+      ) as FormControl;
+      transcript_path.setValue(reader.result);
+    };
   }
 
-  onDragOver(event: any) {
-    event.stopPropagation();
-    event.preventDefault();
+  get course_of_study() {
+    return this.profileDataForm.get('course_of_study') as FormControl;
+  }
+
+  get gpa() {
+    return this.profileDataForm.get('gpa') as FormControl;
+  }
+
+  get graduation_year() {
+    return this.profileDataForm.get('graduation_year') as FormControl;
+  }
+
+  get academic_achievement() {
+    return this.profileDataForm.get('academic_achievement') as FormControl;
   }
 }
