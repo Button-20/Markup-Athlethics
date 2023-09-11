@@ -1,0 +1,22 @@
+.col-11 {
+  margin-left: 7em;
+}
+
+a.active {
+  color: #88f63d !important;
+  font-weight: 600;
+  opacity: 1 !important;
+  position: relative;
+}
+
+a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  width: 2.25rem;
+  height: 0.3125rem;
+  border-radius: 0.3125rem;
+  background-color: #88f63d;
+  opacity: 1;
+}
