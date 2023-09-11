@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class UsersService {
+  sports: any[] = [];
+
   constructor(private api: RequestService, private globals: GlobalsService) {}
 
   async getUserProfile() {
@@ -58,6 +60,55 @@ export class UsersService {
       } catch (err: any) {
         this.globals.spinner.hide();
         reject(err.message);
+      }
+    });
+  }
+
+  async postAthleticBackgroundData(data: any) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.post(
+          'athletic-backgrounds-data',
+          data
+        );
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        this.globals.toast.error(err.message);
+        reject(err);
+      }
+    });
+  }
+
+  async getSportsData() {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.get('sport-data');
+        this.sports = resp.data;
+        this.globals.sports = resp.data;
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        reject(err);
+      }
+    });
+  }
+
+  async getSportsPositionsData() {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.get('sport-position-data');
+        this.globals.sportsPositions = resp.data;
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        reject(err);
       }
     });
   }

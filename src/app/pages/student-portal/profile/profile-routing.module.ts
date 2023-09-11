@@ -3,11 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { AthleticBackgroundComponent } from './athletic-background/athletic-background.component';
 import { EducationalBackgroundComponent } from './educational-background/educational-background.component';
 import { ImageUploadsComponent } from './image-uploads/image-uploads.component';
+import { OverviewComponent } from './overview/overview.component';
 import { ProfileDataComponent } from './profile-data/profile-data.component';
 import { ProfileComponent } from './profile.component';
 import { VideoUploadsComponent } from './video-uploads/video-uploads.component';
 
 const routes: Routes = [
+  {
+    path: 'overview',
+    component: OverviewComponent,
+  },
   {
     path: '',
     component: ProfileComponent,
@@ -16,6 +21,7 @@ const routes: Routes = [
         path: '',
         component: ProfileDataComponent,
       },
+
       {
         path: 'educational-background',
         component: EducationalBackgroundComponent,

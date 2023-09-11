@@ -10,6 +10,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { VideoUploadsComponent } from './video-uploads/video-uploads.component';
 import { NgxIntlTelephoneInputModule } from 'ngx-intl-telephone-input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { OverviewComponent } from './overview/overview.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AthleticBackgroundComponent,
     ImageUploadsComponent,
     VideoUploadsComponent,
+    OverviewComponent,
   ],
   imports: [
     CommonModule,

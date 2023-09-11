@@ -1,0 +1,55 @@
+<div
+  class="news-detail-section top-line"
+  [ngStyle]="ngStyle"
+  [ngClass]="{ 'top-line': !ngStyle }"
+>
+  <a
+    (click)="globals.goBack()"
+    class="text-decoration-none opacity-50 text-white ms-2 ms-md-0 pointer"
+    *ngIf="displayGoBack"
+  >
+    <i class="bi bi-chevron-left"></i>
+    <span class="text-decoration-underline">Go back</span>
+  </a>
+  <p class="ms-2 ms-md-0 mb-2 opacity-50 mt-5">March 16, 2023 at 09:34 am</p>
+  <h3 class="ms-2 ms-md-0 fw-700">
+    Thrilling Overtime Victory Seals Championship Win.
+  </h3>
+  <p class="ms-2 ms-md-0 mb-0 opacity-50">Talent scout update.</p>
+
+  <img src="assets/images/football.jpg" alt="" class="my-4" />
+  <section class="mb-5 mx-2 mx-md-0">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <br /><br />
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <br /><br />
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <br /><br />
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.
+  </section>
+  <a href="#" class="text-decoration-none read-more ms-2 ms-md-0">Read more</a>
+</div>
+
+<news-container
+  [slice]="3"
+  [ngStyle]="{ width: 'auto', 'margin-inline': '0' }"
+  [baseLink]="'/student/news'"
+></news-container>

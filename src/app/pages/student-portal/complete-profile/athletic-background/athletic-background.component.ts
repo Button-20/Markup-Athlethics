@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from 'src/app/services/api/users/users.service';
+import { Sports } from 'src/app/services/core/IApp';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
@@ -9,23 +11,31 @@ import { GlobalsService } from 'src/app/services/core/globals';
 })
 export class AthleticBackgroundComponent {
   profileDataForm: FormGroup = new FormGroup({
-    sports: new FormControl([], [Validators.required]),
+    athletic_achievements: new FormControl('', [Validators.required]),
+    sport_type: new FormControl([], [Validators.required]),
     soccer_skill_level: new FormControl('', [Validators.required]),
     soccer_position_played: new FormControl('', [Validators.required]),
     athletic_skill_level: new FormControl('', [Validators.required]),
     athletic_position_played: new FormControl('', [Validators.required]),
-    letters: new FormControl([]),
+    letters_of_recommendation: new FormControl([]),
     references: new FormControl([]),
   });
 
-  sports: string[] = ['Soccer', 'Basketball', 'Athletics'];
   skillLevels: string[] = ['Beginner', 'Intermediate', 'Advanced'];
   athleticPositions: string[] = ['100m', '200m', '400m', '800m', '1500m'];
   positions: string[] = ['Defender', 'Striker'];
 
   files: any[] = [];
 
-  constructor(private globals: GlobalsService) {}
+  constructor(
+    public globals: GlobalsService,
+    public usersService: UsersService
+  ) {}
+
+  async ngOnInit() {
+    await this.usersService.getSportsData();
+    await this.usersService.getSportsPositionsData();
+  }
 
   onSubmit() {
     if (this.profileDataForm.invalid) {
@@ -82,8 +92,8 @@ export class AthleticBackgroundComponent {
     }
   }
 
-  addSport(sport: string) {
-    const sports = this.profileDataForm.get('sports') as FormControl;
+  addSport(sport: Sports) {
+    const sports = this.profileDataForm.get('sport_type') as FormControl;
     const sportIndex = sports.value.indexOf(sport);
     if (sportIndex === -1) {
       sports.value.push(sport);
@@ -93,7 +103,7 @@ export class AthleticBackgroundComponent {
   }
 
   removeSport(sport: string) {
-    const sports = this.profileDataForm.get('sports') as FormControl;
+    const sports = this.profileDataForm.get('sport_type') as FormControl;
     const sportIndex = sports.value.indexOf(sport);
     if (sportIndex !== -1) {
       sports.value.splice(sportIndex, 1);
@@ -124,7 +134,7 @@ export class AthleticBackgroundComponent {
     this.files = [...(event.dataTransfer?.files || event.target.files)];
 
     this.profileDataForm.patchValue({
-      letters: this.files,
+      letters_of_recommendation: this.files,
     });
   }
 
@@ -132,7 +142,7 @@ export class AthleticBackgroundComponent {
     e.preventDefault();
     this.files.splice(index, 1);
     this.profileDataForm.patchValue({
-      letters: this.files,
+      letters_of_recommendation: this.files,
     });
   }
 

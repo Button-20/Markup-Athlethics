@@ -9,11 +9,11 @@
         />
         <p class="mb-0 opacity-50">News</p>
       </div>
+      <a href="#" class="opacity-50 text-white">< Go back</a>
     </div>
-    <h6>Latest News</h6>
-    <news-container
-      [ngStyle]="{ width: 'auto', 'margin-inline': '0' }"
-      [baseLink]="'/student/news'"
-    ></news-container>
+    <news-detail
+      [displayGoBack]="false"
+      [ngStyle]="{ width: 'auto', 'margin-inline': '0' , 'padding-top': '0' }"
+    ></news-detail>
   </div>
 </div>

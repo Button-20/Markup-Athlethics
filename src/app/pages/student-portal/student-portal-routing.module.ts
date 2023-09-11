@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { NewsComponent } from './news/news.component';
 import { SettingsComponent } from './settings/settings.component';
 import { StudentPortalComponent } from './student-portal.component';
 
@@ -21,7 +20,8 @@ const routes: Routes = [
       },
       {
         path: 'news',
-        component: NewsComponent,
+        loadChildren: () =>
+          import('./news/news.module').then((m) => m.NewsModule),
       },
       {
         path: 'settings',

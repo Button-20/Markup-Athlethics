@@ -8,6 +8,10 @@ import { Component, Input } from '@angular/core';
 export class NewsContainerComponent {
   @Input() slice: number = 10;
 
+  @Input() ngStyle: { [key: string]: string } = {};
+
+  @Input() baseLink: string = '/news';
+
   constructor() {}
 
   ngOnInit() {}

@@ -1,8 +1,8 @@
-<div class="news-section">
+<div class="news-section mt-5" [ngStyle]="ngStyle">
   <div
     class="content"
     *ngFor="let news of [].constructor(slice)"
-    routerLink="/news/1"
+    routerLink="{{ baseLink }}/1"
     routerLinkActive="active"
   >
     <img src="assets/images/football.jpg" alt="" />

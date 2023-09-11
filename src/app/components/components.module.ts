@@ -5,7 +5,9 @@ import { RouterModule } from '@angular/router';
 import { NgxIntlTelephoneInputModule } from 'ngx-intl-telephone-input';
 import { FaqsComponent } from './application/faqs/faqs.component';
 import { NewsContainerComponent } from './application/news-container/news-container.component';
+import { NewsDetailComponent } from './application/news-detail/news-detail.component';
 import { PlayerCardComponent } from './application/player-card/player-card.component';
+import { PlayerProfileComponent } from './application/player-profile/player-profile.component';
 import { ContactFormComponent } from './forms/contact-form/contact-form.component';
 import { PasswordFormComponent } from './forms/password-form/password-form.component';
 import { DashboardNavbarComponent } from './ui/dashboard-navbar/dashboard-navbar.component';
@@ -27,6 +29,8 @@ const components: Array<any> = [
   SidebarComponent,
   NoDataComponent,
   PasswordFormComponent,
+  PlayerProfileComponent,
+  NewsDetailComponent,
 ];
 
 @NgModule({

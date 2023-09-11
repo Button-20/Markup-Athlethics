@@ -4,8 +4,8 @@
   margin-inline: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 2.5rem;
+  // justify-content: space-evenly;
+  gap: calc(100vw * 0.08);
   min-height: 80vh;
 }
 

@@ -1,0 +1,195 @@
+.btn.btn-primary {
+  padding: 1rem 1.75rem;
+}
+
+.black-container {
+  min-height: 38.8125rem;
+  background: #08090b;
+}
+
+.general .description h4 {
+  color: #88f63d;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.general .description p {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.general .description span {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+}
+
+.general .name {
+  color: #fff;
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 130%; /* 5.2rem */
+}
+
+.general .profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.general .metrics p {
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 130%; /* 1.4625rem */
+}
+
+.general .metrics h3 {
+  color: #fff;
+  font-family: Staatliches;
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 130%; /* 3.25rem */
+}
+
+.title {
+  color: var(--success);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.interests .interest,
+.education .activities {
+  border-radius: 0.1875rem;
+  background: #1a1a1e;
+  padding: 1rem 3rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.education .achievement,
+.athletics .achievement {
+  padding: 2em;
+  border-radius: 0.25rem;
+  background: #1a1a1e;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 130%; /* 1.3rem */
+  opacity: 0.54;
+}
+
+.education .file i,
+.athletics .file i {
+  opacity: 0.54;
+  background: #88f63d;
+  border-radius: 1.75rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+}
+
+.athletics .header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.3em;
+  width: 80%;
+  height: 0.3125rem;
+  background: #96fc58;
+  border-radius: 0.1875rem;
+}
+
+.athletics .bg-grey {
+  background: #1c1c1d;
+}
+
+.athletics .bg-slight-dark {
+  background: #0d0d0d;
+}
+
+.athletics .header.shooting {
+  margin-top: 5em;
+}
+
+.images .image img[alt="image"] {
+  width: 14.625rem;
+  height: 14.625rem;
+  object-fit: cover;
+  border-radius: 0.3125rem;
+}
+
+.images .image {
+  position: relative;
+}
+
+.images .image .play {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 48em) {
+  .general {
+    background: none;
+    position: relative;
+  }
+
+  .general .profile-img {
+    padding: 1rem;
+  }
+
+  .general .name {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .general .description h4 {
+    font-size: 1rem;
+  }
+
+  .general .description p {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .profile-section .general .description span {
+    width: 8px;
+    height: 8px;
+  }
+
+  .general .metrics p {
+    opacity: 0.54;
+  }
+
+  .general .metrics h3 {
+    color: #88f63d;
+  }
+
+  .general::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 53%;
+    z-index: -1;
+    background: #1c1c20;
+  }
+
+  .interests .interest,
+  .education .activities {
+    padding: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .athletics p {
+    font-size: 0.875rem;
+  }
+}

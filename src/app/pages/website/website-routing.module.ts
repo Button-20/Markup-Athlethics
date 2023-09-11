@@ -5,6 +5,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FaqsComponent } from './faqs/faqs.component';
 import { HomeComponent } from './home/home.component';
+import { PlayerComponent } from './player/player.component';
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { WebsiteComponent } from './website.component';
 
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: 'categories',
         component: CategoriesComponent,
+      },
+      {
+        path: 'player/:id',
+        component: PlayerComponent,
       },
       {
         path: 'news',

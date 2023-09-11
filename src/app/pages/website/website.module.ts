@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { WebsiteRoutingModule } from './website-routing.module';
 import { WebsiteComponent } from './website.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { PlayerComponent } from './player/player.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     CategoriesComponent,
     FaqsComponent,
     ContactUsComponent,
+    PlayerComponent,
   ],
   imports: [
     CommonModule,

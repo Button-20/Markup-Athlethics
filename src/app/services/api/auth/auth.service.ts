@@ -20,9 +20,10 @@ export class AuthService {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        const resp: any = await this.api.post('login', user);
+        const resp: any = await this.api.post('auth/login', user);
         this.globals.storage.setAccessToken(resp.token);
         this.globals.user = resp.user;
+        this.globals.storage.setUserDetails(resp.user);
         this.globals.toast.success('🎉 Login successful!!');
         this.globals.spinner.hide();
         resolve(resp);
