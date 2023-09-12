@@ -141,6 +141,6 @@ export class StorageService {
 
   logOutUser() {
     this.clearAllStorage();
-    this.router.navigateByUrl('auth', { replaceUrl: true });
+    this.router.navigateByUrl('auth/login', { replaceUrl: true });
   }
 }

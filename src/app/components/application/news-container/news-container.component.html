@@ -1,18 +1,20 @@
 <div class="news-section mt-5" [ngStyle]="ngStyle">
   <div
     class="content"
-    *ngFor="let news of [].constructor(slice)"
+    *ngFor="let post of news"
     routerLink="{{ baseLink }}/1"
     routerLinkActive="active"
   >
-    <img src="assets/images/football.jpg" alt="" />
+    <img [src]="post.imagePath" [alt]="post.slug" />
     <h3 class="my-3 mt-4">
-      Thrilling Overtime Victory Seals Championship Win.
+      {{ post.title }}
     </h3>
     <div class="d-flex align-items-center gap-2">
-      <p class="mb-0">Harmony university</p>
+      <p class="mb-0" [innerHTML]="post.body"></p>
       <span></span>
-      <p class="mb-0 date">March 16,2023</p>
+      <p class="mb-0 date">
+        {{ post.created_at | date: 'dd/MM/yyyy' }}
+      </p>
     </div>
   </div>
 </div>

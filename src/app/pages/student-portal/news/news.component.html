@@ -12,6 +12,7 @@
     </div>
     <h6>Latest News</h6>
     <news-container
+      [news]="newsService.news"
       [ngStyle]="{ width: 'auto', 'margin-inline': '0' }"
       [baseLink]="'/student/news'"
     ></news-container>

@@ -7,6 +7,7 @@ import { GlobalsService } from './core/globals';
 import { RequestService } from './core/request';
 import { StorageService } from './core/storage';
 import { SearchPipe } from './pipes/search/search.pipe';
+import { NewsService } from './api/news/news.service';
 
 const providers: Array<any> = [
   GlobalsService,
@@ -14,6 +15,7 @@ const providers: Array<any> = [
   RequestService,
   StorageService,
   UsersService,
+  NewsService
 ];
 
 @NgModule({

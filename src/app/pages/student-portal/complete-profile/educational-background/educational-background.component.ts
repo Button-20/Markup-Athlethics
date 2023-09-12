@@ -37,7 +37,7 @@ export class EducationalBackgroundComponent {
   async onSubmit() {
     this.profileDataForm.patchValue({
       transcript_path: await this.usersService.uploadImage({
-        file: this.profileDataForm.value.transcript_path,
+        file: this.profileDataForm.value.transcript_path  ,
       }),
     });
     await this.usersService.postEducationalBackgroundData(

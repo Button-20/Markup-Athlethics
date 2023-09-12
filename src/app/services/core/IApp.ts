@@ -13,17 +13,28 @@ export interface User {
   user_type: string;
 }
 
-export interface Sports{
+export interface Sports {
   id: number;
   sport_name: string;
   created_at: Date;
   updated_at: Date;
 }
 
-export interface SportsPositions{
+export interface SportsPositions {
   id: number;
   sport_id: number;
   position_name: string;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface News {
+  id: number;
+  body: string;
+  imagePath: string;
+  slug: string;
+  tag: string;
+  title: string;
   created_at: Date;
   updated_at: Date;
 }

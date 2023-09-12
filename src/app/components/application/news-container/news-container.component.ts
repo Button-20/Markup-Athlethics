@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { News } from 'src/app/services/core/IApp';
 
 @Component({
   selector: 'news-container',
@@ -11,6 +12,8 @@ export class NewsContainerComponent {
   @Input() ngStyle: { [key: string]: string } = {};
 
   @Input() baseLink: string = '/news';
+
+  @Input() news: News[] = [];
 
   constructor() {}
 
