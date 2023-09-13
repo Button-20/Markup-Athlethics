@@ -1,1 +1,16 @@
-<p>deactivate-account works!</p>
+<div class="d-flex align-items-center flex-column gap-3 mt-5">
+  <h4 class="mb-5 fw-bolder">Are you sure you want to deactivate your account?</h4>
+  <p class="opacity-50 mb-5 text-center w-50">
+    When you deactivate your account, your profile, posts, and other associated
+    information will become inaccessible to other users of the platform.
+    <br /><br />
+    Your account will essentially disappear from public view.
+  </p>
+  <button
+    class="btn btn-primary"
+    (click)="deactivateAccount()"
+    style="width: 300px"
+  >
+    Deactivate my account
+  </button>
+</div>

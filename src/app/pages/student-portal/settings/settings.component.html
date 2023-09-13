@@ -22,7 +22,10 @@
         {{ nav.name }}
       </a>
     </div>
-    <div class="col-8">
+    <div
+      class="col-8"
+      [ngClass]="{ 'col-12': currentNav.name.includes('Deactivate Account') }"
+    >
       <div
         class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3 border-light border-opacity-50 border-2"
         *ngIf="currentNav.description"
