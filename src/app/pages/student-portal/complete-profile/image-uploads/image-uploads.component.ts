@@ -21,7 +21,27 @@ export class ImageUploadsComponent {
   ) {}
 
   async onSubmit() {
-    await this.usersService.postImageData(this.files);
+    if (this.profileDataForm.invalid) return;
+    let image_path: string[] = [];
+    for (let i = 0; i < this.profileDataForm.value.images.length; i++) {
+      const element = this.profileDataForm.value.images[i];
+      const reader = new FileReader();
+      reader.readAsDataURL(element);
+      reader.onload = async () => {
+        let url: any = await this.usersService.uploadImage({
+          file: reader.result,
+        });
+        image_path.push(url);
+        if (image_path.length !== this.profileDataForm.value.images.length)
+          return;
+        await this.usersService.postImageData(image_path);
+        this.files = [];
+        this.profileDataForm.reset();
+        this.globals.router.navigate([
+          '/student/complete-profile/video-uploads',
+        ]);
+      };
+    }
   }
 
   gotoDashboard() {
@@ -32,7 +52,9 @@ export class ImageUploadsComponent {
     event.preventDefault();
     event.stopPropagation();
     this.files = [...(event.dataTransfer?.files || event.target.files)];
-    if (this.files.map((file) => file.type).includes('image/jpeg')) {
+    if (
+      this.files.map((file) => file.type).includes('image/jpeg' || 'image/png')
+    ) {
       this.profileDataForm.patchValue({
         images: this.files,
       });
