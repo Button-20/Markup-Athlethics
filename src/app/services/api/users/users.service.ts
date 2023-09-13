@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { GlobalsService } from '../../core/globals';
 import { RequestService } from '../../core/request';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -129,6 +129,21 @@ export class UsersService {
         resolve(resp);
       } catch (err: any) {
         this.globals.spinner.hide();
+        reject(err);
+      }
+    });
+  }
+
+  async postImageData(data: any) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.post('image-data', data);
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        this.globals.toast.error(err.message);
         reject(err);
       }
     });

@@ -1,0 +1,97 @@
+<form class="row g-0 gx-5" [formGroup]="accountForm" (ngSubmit)="submit()">
+  <div class="form-input mb-3 col-6">
+    <label for="name" class="form-label">First and last name </label>
+    <input
+      type="text"
+      class="form-control"
+      name="name"
+      formControlName="name"
+      id="name"
+      placeholder="eg. John Doe"
+      required
+    />
+    <small
+      class="text-danger"
+      *ngIf="name.errors?.['required'] && (name.dirty || name.touched)"
+      >Please enter your first and last name</small
+    >
+  </div>
+  <div class="form-input mb-3 col-6">
+    <label for="institution" class="form-label">Name of institution </label>
+    <input
+      type="text"
+      class="form-control"
+      name="institution_name"
+      formControlName="institution_name"
+      id="institution"
+      placeholder="eg. Example college"
+      required
+    />
+    <small
+      class="text-danger"
+      *ngIf="institution_name.errors?.['required'] && (institution_name.dirty || institution_name.touched)"
+      >Please enter your institution name</small
+    >
+  </div>
+  <div class="form-input mb-3 col-6">
+    <label for="email" class="form-label">Institution email address </label>
+    <input
+      type="text"
+      class="form-control"
+      name="email"
+      formControlName="email"
+      id="email"
+      placeholder="eg.johndoe@examplecollege.com"
+      required
+    />
+    <small
+      class="text-danger"
+      *ngIf="email.errors?.['required'] && (email.dirty || email.touched)"
+      >Please enter your institution email address</small
+    >
+  </div>
+  <div class="form-input mb-3 col-6">
+    <label for="name" class="form-label">Select Country </label>
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      name="country"
+      formControlName="country"
+      required
+    >
+      <option selected value="">Select Country</option>
+      <option *ngFor="let country of globals.countries" [value]="country">
+        {{ country }}
+      </option>
+    </select>
+    <small
+      class="text-danger"
+      *ngIf="country.errors?.['required'] && (country.dirty || country.touched)"
+      >Please select your region</small
+    >
+  </div>
+
+  <div class="mb-5 col-6">
+    <label for="phone" class="form-label">Phone Number </label>
+    <intl-telephone-input
+      [preferredCountries]="[CountryISO.Ghana, CountryISO.UnitedStates]"
+      [enablePlaceholder]="true"
+      [searchCountryFlag]="true"
+      [separateDialCode]="true"
+      [enableAutoCountrySelect]="true"
+      [searchCountryField]="SearchCountryField.All"
+      [phoneValidation]="false"
+      [numberFormat]="PhoneNumberFormat.International"
+      [inputId]="'phone'"
+      (onChange)="onPhoneNumberChange($event)"
+      [className]="'form-input-select'"
+    >
+    </intl-telephone-input>
+  </div>
+  <div class="d-flex align-items-center justify-content-end gap-2">
+    <button class="btn btn-secondary" >Cancel</button>
+    <button class="btn btn-primary" [disabled]="!accountForm.valid" type="submit" style="width: 300px;">
+      Update account information
+    </button>
+  </div>
+</form>

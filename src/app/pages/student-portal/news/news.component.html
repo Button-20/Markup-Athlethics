@@ -1,5 +1,5 @@
 <div class="row g-0 flex-nowrap me-5">
-  <div class="col-11">
+  <div class="col-11 mb-5">
     <div class="d-flex align-items-center justify-content-between mb-5">
       <div class="d-flex align-items-center">
         <img
@@ -16,5 +16,11 @@
       [ngStyle]="{ width: 'auto', 'margin-inline': '0' }"
       [baseLink]="'/student/news'"
     ></news-container>
+    <pagination
+      [pagination]="newsService.pagination"
+      (pageChanged)="
+        newsService.pagination.current_page = $event; newsService.getNews()
+      "
+    ></pagination>
   </div>
 </div>

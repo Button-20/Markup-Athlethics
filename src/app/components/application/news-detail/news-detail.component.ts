@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { News } from 'src/app/services/core/IApp';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
@@ -10,6 +11,10 @@ export class NewsDetailComponent {
   @Input() ngStyle: { [key: string]: string } | undefined;
 
   @Input() displayGoBack: boolean = true;
+
+  @Input() news: News | any;
+
+  @Input() moreNews: News[] = [];
 
   constructor(public globals: GlobalsService) {}
 }

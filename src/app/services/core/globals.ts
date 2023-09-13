@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, RouteReuseStrategy, Router } from '@angular/router';
 import { getNames } from 'country-list';
 import { Sports, SportsPositions, User } from './IApp';
 import { SpinnerService } from './spinner';
@@ -22,6 +22,7 @@ export class GlobalsService {
     public activatedRoute: ActivatedRoute,
     public location: Location,
     public toast: ToasterService,
+    public reuseStrategy: RouteReuseStrategy,
     public spinner: SpinnerService
   ) {
     this.user = this.storage.getUserDetails() || null;

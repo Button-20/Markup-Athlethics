@@ -1,0 +1,42 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.pagination a {
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.1875rem;
+  border: 1px solid transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.pagination a.active {
+  border: 1px solid #c5253c;
+}
+
+.pagination a:hover {
+  border: 1px solid #c5253c;
+}
+
+.pagination a:nth-child(1),
+.pagination a:nth-last-child(1) {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  background: #c5253c;
+}
+
+.pagination a {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  background: #1c1c1d;
+}

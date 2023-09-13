@@ -5,7 +5,9 @@
   <div class="profile-dropdown pointer">
     <div class="d-flex align-items-center gap-3">
       <img src="assets/images/profile.png" alt="profile" />
-      <p class="mb-0">John Doe</p>
+      <p class="mb-0">
+        {{ globals.user?.name }}
+      </p>
       <i class="bi bi-chevron-down ms-3"></i>
     </div>
   </div>

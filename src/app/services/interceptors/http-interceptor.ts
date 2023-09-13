@@ -6,7 +6,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { GlobalsService } from '../core/globals';
 
 @Injectable()
@@ -23,16 +23,10 @@ export class HttpInterceptorService implements HttpInterceptor {
   }
 
   private handleError(error: HttpErrorResponse) {
-    if (error.status === 500) {
-      this.globals.storage.clearAllExceptUserDetails();
-      this.globals.spinner.hide();
-      this.globals.router.navigate(['/auth/signin-alt']);
-    }
-
     if (error.status === 401) {
-      this.globals.storage.clearAllExceptUserDetails();
+      this.globals.storage.clearAllStorage();
       this.globals.spinner.hide();
-      this.globals.router.navigate(['/auth/signin-alt']);
+      this.globals.router.navigate(['auth/login']);
     }
 
     return throwError(error);

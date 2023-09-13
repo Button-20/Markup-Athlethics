@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'dashboard-navbar',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard-navbar.component.scss']
 })
 export class DashboardNavbarComponent {
-
+  constructor(
+    public globals: GlobalsService,
+  ) {}
 }

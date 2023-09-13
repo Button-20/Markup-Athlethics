@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpInterceptorService } from './services/interceptors/http-interceptor';
 import { TokenInterceptor } from './services/interceptors/token';
 
 @NgModule({
@@ -20,6 +21,11 @@ import { TokenInterceptor } from './services/interceptors/token';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
       multi: true,
     },
   ],

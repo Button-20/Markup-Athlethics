@@ -2,4 +2,13 @@
   <img src="assets/images/sport1.jpg" alt="" />
   <h3 class="mb-0 text-center">NEWS AND ARTICLES.</h3>
 </div>
-<news-container></news-container>
+<news-container
+  [news]="newsService.news"
+  [ngStyle]="{ gap: '5rem' }"
+></news-container>
+<pagination
+  [pagination]="newsService.pagination"
+  (pageChanged)="
+    newsService.pagination.current_page = $event; newsService.getNews()
+  "
+></pagination>

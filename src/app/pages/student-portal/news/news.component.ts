@@ -12,4 +12,8 @@ export class NewsComponent {
   async ngOnInit() {
     await this.newsService.getNews();
   }
+
+  ngOnDestroy() {
+    this.newsService.news = [];
+  }
 }

@@ -1,0 +1,25 @@
+<div class="pagination">
+  <a
+    class="pointer"
+    [class.disabled]="pagination.current_page === 1"
+    (click)="onPageChange(pagination.current_page - 1)"
+    ><i class="bi bi-chevron-left"></i
+  ></a>
+  <a
+    *ngFor="let page of getPagesArray()"
+    class="pointer"
+    [class.active]="pagination.current_page === page"
+    (click)="onPageChange(page)"
+  >
+    <ng-container *ngIf="pageType(page) === 'number'">{{ page }}</ng-container>
+    <ng-container *ngIf="pageType(page) === 'string'">{{
+      page
+    }}</ng-container></a
+  >
+  <a
+    (click)="onPageChange(pagination.current_page + 1)"
+    [class.disabled]="pagination.current_page === pagination.last_page"
+    class="pointer"
+    ><i class="bi bi-chevron-right"></i
+  ></a>
+</div>
