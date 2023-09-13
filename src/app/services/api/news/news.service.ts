@@ -39,11 +39,11 @@ export class NewsService {
     });
   }
 
-  async getNewsById(id: number) {
+  async getNewsBySlug(slug: string) {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        const resp: any = await this.api.get(`posts-data/${id}`);
+        const resp: any = await this.api.get(`posts-data/${slug}`);
         this.singleNews = resp.data;
         this.globals.spinner.hide();
         resolve(resp);

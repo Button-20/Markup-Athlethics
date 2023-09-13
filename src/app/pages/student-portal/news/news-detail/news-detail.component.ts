@@ -8,14 +8,14 @@ import { GlobalsService } from 'src/app/services/core/globals';
   styleUrls: ['./news-detail.component.scss'],
 })
 export class NewsDetailComponent {
-  id: number = 0;
+  slug: string = '';
 
   constructor(public newsService: NewsService, public globals: GlobalsService) {
-    this.id = globals.router.url.split('/').pop() as any;
+    this.slug = globals.router.url.split('/').pop() as any;
   }
 
   async ngOnInit() {
-    await this.newsService.getNewsById(this.id);
+    await this.newsService.getNewsBySlug(this.slug);
     await this.newsService.getNews();
   }
 }

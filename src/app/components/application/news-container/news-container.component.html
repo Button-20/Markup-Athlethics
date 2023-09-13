@@ -2,10 +2,10 @@
   <div
     class="content"
     *ngFor="let post of news"
-    routerLink="{{ baseLink }}/{{ post.id }}"
+    routerLink="{{ baseLink }}/{{ post.slug }}"
     routerLinkActive="active"
   >
-    <img [src]="post.imagePath" [alt]="post.slug" />
+    <img [src]="post.imagePath" [alt]="post.id" />
     <h3 class="my-3 mt-4">
       {{ post.title }}
     </h3>
