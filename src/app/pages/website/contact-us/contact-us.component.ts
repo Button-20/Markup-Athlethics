@@ -10,7 +10,6 @@ export class ContactUsComponent {
   constructor(public authService: AuthService) {}
 
   async onSubmit(event: any) {
-    console.log(event);
     await this.authService.contactUs(event);
   }
 }

@@ -16,16 +16,23 @@ export interface User {
 export interface Sports {
   id: number;
   sport_name: string;
+  positions: Positions[];
   created_at: Date;
   updated_at: Date;
 }
 
-export interface SportsPositions {
+export interface Positions {
   id: number;
-  sport_id: number;
   position_name: string;
-  created_at: Date;
-  updated_at: Date;
+  sport_id: number;
+  skills: Skills[];
+}
+
+export interface Skills {
+  id: number;
+  position_id: number;
+  skill_title: string;
+  skills: string[];
 }
 
 export interface News {
@@ -37,4 +44,10 @@ export interface News {
   title: string;
   created_at: Date;
   updated_at: Date;
+}
+
+export interface Faqs {
+  id: number;
+  question: string;
+  answer: string;
 }

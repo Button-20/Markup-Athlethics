@@ -87,3 +87,9 @@
   background: #88f63d !important;
   border-radius: 0.5rem;
 }
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

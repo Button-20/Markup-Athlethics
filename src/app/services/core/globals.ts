@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, RouteReuseStrategy, Router } from '@angular/router';
 import { getNames } from 'country-list';
-import { Sports, SportsPositions, User } from './IApp';
+import { Sports, User } from './IApp';
 import { SpinnerService } from './spinner';
 import { StorageService } from './storage';
 import { ToasterService } from './toaster';
@@ -14,7 +14,6 @@ export class GlobalsService {
   user: User | null = null;
   countries: Array<any> = [];
   sports: Sports[] = [];
-  sportsPositions: SportsPositions[] = [];
 
   constructor(
     public storage: StorageService,

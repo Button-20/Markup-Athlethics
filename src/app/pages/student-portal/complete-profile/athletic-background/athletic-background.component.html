@@ -5,7 +5,11 @@
 <p class="mb-5 opacity-50">
   Enter the details below to update your athletic background
 </p>
-<form class="profile-form" [formGroup]="profileDataForm" (ngSubmit)="onSubmit()">
+<form
+  class="profile-form"
+  [formGroup]="profileDataForm"
+  (ngSubmit)="onSubmit()"
+>
   <div class="row g-4">
     <div class="col-12 pb-4 border-bottom border-light">
       <label class="opacity-50 fw-bold"
@@ -26,7 +30,7 @@
             *ngFor="let sport of globals.sports"
             (click)="addSport(sport)"
             [ngClass]="{
-              selected: profileDataForm.value.sport_type.includes(sport)
+              selected: profileDataForm.value.sports.includes(sport)
             }"
           >
             {{ sport.sport_name }}
@@ -39,7 +43,7 @@
       >
         <li
           class="me-3 list-unstyled"
-          *ngFor="let sport of profileDataForm.value.sport_type"
+          *ngFor="let sport of profileDataForm.value.sports"
         >
           <span class="badge bg-dark p-3 position-relative">
             {{ sport.sport_name }}
@@ -56,14 +60,17 @@
     </div>
     <div
       class="col-12 mb-3 border-bottom border-light"
+      *ngFor="let sport of profileDataForm.value.sports"
     >
-      <p class="mb-0 opacity-50 fw-bold mb-1">Soccer</p>
+      <p class="mb-0 opacity-50 fw-bold mb-1">
+        {{ sport.sport_name }}
+      </p>
       <p class="mb-0 opacity-50 fw-bold">
         Enter the details about your athletic abilities
       </p>
       <div class="row g-0 gx-5 mt-5">
         <div class="col-6 pb-4">
-          <label class="opacity-50">Skill level </label>
+          <label class="opacity-50">Skill level</label>
           <button
             class="select-menu mt-2"
             id="interests"
@@ -71,7 +78,7 @@
           >
             <div class="select-btn" style="pointer-events: none">
               <span class="selected-item">{{
-                profileDataForm.value.soccer_skill_level || "Select skill level"
+                displayValue(sport, "skill_level") || "Select skill level"
               }}</span>
               <i class="bi bi-chevron-down"></i>
             </div>
@@ -79,9 +86,7 @@
               <li
                 class="select-item"
                 *ngFor="let skill of skillLevels"
-                (click)="
-                  profileDataForm.patchValue({ soccer_skill_level: skill })
-                "
+                (click)="selectItem(skill, sport, 'skill_level')"
               >
                 {{ skill }}
               </li>
@@ -98,7 +103,7 @@
             <div class="select-btn" style="pointer-events: none">
               <span class="selected-item">
                 {{
-                  profileDataForm.value.soccer_position_played ||
+                  displayValue(sport, "position_played")?.position_name ||
                     "Select position played"
                 }}
               </span>
@@ -107,197 +112,56 @@
             <ul class="select-list">
               <li
                 class="select-item"
-                *ngFor="let position of positions"
-                (click)="
-                  profileDataForm.patchValue({
-                    soccer_position_played: position
-                  })
-                "
+                *ngFor="let position of sport.positions"
+                (click)="selectItem(position, sport, 'position_played')"
               >
-                {{ position }}
+                {{ position.position_name }}
               </li>
             </ul>
           </button>
         </div>
       </div>
 
-      <p class="mb-0 opacity-50 fw-bold mb-5">Set your level of skill</p>
+      <p
+        class="mb-0 opacity-50 fw-bold mb-5"
+        *ngIf="displayValue(sport, 'position_played')?.length > 0"
+      >
+        Set your level of skill
+      </p>
       <div class="row g-0 gx-5">
-        <div class="col-6">
+        <div
+          class="col-6"
+          *ngFor="let skill of getPositionSkills(sport, 'position_played')"
+        >
           <div class="mb-5">
-            <p class="mb-0 pb-3 mb-3 border-bottom border-light">Pace</p>
-            <div class="mb-3">
-              <label class="form-label">Acceleration</label>
+            <p class="mb-0 pb-3 mb-3 border-bottom border-light">
+              {{ skill.skill_title }}
+            </p>
+            <div class="mb-3" *ngFor="let subSkill of skill.skills">
+              <label class="form-label">{{ subSkill }}</label>
               <div class="d-flex align-items-center gap-3">
                 0%
                 <div class="d-flex align-items-center position-relative w-100">
                   <input
                     type="range"
                     class="range"
-                    (input)="onSliderInput($event)"
+                    (input)="onSliderInput($event, sport)"
+                    name="{{ subSkill }}"
                     min="0"
                     max="100"
                     value="0"
-                    #acceleration
+                    #input
                   />
                   <span class="value">
-                    {{ acceleration.value }}
+                    {{ input.value }}
                   </span>
                 </div>
                 100%
               </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Sprint Speed</label>
-              <div class="d-flex align-items-center gap-3">
-                0%
-                <div class="d-flex align-items-center position-relative w-100">
-                  <input
-                    type="range"
-                    class="range"
-                    (input)="onSliderInput($event)"
-                    min="0"
-                    max="100"
-                    value="0"
-                    #sprintSpeed
-                  />
-                  <span class="value">
-                    {{ sprintSpeed.value }}
-                  </span>
-                </div>
-                100%
-              </div>
-            </div>
-          </div>
-          <p class="mb-0 pb-3 mb-3 border-bottom border-light">Passing</p>
-          <div class="mb-4">
-            <label class="form-label">Vision</label>
-            <div class="d-flex align-items-center gap-3">
-              0%
-              <div class="d-flex align-items-center position-relative w-100">
-                <input
-                  type="range"
-                  class="range"
-                  (input)="onSliderInput($event)"
-                  min="0"
-                  max="100"
-                  value="0"
-                  #vision
-                />
-                <span class="value">
-                  {{ vision.value }}
-                </span>
-              </div>
-              100%
-            </div>
-          </div>
-          <div class="mb-4">
-            <label class="form-label">Crossing</label>
-            <div class="d-flex align-items-center gap-3">
-              0%
-              <div class="d-flex align-items-center position-relative w-100">
-                <input
-                  type="range"
-                  class="range"
-                  (input)="onSliderInput($event)"
-                  min="0"
-                  max="100"
-                  value="0"
-                  #crossing
-                />
-                <span class="value">
-                  {{ crossing.value }}
-                </span>
-              </div>
-              100%
-            </div>
-          </div>
-          <div class="mb-4">
-            <label class="form-label">Accuracy</label>
-            <div class="d-flex align-items-center gap-3">
-              0%
-              <div class="d-flex align-items-center position-relative w-100">
-                <input
-                  type="range"
-                  class="range"
-                  (input)="onSliderInput($event)"
-                  min="0"
-                  max="100"
-                  value="0"
-                  #accuracy
-                />
-                <span class="value">
-                  {{ accuracy.value }}
-                </span>
-              </div>
-              100%
-            </div>
-          </div>
-          <div class="mb-4">
-            <label class="form-label">Short Passing</label>
-            <div class="d-flex align-items-center gap-3">
-              0%
-              <div class="d-flex align-items-center position-relative w-100">
-                <input
-                  type="range"
-                  class="range"
-                  (input)="onSliderInput($event)"
-                  min="0"
-                  max="100"
-                  value="0"
-                  #shortPassing
-                />
-                <span class="value">
-                  {{ shortPassing.value }}
-                </span>
-              </div>
-              100%
-            </div>
-          </div>
-          <div class="mb-4">
-            <label class="form-label">Long Passing</label>
-            <div class="d-flex align-items-center gap-3">
-              0%
-              <div class="d-flex align-items-center position-relative w-100">
-                <input
-                  type="range"
-                  class="range"
-                  (input)="onSliderInput($event)"
-                  min="0"
-                  max="100"
-                  value="0"
-                  #longCrossing
-                />
-                <span class="value">
-                  {{ longCrossing.value }}
-                </span>
-              </div>
-              100%
-            </div>
-          </div>
-          <div class="mb-4">
-            <label class="form-label">Curve</label>
-            <div class="d-flex align-items-center gap-3">
-              0%
-              <div class="d-flex align-items-center position-relative w-100">
-                <input
-                  type="range"
-                  class="range"
-                  (input)="onSliderInput($event)"
-                  min="0"
-                  max="100"
-                  value="0"
-                  #curve
-                />
-                <span class="value">
-                  {{ curve.value }}
-                </span>
-              </div>
-              100%
             </div>
           </div>
         </div>
-        <div class="col-6">
+        <!-- <div class="col-6">
           <p class="mb-0 pb-3 mb-3 border-bottom border-light">Shooting</p>
           <div class="mb-4">
             <label class="form-label">Positioning</label>
@@ -404,235 +268,7 @@
               100%
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="col-12 mb-3 border-bottom border-light"
-      *ngIf="profileDataForm.value.sport_type.includes('Athletics')"
-    >
-      <p class="mb-0 opacity-50 fw-bold mb-1">Athletics</p>
-      <p class="mb-0 opacity-50 fw-bold">
-        Enter the details about your athletic abilities
-      </p>
-      <div class="row g-0 gx-5 mt-5">
-        <div class="col-6 pb-4">
-          <label class="opacity-50">Skill level </label>
-          <button
-            class="select-menu mt-2"
-            id="interests"
-            (click)="toggleSelectMenu($event)"
-          >
-            <div class="select-btn" style="pointer-events: none">
-              <span class="selected-item">{{
-                profileDataForm.value.athletic_skill_level ||
-                  "Select skill level"
-              }}</span>
-              <i class="bi bi-chevron-down"></i>
-            </div>
-            <ul class="select-list">
-              <li
-                class="select-item"
-                *ngFor="let skill of skillLevels"
-                (click)="
-                  profileDataForm.patchValue({ athletic_skill_level: skill })
-                "
-              >
-                {{ skill }}
-              </li>
-            </ul>
-          </button>
-        </div>
-        <div class="col-6 pb-4">
-          <label class="opacity-50">Position Played</label>
-          <button
-            class="select-menu mt-2"
-            id="interests"
-            (click)="toggleSelectMenu($event)"
-          >
-            <div class="select-btn" style="pointer-events: none">
-              <span class="selected-item">
-                {{
-                  profileDataForm.value.athletic_position_played ||
-                    "Select position played"
-                }}
-              </span>
-              <i class="bi bi-chevron-down"></i>
-            </div>
-            <ul class="select-list">
-              <li
-                class="select-item"
-                *ngFor="let position of athleticPositions"
-                (click)="
-                  profileDataForm.patchValue({
-                    athletic_position_played: position
-                  })
-                "
-              >
-                {{ position }}
-              </li>
-            </ul>
-          </button>
-        </div>
-      </div>
-
-      <p class="mb-0 opacity-50 fw-bold mb-5">Set your level of skill</p>
-      <div class="row g-0 gx-5">
-        <div class="col-6">
-          <p class="mb-0 pb-3 mb-3 border-bottom border-light">Shooting</p>
-          <div class="mb-4">
-            <label class="form-label">Positioning</label>
-            <div class="d-flex align-items-center gap-3">
-              0%
-              <div class="d-flex align-items-center position-relative w-100">
-                <input
-                  type="range"
-                  class="range"
-                  (input)="onSliderInput($event)"
-                  min="0"
-                  max="100"
-                  value="0"
-                  #ath_positioning
-                />
-                <span class="value">
-                  {{ ath_positioning.value }}
-                </span>
-              </div>
-              100%
-            </div>
-          </div>
-          <div class="mb-4">
-            <label class="form-label">Finishing</label>
-            <div class="d-flex align-items-center gap-3">
-              0%
-              <div class="d-flex align-items-center position-relative w-100">
-                <input
-                  type="range"
-                  class="range"
-                  (input)="onSliderInput($event)"
-                  min="0"
-                  max="100"
-                  value="0"
-                  #ath_finishing
-                />
-                <span class="value">
-                  {{ ath_finishing.value }}
-                </span>
-              </div>
-              100%
-            </div>
-          </div>
-          <div class="mb-4">
-            <label class="form-label">Shot Power</label>
-            <div class="d-flex align-items-center gap-3">
-              0%
-              <div class="d-flex align-items-center position-relative w-100">
-                <input
-                  type="range"
-                  class="range"
-                  (input)="onSliderInput($event)"
-                  min="0"
-                  max="100"
-                  value="0"
-                  #ath_power
-                />
-                <span class="value">
-                  {{ ath_power.value }}
-                </span>
-              </div>
-              100%
-            </div>
-          </div>
-          <div class="mb-4">
-            <label class="form-label">Long Shots</label>
-            <div class="d-flex align-items-center gap-3">
-              0%
-              <div class="d-flex align-items-center position-relative w-100">
-                <input
-                  type="range"
-                  class="range"
-                  (input)="onSliderInput($event)"
-                  min="0"
-                  max="100"
-                  value="0"
-                  #ath_longShots
-                />
-                <span class="value">
-                  {{ ath_longShots.value }}
-                </span>
-              </div>
-              100%
-            </div>
-          </div>
-          <div class="mb-4">
-            <label class="form-label">Volleys</label>
-            <div class="d-flex align-items-center gap-3">
-              0%
-              <div class="d-flex align-items-center position-relative w-100">
-                <input
-                  type="range"
-                  class="range"
-                  (input)="onSliderInput($event)"
-                  min="0"
-                  max="100"
-                  value="0"
-                  #ath_volleys
-                />
-                <span class="value">
-                  {{ ath_volleys.value }}
-                </span>
-              </div>
-              100%
-            </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="mb-5">
-            <p class="mb-0 pb-3 mb-3 border-bottom border-light">Pace</p>
-            <div class="mb-3">
-              <label class="form-label">Acceleration</label>
-              <div class="d-flex align-items-center gap-3">
-                0%
-                <div class="d-flex align-items-center position-relative w-100">
-                  <input
-                    type="range"
-                    class="range"
-                    (input)="onSliderInput($event)"
-                    min="0"
-                    max="100"
-                    value="0"
-                    #acceleration
-                  />
-                  <span class="value">
-                    {{ acceleration.value }}
-                  </span>
-                </div>
-                100%
-              </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Sprint Speed</label>
-              <div class="d-flex align-items-center gap-3">
-                0%
-                <div class="d-flex align-items-center position-relative w-100">
-                  <input
-                    type="range"
-                    class="range"
-                    (input)="onSliderInput($event)"
-                    min="0"
-                    max="100"
-                    value="0"
-                    #sprintspeed
-                  />
-                  <span class="value">
-                    {{ sprintspeed.value }}
-                  </span>
-                </div>
-                100%
-              </div>
-            </div>
-          </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="col-12">
@@ -664,6 +300,10 @@
           type="text"
           class="form-control mb-4 mt-2"
           placeholder="eg John Doe"
+          [value]="reference.name"
+          id="{{ 'reference-' + i }}"
+          name="{{ 'reference-' + i }}"
+          (input)="onReferenceInput($event, i, 'name')"
         />
       </div>
       <div class="col-6">
@@ -672,6 +312,10 @@
           type="email"
           class="form-control mb-4 mt-2"
           placeholder="eg. johndoe@gmail.com"
+          [value]="reference.email"
+          id="{{ 'reference-email-' + i }}"
+          name="{{ 'reference-email-' + i }}"
+          (input)="onReferenceInput($event, i, 'email')"
         />
       </div>
     </div>
@@ -700,7 +344,7 @@
       </div>
       <div
         class="col-6 py-2 file"
-        *ngFor="let file of profileDataForm.value.letters; let i = index"
+        *ngFor="let file of profileDataForm.value.letters_of_recommendation; let i = index"
       >
         <div class="d-flex align-items-start justify-content-between">
           <div class="d-flex align-items-start">
@@ -736,9 +380,7 @@
     </div>
 
     <div class="col-12 text-end">
-      <button class="btn btn-primary w-50" [disabled]="!profileDataForm.valid">
-        Save and continue
-      </button>
+      <button class="btn btn-primary w-50">Save and continue</button>
     </div>
   </div>
 </form>

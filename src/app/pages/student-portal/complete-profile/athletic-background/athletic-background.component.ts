@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/api/users/users.service';
-import { Sports } from 'src/app/services/core/IApp';
+import { Skills, Sports } from 'src/app/services/core/IApp';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
@@ -11,19 +11,13 @@ import { GlobalsService } from 'src/app/services/core/globals';
 })
 export class AthleticBackgroundComponent {
   profileDataForm: FormGroup = new FormGroup({
+    sports: new FormControl([], [Validators.required]),
     athletic_achievements: new FormControl('', [Validators.required]),
-    sport_type: new FormControl([], [Validators.required]),
-    soccer_skill_level: new FormControl('', [Validators.required]),
-    soccer_position_played: new FormControl('', [Validators.required]),
-    athletic_skill_level: new FormControl('', [Validators.required]),
-    athletic_position_played: new FormControl('', [Validators.required]),
     letters_of_recommendation: new FormControl([]),
     references: new FormControl([]),
   });
 
   skillLevels: string[] = ['Beginner', 'Intermediate', 'Advanced'];
-  athleticPositions: string[] = ['100m', '200m', '400m', '800m', '1500m'];
-  positions: string[] = ['Defender', 'Striker'];
 
   files: any[] = [];
 
@@ -34,16 +28,24 @@ export class AthleticBackgroundComponent {
 
   async ngOnInit() {
     await this.usersService.getSportsData();
-    await this.usersService.getSportsPositionsData();
   }
 
-  onSubmit() {
-    if (this.profileDataForm.invalid) {
-      this.globals.toast.error('Please fill the form correctly');
-      return;
-    }
-    this.globals.storage.setProfileDetailsForm(this.profileDataForm.value);
-    this.globals.router.navigate(['/student/complete-profile/academic']);
+  async onSubmit() {
+    this.profileDataForm.patchValue({
+      sports: this.profileDataForm.value.sports.map((sport: Sports) => {
+        return sport.sport_name;
+      }),
+    });
+    this.profileDataForm.value.sports.forEach((sport: string) => {
+      this.profileDataForm.patchValue({
+        [`${sport.toLowerCase().replace(' ', '_')}_position_played`]:
+          this.profileDataForm.value[
+            `${sport.toLowerCase().replace(' ', '_')}_position_played`
+          ].position_name,
+      });
+    });
+    await this.usersService.postAthleticBackgroundData(this.profileDataForm.value);
+    this.globals.router.navigate(['/student/complete-profile/image-uploads']);
   }
 
   gotoDashboard() {
@@ -93,20 +95,20 @@ export class AthleticBackgroundComponent {
   }
 
   addSport(sport: Sports) {
-    const sports = this.profileDataForm.get('sport_type') as FormControl;
+    const sports = this.profileDataForm.get('sports') as FormControl;
     const sportIndex = sports.value.indexOf(sport);
     if (sportIndex === -1) {
       sports.value.push(sport);
-    } else {
-      sports.value.splice(sportIndex, 1);
+      this.createFormControls(sport.sport_name.toLowerCase().replace(' ', '_'));
     }
   }
 
-  removeSport(sport: string) {
-    const sports = this.profileDataForm.get('sport_type') as FormControl;
+  removeSport(sport: Sports) {
+    const sports = this.profileDataForm.get('sports') as FormControl;
     const sportIndex = sports.value.indexOf(sport);
     if (sportIndex !== -1) {
       sports.value.splice(sportIndex, 1);
+      this.removeFormControls(sport.sport_name.toLowerCase().replace(' ', '_'));
     }
   }
 
@@ -118,14 +120,6 @@ export class AthleticBackgroundComponent {
     } else {
       control.value.splice(itemIndex, 1);
     }
-  }
-
-  addReference() {
-    const references = this.profileDataForm.get('references') as FormControl;
-    references.value.push({
-      name: '',
-      email: '',
-    });
   }
 
   dropImage(event: any) {
@@ -151,7 +145,7 @@ export class AthleticBackgroundComponent {
     event.preventDefault();
   }
 
-  onSliderInput(event: any) {
+  onSliderInput(event: any, sport: Sports) {
     const input = event.target;
     const value = input.value;
     const min = input.min || 0;
@@ -162,5 +156,80 @@ export class AthleticBackgroundComponent {
     valueContainer.style.left = `calc(${percent}% + (${
       8 - percent * 0.265 - 1.5
     }px))`;
+
+    const skill = this.profileDataForm.get(
+      `${sport.sport_name.toLowerCase().replace(' ', '_')}_${event.target.name
+        .toLowerCase()
+        .replace(' ', '_')}`
+    ) as FormControl;
+    skill.setValue(value);
+  }
+
+  selectItem(value: any, sport: Sports, controlString: string) {
+    const control = this.profileDataForm.get(
+      `${sport.sport_name.toLowerCase().replace(' ', '_')}_${controlString}`
+    ) as FormControl;
+    control.setValue(value);
+
+    if (controlString === 'position_played') {
+      value.skills?.forEach((skill: any) => {
+        skill?.skills?.forEach((skill: any) => {
+          this.profileDataForm.addControl(
+            `${sport.sport_name.toLowerCase().replace(' ', '_')}_${skill
+              .toLowerCase()
+              .replace(' ', '_')}`,
+            new FormControl(null, [Validators.required])
+          );
+        });
+      });
+    }
+  }
+
+  displayValue(sport: Sports, control: string) {
+    const value = this.profileDataForm.get(
+      `${sport.sport_name?.toLowerCase().replace(' ', '_')}_${control}`
+    )?.value;
+    return value;
+  }
+
+  createFormControls(sport: string) {
+    this.profileDataForm.addControl(
+      `${sport}_skill_level`,
+      new FormControl('', [Validators.required])
+    );
+    this.profileDataForm.addControl(
+      `${sport}_position_played`,
+      new FormControl(null, [Validators.required])
+    );
+  }
+
+  removeFormControls(sport: string) {
+    this.profileDataForm.removeControl(`${sport}_skill_level`);
+    this.profileDataForm.removeControl(`${sport}_position_played`);
+  }
+
+  getPositionSkills(sport: Sports, control: string): Skills[] {
+    return this.profileDataForm.get(
+      `${sport.sport_name?.toLowerCase().replace(' ', '_')}_${control}`
+    )?.value?.skills;
+  }
+
+  addReference() {
+    const references = this.profileDataForm.get('references') as FormControl;
+    references.value.push({
+      id: references.value.length + 1,
+      name: '',
+      email: '',
+    });
+  }
+
+  onReferenceInput(event: any, index: number, control: string) {
+    const reference = this.profileDataForm.get('references') as FormControl;
+    const referenceIndex = reference.value.findIndex(
+      (ref: any) => ref.id === index + 1
+    );
+    if (referenceIndex !== -1) {
+      reference.value[referenceIndex][control] = event.target.value;
+    }
   }
 }

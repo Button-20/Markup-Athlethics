@@ -7,7 +7,11 @@
   Upload MP4 file formats and resolutions of 1080p (1920x1080), 720p (1280x720),
   and 4K (3840x2160).
 </p>
-<form class="profile-form" [formGroup]="profileDataForm">
+<form
+  class="profile-form"
+  [formGroup]="profileDataForm"
+  (ngSubmit)="onSubmit()"
+>
   <div class="row g-4">
     <div class="col-12">
       <div
@@ -18,7 +22,7 @@
           type="file"
           (change)="dropImage($event)"
           (drop)="dropImage($event)"
-          (dragover)="onDragOver($event)"
+          accept=".mp4"
           name="image"
           id="transcript"
         />
@@ -31,18 +35,20 @@
       </div>
       <div
         class="col-6 py-2 file"
-        *ngFor="let file of profileDataForm.value.images; let i = index"
+        *ngFor="let file of profileDataForm.value.videos; let i = index"
       >
         <div class="d-flex align-items-start justify-content-between">
           <div class="d-flex align-items-start">
             <i class="bi bi-file-earmark"></i>
             <div>
-              <p class="mb-0 ms-3 opacity-50">{{ file.name || "File name" }}</p>
+              <p class="mb-0 ms-3 opacity-50 truncate" style="max-width: 300px">
+                {{ file.name || "File name" }}
+              </p>
               <p class="mb-0 ms-3 opacity-50">
                 {{ file.size / 1000 | number }} KB
               </p>
               <div class="d-flex align-items-center gap-3 ms-3">
-                <div class="progress w-100">
+                <div class="progress" style="min-width: 300px">
                   <div
                     class="progress-bar bg-primary"
                     role="progressbar"

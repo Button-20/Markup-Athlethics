@@ -60,11 +60,13 @@ export class UsersService {
     });
   }
 
-  async uploadImage(data: { file: any }) {
+  async uploadImage(data: { file: any; resource_type?: string }) {
     return await new Promise(async (resolve, reject) => {
       this.globals.spinner.show();
       try {
         const myFormData = new FormData();
+        data.resource_type &&
+          myFormData.append('resource_type', data.resource_type);
         myFormData.append('file', data.file);
         myFormData.append(
           'upload_preset',
@@ -107,7 +109,7 @@ export class UsersService {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        const resp: any = await this.api.get('sport-data');
+        const resp: any = await this.api.get('sports/with-positions-and-skills');
         this.sports = resp.data;
         this.globals.sports = resp.data;
         this.globals.spinner.hide();
@@ -119,26 +121,31 @@ export class UsersService {
     });
   }
 
-  async getSportsPositionsData() {
-    return await new Promise(async (resolve, reject) => {
-      try {
-        this.globals.spinner.show();
-        const resp: any = await this.api.get('sport-position-data');
-        this.globals.sportsPositions = resp.data;
-        this.globals.spinner.hide();
-        resolve(resp);
-      } catch (err: any) {
-        this.globals.spinner.hide();
-        reject(err);
-      }
-    });
-  }
 
   async postImageData(data: any) {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        const resp: any = await this.api.post('image-data', data);
+        const resp: any = await this.api.post('image-data', {
+          image_path: data,
+        });
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        this.globals.toast.error(err.message);
+        reject(err);
+      }
+    });
+  }
+
+  async postVideoData(data: any) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.post('video-data', {
+          video_path: data,
+        });
         this.globals.spinner.hide();
         resolve(resp);
       } catch (err: any) {
