@@ -17,17 +17,29 @@ export class AccountDataFormComponent {
 
   accountForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
+    educational_level: new FormControl('', [Validators.required]),
     institution_name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     country: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required]),
     status: new FormControl('1'),
+    institution_id: new FormControl(''),
   });
 
   CountryISO = CountryISO;
   SearchCountryField = SearchCountryField;
   PhoneNumberFormat = PhoneNumberFormat;
   separateDialCode = false;
+
+  educational_levels = [
+    'Primary Education',
+    'Middle School or Junior High School',
+    'Secondary Education',
+    'Tertiary Education',
+    'Vocational and Technical Education',
+  ];
+
+  files: any[] = [];
 
   constructor(public globals: GlobalsService) {}
 
@@ -44,6 +56,72 @@ export class AccountDataFormComponent {
     this.accountForm.patchValue({
       phone: '+' + event.dialCode + ' ' + event.phoneNumber,
     });
+  }
+
+  toggleSelectMenu(event: any, closeOnSelect: boolean = true) {
+    // close other dropdown options
+    event.preventDefault();
+    let mainElement = event.target;
+    const element = document.querySelectorAll('.select-list');
+    element.forEach((el) => {
+      if (
+        el.classList.contains('active') &&
+        el !== mainElement.nextElementSibling &&
+        closeOnSelect
+      ) {
+        el.classList.remove('active');
+      }
+    });
+
+    if (mainElement.nodeName !== 'BUTTON') mainElement = mainElement.parentNode;
+
+    // add show class to dropdown options
+    for (let i = 0; i < mainElement.children.length; i++) {
+      if (mainElement.children[i].classList.contains('select-list')) {
+        mainElement.children[i].classList.toggle('active');
+      }
+    }
+
+    if (closeOnSelect) {
+      // close dropdown options when click outside
+      document.addEventListener('mousedown', (e: any) => {
+        if (!e.target?.classList.contains('select-item')) {
+          element.forEach((el) => {
+            if (el.classList.contains('active')) {
+              el.classList.remove('active');
+            }
+          });
+        }
+      });
+    }
+  }
+
+  selectItem(item: string, type: string) {
+    const formControl = this.accountForm.get(type) as FormControl;
+    formControl.setValue(item);
+  }
+
+  dropImage(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.files = [...(event.dataTransfer?.files || event.target.files)];
+
+    this.accountForm.patchValue({
+      institution_id: this.files,
+    });
+  }
+
+  removeFile(e: any, index: number) {
+    e.preventDefault();
+    this.files.splice(index, 1);
+    this.accountForm.patchValue({
+      institution_id: this.files,
+    });
+  }
+
+  onDragOver(event: any) {
+    event.stopPropagation();
+    event.preventDefault();
   }
 
   get name() {
