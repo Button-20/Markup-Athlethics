@@ -6,6 +6,9 @@
     routerLinkActive="active"
   >
     <img [src]="post.imagePath" [alt]="post.id" />
+    <div class="tag">
+      <p class="mb-0 opacity-100">{{ post.tag | titlecase }}</p>
+    </div>
     <h3 class="my-3 mt-4">
       {{ post.title }}
     </h3>

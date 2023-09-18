@@ -13,6 +13,7 @@
   width: 22.125rem;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+  position: relative;
 }
 
 .news-section .content:hover {
@@ -30,6 +31,18 @@
   object-fit: cover;
   border-radius: 0.3125rem;
   transition: all 0.3s ease-in-out;
+}
+
+.news-section .content .tag {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #bf2e1b;
+  border-radius: 0.1875rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  z-index: 1;
+  color: #fff;
 }
 
 .news-section .content img:hover {
@@ -59,4 +72,11 @@
   height: 5px;
   aspect-ratio: 1/1;
   border-radius: 50%;
+}
+
+@media screen and (max-width: 48em) {
+  .news-section {
+    width: min(100%, 72.875rem);
+    justify-content: center;
+  }
 }

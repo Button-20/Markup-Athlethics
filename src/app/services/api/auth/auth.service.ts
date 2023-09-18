@@ -131,7 +131,7 @@ export class AuthService {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        await this.api.post('logout', {});
+        // await this.api.post('logout', {});
         this.globals.storage.logOutUser();
         this.globals.spinner.hide();
         resolve(true);
