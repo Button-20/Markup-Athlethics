@@ -42,3 +42,40 @@
   height: 2em;
   object-fit: cover;
 }
+
+@media screen and (max-width: 48em) {
+  /****************** CONTACT SECTION *******************/
+  .contact-section {
+    background: none;
+  }
+
+  .contact-section .row {
+    width: calc(100% - 3rem);
+    margin-inline: auto;
+  }
+
+  .contact-section h1 {
+    font-size: 2rem;
+    line-height: 130%; /* 5.85rem */
+    letter-spacing: 0.04rem;
+  }
+
+  .contact-section h1 span {
+    color: var(--success);
+  }
+
+  .contact-section h3 {
+    font-size: 0.875rem;
+  }
+
+  .socials-btns {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.125rem;
+  }
+
+  .submit-btn {
+    width: min(23rem, 100%);
+  }
+}
