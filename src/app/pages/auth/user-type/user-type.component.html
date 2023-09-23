@@ -1,0 +1,35 @@
+<div
+  class="container-fluid min-vh-100 row g-0 justify-content-start justify-content-md-center align-items-center"
+>
+  <div class="col-12 col-md-3 confirm-email">
+    <div class="d-flex align-items-center gap-3 mb-5 justify-content-center">
+      <img src="assets/images/logo.png" alt="logo" class="logo" />
+      <p class="mb-0">Markup Athletics</p>
+    </div>
+    <h4 class="mb-3 fw-bolder text-center">Select user type.</h4>
+    <form class="mb-3" [formGroup]="userTypeForm" (ngSubmit)="onSubmit()">
+      <div
+        class="d-flex align-items-center justify-content-center justify-center-md-between gap-3 gap-md-5"
+      >
+        <div class="form-input text-center" *ngFor="let userType of userTypes">
+          <input
+            type="radio"
+            name="user-type"
+            [id]="userType"
+            [value]="userType"
+            class="d-none"
+          />
+          <label class="form-label" [for]="userType">
+            <img
+              src="assets/images/{{ userType.toLowerCase() }}.svg"
+              alt="coach"
+            />
+          </label>
+          <label [for]="userType">{{ userType }}</label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Continue</button>
+    </form>
+  </div>
+</div>

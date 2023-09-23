@@ -1,0 +1,33 @@
+.logo {
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
+}
+
+.logo ~ p {
+  font-family: "Staatliches";
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+.form-input {
+  margin-bottom: 1rem;
+
+  label.form-label {
+    width: 10.25rem;
+    height: 10rem;
+    border-radius: 0.3125rem;
+    background: #2a2a2e;
+    border: 3px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  input[type="radio"]:checked + label.form-label {
+    border: 3px solid var(--success);
+  }
+}

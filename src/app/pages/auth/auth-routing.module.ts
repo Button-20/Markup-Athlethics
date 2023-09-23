@@ -8,6 +8,7 @@ import { PasswordResetSuccessComponent } from './password-reset-success/password
 import { PasswordComponent } from './password/password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignupComponent } from './signup/signup.component';
+import { UserTypeComponent } from './user-type/user-type.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,11 @@ const routes: Routes = [
     path: 'password-reset-success',
     component: PasswordResetSuccessComponent,
   },
+  {
+    path: 'user-type',
+    component: UserTypeComponent,
+  },
+
   {
     path: '**',
     redirectTo: '',

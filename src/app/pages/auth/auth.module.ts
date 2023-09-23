@@ -15,6 +15,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { PasswordResetSuccessComponent } from './password-reset-success/password-reset-success.component';
 import { TermsOfUseComponent } from '../website/terms-of-use/terms-of-use.component';
+import { UserTypeComponent } from './user-type/user-type.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TermsOfUseComponent } from '../website/terms-of-use/terms-of-use.compon
     ForgotPasswordComponent,
     PasswordResetSuccessComponent,
     TermsOfUseComponent,
+    UserTypeComponent,
   ],
   imports: [
     CommonModule,

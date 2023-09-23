@@ -15,6 +15,7 @@ export class AthleticBackgroundComponent {
     athletic_achievements: new FormControl('', [Validators.required]),
     letters_of_recommendation: new FormControl([]),
     references: new FormControl([]),
+    skills: new FormControl([]),
   });
 
   skillLevels: string[] = ['Beginner', 'Intermediate', 'Advanced'];
@@ -37,14 +38,21 @@ export class AthleticBackgroundComponent {
       }),
     });
     this.profileDataForm.value.sports.forEach((sport: string) => {
-      this.profileDataForm.patchValue({
+      let skills: any[] = [];
+      let skill = {
         [`${sport.toLowerCase().replace(' ', '_')}_position_played`]:
           this.profileDataForm.value[
             `${sport.toLowerCase().replace(' ', '_')}_position_played`
           ].position_name,
+      };
+      skills.push(skill);
+      this.profileDataForm.patchValue({
+        skills,
       });
     });
-    await this.usersService.postAthleticBackgroundData(this.profileDataForm.value);
+    await this.usersService.postAthleticBackgroundData(
+      this.profileDataForm.value
+    );
     this.globals.router.navigate(['/student/complete-profile/image-uploads']);
   }
 
