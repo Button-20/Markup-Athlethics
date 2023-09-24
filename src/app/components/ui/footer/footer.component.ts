@@ -28,7 +28,7 @@ export class FooterComponent {
       route: '/faqs',
     },
     {
-      name: 'News',
+      name: 'News And Articles',
       route: '/news',
     },
     {
