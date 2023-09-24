@@ -59,20 +59,6 @@
   font-size: 0.875rem;
   font-weight: 400;
   opacity: 0.4;
-
-  &.trucate {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-line-clamp: 3; /* For Safari */
-    line-clamp: 3; /* For non-webkit browsers */
-    -webkit-box-orient: vertical;
-    -webkit-box-orient: vertical;
-    box-orient: vertical;
-  }
 }
 
 .news-section .content p.date {
@@ -87,6 +73,7 @@
   aspect-ratio: 1/1;
   border-radius: 50%;
 }
+
 
 @media screen and (max-width: 48em) {
   .news-section {
