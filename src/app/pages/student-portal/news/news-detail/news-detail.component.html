@@ -13,9 +13,13 @@
     </div>
     <news-detail
       [displayGoBack]="false"
-      [ngStyle]="{ width: 'auto', 'margin-inline': '0' , 'padding-top': '0' }"
+      [ngStyle]="{ width: 'auto', 'margin-inline': '0', 'padding-top': '0' }"
       [news]="newsService.singleNews"
-      [moreNews]="newsService.news"
     ></news-detail>
+    <news-container
+      [ngStyle]="{ width: 'auto', 'margin-inline': '0' }"
+      [baseLink]="'/student/news'"
+      [news]="newsService.news.slice(0, 3)"
+    ></news-container>
   </div>
 </div>

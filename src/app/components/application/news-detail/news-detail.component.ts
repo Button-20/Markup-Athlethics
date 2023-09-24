@@ -14,7 +14,6 @@ export class NewsDetailComponent {
 
   @Input() news: News | any;
 
-  @Input() moreNews: News[] = [];
 
   constructor(public globals: GlobalsService) {}
 }
