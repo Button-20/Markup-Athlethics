@@ -1,0 +1,165 @@
+<div class="row g-0 gap-3 flex-nowrap">
+  <div
+    class="col-6"
+    [ngClass]="{
+      'col-11': globals.user?.user_type == '2'
+    }"
+  >
+    <p
+      class="mb-0 d-flex align-items-center"
+      *ngIf="globals.user?.user_type != '2'"
+    >
+      <img
+        src="assets/images/grid.png"
+        alt="dashboard"
+        class="me-2 img-success"
+      />
+      <span class="opacity-50">Dashboard</span>
+    </p>
+    <div
+      class="my-5 dark-section d-flex align-items-center gap-4 p-4 rounded"
+      *ngIf="globals.user?.user_type != '2'"
+    >
+      <img src="assets/images/alert-circle.png" alt="alert" />
+      <p class="mb-0 opacity-50">
+        Upload your ID for authentication. you can do this in your accounts
+        settings.
+      </p>
+      <div class="col-2">
+        <a href="#" class="text-white">Upload ID</a>
+      </div>
+    </div>
+    <div
+      class="my-5 dark-section d-flex align-items-center gap-4 p-4 rounded warning-notif position-relative"
+      *ngIf="globals.user?.user_type != '2'"
+    >
+      <img src="assets/images/warning-circle.png" alt="alert" />
+      <p class="mb-0 opacity-50">
+        Upload your ID for authentication. you can do this in your accounts
+        settings.
+        <br /><br />
+        <a href="#" class="text-white">Dismiss</a>
+      </p>
+    </div>
+    <div
+      class="row g-0 gap-5 justify-content-between"
+      *ngIf="globals.user?.user_type != '2'"
+    >
+      <div class="col dark-section rounded text-center">
+        <img src="assets/images/profile.png" alt="profile" />
+
+        <div class="my-5">
+          <p class="mb-0 fs-4">{{ globals.user?.name }}</p>
+          <p class="mb-0 opacity-50">Harmony University</p>
+          <small class="opacity-50 fw-bolder">Ghana</small>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-center gap-5">
+          <div class="me-3">
+            <p class="mb-0 fs-3 fw-bolder">12</p>
+            <p class="mb-0">Profile views</p>
+          </div>
+          <div>
+            <p class="mb-0 fs-3 fw-bolder">12</p>
+            <p class="mb-0">Interactions</p>
+          </div>
+        </div>
+      </div>
+      <div class="col dark-section rounded px-4">
+        <div class="text-center"><span class="percentage"> 5% </span></div>
+        <div class="bar my-5 mb-0"></div>
+        <p class="my-4 fw-medium">Your profile is 5% complete.</p>
+        <p class="mb-0 opacity-50">
+          A complete profile allows you to showcase your skills, achievements,
+          and potential to a wider audience, including college coaches,
+          recruiters, and sports enthusiasts. Complete profile
+        </p>
+        <button class="btn btn-primary mt-4 w-100">Complete Profile</button>
+      </div>
+    </div>
+    <p class="mb-0 fw-semibold my-5">Recent connections</p>
+    <div
+      class="row g-0"
+      style="height: 200px; overflow-y: scroll"
+      [ngStyle]="{ height: globals.user?.user_type == '2' ? '250px' : '200px' }"
+    >
+      <div class="col-12" *ngIf="globals.user?.user_type != '2'">
+        <div class="my-5 mb-3 dark-section p-4 rounded">
+          <div class="d-flex align-items-center">
+            <img
+              src="https://icons.iconarchive.com/icons/wikipedia/flags/512/US-United-States-Flag-icon.png"
+              width="30px"
+              alt="U.S.A image"
+            />
+            <p class="mb-0 ms-1 fw-semibold opacity-50">USA</p>
+          </div>
+          <div class="row g-0">
+            <div
+              class="col-5 border-end border-2 border-opacity-50 border-light"
+            >
+              <p class="mb-0 fs-1 fw-bolder">Alex Payne</p>
+            </div>
+            <div class="col-5 d-flex align-items-center justify-content-end">
+              <p class="mb-0 opacity-50">Harmony coaching academy</p>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <p class="mb-0 opacity-50">3 minutes ago</p>
+          <a href="#" class="text-white">Report an issue</a>
+        </div>
+      </div>
+      <connection-card *ngIf="globals.user?.user_type == '2'"></connection-card>
+      <!-- <no-data [message]="'Nothing to see here'"></no-data> -->
+    </div>
+    <p class="mb-0 my-5 opacity-50" *ngIf="globals.user?.user_type == '2'">
+      Featured Profiles
+    </p>
+    <div
+      class="d-flex align-items-center flex-wrap gap-4 justify-content-between mt-5"
+      *ngIf="globals.user?.user_type == '2'"
+    >
+      <player-card *ngFor="let player of [].constructor(3)"></player-card>
+    </div>
+  </div>
+  <div class="col-5 dark-section p-5" *ngIf="globals.user?.user_type != '2'">
+    <div
+      class="d-flex align-items-center justify-content-between"
+      id="notification-bell"
+    >
+      <p class="mb-0 opacity-50">
+        <img src="assets/images/bell.png" alt="notification" class="me-2" />
+        Notifications
+      </p>
+      <a href="#" class="text-white text-decoration-none opacity-50"
+        >Mark all as read</a
+      >
+    </div>
+    <div class="search-input">
+      <img
+        src="assets/images/search.png"
+        alt="search"
+        width="25px"
+        height="25px"
+        class="me-2"
+      />
+      <input type="text" placeholder="Search" />
+    </div>
+    <div class="row g-0 gap-4">
+      <div class="col-12 ms-4 notification">
+        <p>Account created</p>
+        <p class="mb-3 opacity-50">
+          Thank you for signing up!
+          <br /><br />
+          We're thrilled to have you onboard and excited to see what the future
+          holds for you.
+          <br /><br />
+
+          Your profile has been submitted and will be reviewed. well let you
+          know as soon as the process is complete.
+        </p>
+        <small class="opacity-50 fw-bold">3 minutes ago</small>
+      </div>
+    </div>
+  </div>
+</div>

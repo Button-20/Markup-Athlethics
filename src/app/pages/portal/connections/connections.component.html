@@ -1,0 +1,33 @@
+<div class="row g-0 flex-nowrap me-5">
+  <div class="col-11 mb-5">
+    <div class="d-flex align-items-center justify-content-between mb-5">
+      <div class="d-flex align-items-center">
+        <img
+          src="assets/images/mdi_connection.png"
+          alt="dashboard"
+          class="me-2 img-success"
+        />
+        <p class="mb-0 opacity-50">Connections</p>
+      </div>
+    </div>
+    <h6>Recent connections</h6>
+    <div class="row g-0">
+      <!-- <div
+        style="height: 30em; width: 100%"
+        class="d-flex justify-content-center align-items-center"
+      >
+        <no-data message="Nothing to see here"></no-data>
+      </div> -->
+      <connection-card></connection-card>
+    </div>
+    <br />
+    <br />
+    <br />
+    <h6>Older connections</h6>
+    <div class="row g-0">
+      <connection-card
+        *ngFor="let connection of [].constructor(3)"
+      ></connection-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.dark-section {
+  background: #1a1a1e;
+  padding: 2rem 0;
+}
+
+.recent-connection {
+  h4 {
+    color: var(--success);
+    font-family: Staatliches;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; /* 3.25rem */
+  }
+}

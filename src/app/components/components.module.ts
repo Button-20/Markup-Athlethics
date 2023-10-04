@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxIntlTelephoneInputModule } from 'ngx-intl-telephone-input';
+import { ConnectionCardComponent } from './application/connection-card/connection-card.component';
 import { FaqsComponent } from './application/faqs/faqs.component';
 import { NewsContainerComponent } from './application/news-container/news-container.component';
 import { NewsDetailComponent } from './application/news-detail/news-detail.component';
@@ -37,6 +38,7 @@ const components: Array<any> = [
   PaginationComponent,
   AccountDataFormComponent,
   UpdatePasswordFormComponent,
+  ConnectionCardComponent,
 ];
 
 @NgModule({

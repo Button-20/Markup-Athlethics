@@ -22,7 +22,7 @@ export class LoginComponent {
 
   async onSubmit() {
     await this.authService.login(this.loginForm.value);
-    this.globals.router.navigate(['/student/dashboard']);
+    this.globals.router.navigate(['/portal/dashboard']);
   }
 
   get email() {

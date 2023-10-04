@@ -19,10 +19,10 @@ const routes: Routes = [
       import('./pages/auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'student',
+    path: 'portal',
     loadChildren: () =>
-      import('./pages/student-portal/student-portal.module').then(
-        (m) => m.StudentPortalModule
+      import('./pages/portal/portal.module').then(
+        (m) => m.PortalModule
       ),
     canActivate: [AuthGuard],
   },

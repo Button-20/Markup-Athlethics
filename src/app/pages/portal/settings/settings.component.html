@@ -1,0 +1,51 @@
+<div class="row g-0 flex-nowrap me-5">
+  <div class="col-11">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <img
+          src="assets/images/settings.png"
+          alt="dashboard"
+          class="me-2 img-success"
+        />
+        <p class="mb-0 opacity-50">Settings</p>
+      </div>
+    </div>
+    <div
+      class="d-flex align-items-center border-bottom border-light justify-content-between gap-2 my-3 py-4"
+    >
+      <a
+        *ngFor="let nav of navigations"
+        routerLink="/portal/settings{{ nav.route }}"
+        [ngClass]="{ active: nav.name === currentNav.name }"
+        class="opacity-50 text-white text-decoration-none"
+      >
+        {{ nav.name }}
+      </a>
+    </div>
+    <div
+      class="col-8"
+      [ngClass]="{ 'col-12': currentNav.name.includes('Deactivate Account') }"
+    >
+      <div
+        class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3 border-light border-opacity-50 border-2"
+        *ngIf="currentNav.description"
+      >
+        <div>
+          <p class="mb-3 fw-bold">
+            {{ currentNav.name }}
+          </p>
+          <p class="mb-0 opacity-50">
+            {{ currentNav.description }}
+          </p>
+        </div>
+        <button
+          class="btn btn-secondary"
+          *ngIf="currentNav.name.includes('Account Data')"
+        >
+          Edit
+        </button>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

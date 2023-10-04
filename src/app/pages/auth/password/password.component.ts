@@ -17,6 +17,6 @@ export class PasswordComponent {
   async onSubmit(event: any) {
     await this.authService.register(event);
     this.globals.storage.clearRegistrationDetails();
-    this.globals.router.navigate(['/student/dashboard']);
+    this.globals.router.navigate(['/portal/dashboard']);
   }
 }
