@@ -1,1 +1,4 @@
-<account-data-form (onSubmit)="onSubmit($event)"></account-data-form>
+<account-data-form
+  [user_type]="globals.user?.user_type || '1'"
+  (onSubmit)="onSubmit($event)"
+></account-data-form>

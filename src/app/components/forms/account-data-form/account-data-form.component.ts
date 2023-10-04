@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   CountryISO,
@@ -13,6 +13,8 @@ import { GlobalsService } from 'src/app/services/core/globals';
   styleUrls: ['./account-data-form.component.scss'],
 })
 export class AccountDataFormComponent {
+  @Input() user_type: string = '1';
+
   @Output() onSubmit: EventEmitter<any> = new EventEmitter<any>();
 
   accountForm: FormGroup = new FormGroup({
@@ -43,7 +45,11 @@ export class AccountDataFormComponent {
 
   constructor(public globals: GlobalsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    if (this.user_type == '2') {
+      this.accountForm.controls['educational_level'].setValidators(null);
+    }
+  }
 
   async submit() {
     if (this.accountForm.invalid) {

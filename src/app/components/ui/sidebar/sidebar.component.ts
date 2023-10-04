@@ -45,6 +45,7 @@ export class SidebarComponent {
     private globals: GlobalsService,
     private authService: AuthService
   ) {
+    // console.log(this.globals.user);
     if (this.globals.user?.user_type !== '2') {
       this.navigations = this.navigations.filter(
         (nav) => nav.name !== 'Connections' && nav.name !== 'Athletics'
