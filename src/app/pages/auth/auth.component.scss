@@ -60,3 +60,13 @@ img[alt="Basketball Stuff"] {
 .right-section > .row {
   margin: 5em 7em;
 }
+
+.header {
+  border-bottom: 3px solid #0c0c0c;
+}
+
+@media screen and (max-width: 768px) {
+  .right-section > .row {
+    margin: 2em 3em;
+  }
+}

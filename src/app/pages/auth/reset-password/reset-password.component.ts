@@ -13,7 +13,7 @@ export class ResetPasswordComponent {
 
   constructor(
     private authService: AuthService,
-    private globals: GlobalsService
+    public globals: GlobalsService
   ) {
     this.token = this.globals.router.url.split('/').pop() || '';
     this.email = this.globals.activatedRoute.snapshot.queryParams?.['email'] || '';

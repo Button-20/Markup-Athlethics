@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/api/auth/auth.service';
+import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'app-forgot-password',
@@ -12,7 +13,7 @@ export class ForgotPasswordComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, public globals: GlobalsService) {}
 
   async onSubmit() {
     await this.authService.forgotPassword(this.resetForm.value);

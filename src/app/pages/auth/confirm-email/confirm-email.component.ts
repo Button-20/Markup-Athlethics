@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'app-confirm-email',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./confirm-email.component.scss']
 })
 export class ConfirmEmailComponent {
-
+  constructor(
+  public globals: GlobalsService,
+) {}
 }

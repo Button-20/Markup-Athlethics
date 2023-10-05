@@ -1,5 +1,18 @@
+<div class="row g-0 p-4 mx-3 header d-flex d-md-none">
+  <div class="col d-flex justify-content-center align-items-center">
+    <div class="d-flex align-items-center gap-3 pointer" routerLink="/">
+      <img src="assets/images/logo.png" alt="logo" class="logo" />
+      <p class="mb-0">Markup Athletics</p>
+    </div>
+  </div>
+  <div class="col-1">
+    <button class="closeButton" (click)="globals.goBack()">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </div>
+</div>
 <div class="container-fluid min-vh-100 row g-0">
-  <div class="col-7 position-relative">
+  <div class="col-7 position-relative d-none d-md-block">
     <img
       src="assets/images/bf324554c32ba7facadb86dc8c43729a.jpeg"
       alt="Basketball Stuff"
@@ -17,10 +30,13 @@
       </p>
     </div>
   </div>
-  <div class="col-5 right-section">
+  <div class="col-12 col-md-5 right-section">
     <div class="row g-0">
-      <div class="col-12 text-end">
-        <button class="closeButton" (click)="globals.goBack()">
+      <div class="col-12 d-flex justify-content-end align-items-center">
+        <button
+          class="closeButton d-none d-md-block"
+          (click)="globals.goBack()"
+        >
           <i class="bi bi-x-lg"></i>
         </button>
       </div>
