@@ -59,10 +59,26 @@ export class AthleticBackgroundComponent {
         }
       }
     });
+    this.profileDataForm.patchValue({
+      skills: this.mergeObjects(this.profileDataForm.value.skills),
+    });
     await this.usersService.postAthleticBackgroundData(
       this.profileDataForm.value
     );
     this.globals.router.navigate(['/portal/complete-profile/image-uploads']);
+  }
+
+  mergeObjects(arr: Array<any>) {
+    // Initialize an empty object to store the merged result
+    let mergedObject = {};
+
+    // Loop through each object in the array
+    arr.forEach((obj) => {
+      // Merge the current object into the result object
+      mergedObject = Object.assign(mergedObject, obj);
+    });
+
+    return mergedObject;
   }
 
   gotoDashboard() {
