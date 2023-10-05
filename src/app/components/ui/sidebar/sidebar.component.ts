@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/api/auth/auth.service';
 import { GlobalsService } from 'src/app/services/core/globals';
 
@@ -41,11 +41,12 @@ export class SidebarComponent {
     },
   ];
 
+  @Input() openSidebar: boolean = false;
+
   constructor(
     private globals: GlobalsService,
     private authService: AuthService
   ) {
-    // console.log(this.globals.user);
     if (this.globals.user?.user_type !== '2') {
       this.navigations = this.navigations.filter(
         (nav) => nav.name !== 'Connections' && nav.name !== 'Athletics'

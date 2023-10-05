@@ -1,4 +1,6 @@
-<div class="row g-0 gap-3 flex-nowrap">
+<div
+  class="row g-0 gap-3 flex-nowrap justify-content-center justify-content-md-start"
+>
   <div
     class="col-6"
     [ngClass]="{
@@ -78,11 +80,7 @@
       </div>
     </div>
     <p class="mb-0 fw-semibold my-5">Recent connections</p>
-    <div
-      class="row g-0"
-      style="height: 200px; overflow-y: scroll"
-      [ngStyle]="{ height: globals.user?.user_type == '2' ? '250px' : '200px' }"
-    >
+    <div class="row g-0 mb-5">
       <div class="col-12" *ngIf="globals.user?.user_type != '2'">
         <div class="my-5 mb-3 dark-section p-4 rounded">
           <div class="d-flex align-items-center">
@@ -112,14 +110,17 @@
       <connection-card *ngIf="globals.user?.user_type == '2'"></connection-card>
       <!-- <no-data [message]="'Nothing to see here'"></no-data> -->
     </div>
-    <p class="mb-0 my-5 opacity-50" *ngIf="globals.user?.user_type == '2'">
+    <p class="mb-0 opacity-50" *ngIf="globals.user?.user_type == '2'">
       Featured Profiles
     </p>
     <div
       class="d-flex align-items-center flex-wrap gap-4 justify-content-between mt-5"
       *ngIf="globals.user?.user_type == '2'"
     >
-      <player-card *ngFor="let player of [].constructor(3)"></player-card>
+      <player-card
+        *ngFor="let player of [].constructor(3)"
+        [margin_right]="'0'"
+      ></player-card>
     </div>
   </div>
   <div class="col-5 dark-section p-5" *ngIf="globals.user?.user_type != '2'">

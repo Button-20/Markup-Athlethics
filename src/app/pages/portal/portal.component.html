@@ -1,5 +1,5 @@
-<dashboard-navbar></dashboard-navbar>
+<dashboard-navbar (openSidebar)="openSidebar = $event"></dashboard-navbar>
 <main class="min-vh-100">
-  <sidebar></sidebar>
+  <sidebar [openSidebar]="openSidebar"></sidebar>
   <router-outlet></router-outlet>
 </main>

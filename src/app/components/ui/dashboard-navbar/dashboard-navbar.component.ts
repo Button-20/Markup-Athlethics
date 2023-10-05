@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'dashboard-navbar',
   templateUrl: './dashboard-navbar.component.html',
-  styleUrls: ['./dashboard-navbar.component.scss']
+  styleUrls: ['./dashboard-navbar.component.scss'],
 })
 export class DashboardNavbarComponent {
-  constructor(
-    public globals: GlobalsService,
-  ) {}
+  @Output() openSidebar: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @Input() sidebarOpened: boolean = false;
+
+  constructor(public globals: GlobalsService) {}
 }

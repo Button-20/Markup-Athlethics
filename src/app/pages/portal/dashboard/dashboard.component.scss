@@ -142,3 +142,9 @@
     line-height: 130%; /* 3.25rem */
   }
 }
+
+@media screen and (max-width: 768px) {
+  .col-6 {
+    margin-left: 0;
+  }
+}

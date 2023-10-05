@@ -13,3 +13,14 @@
     line-height: 130%; /* 3.25rem */
   }
 }
+
+@media screen and (max-width: 768px) {
+  .col-md.border-end {
+    border-right: none !important;
+    border-bottom: 2px solid hsla(0, 0%, 100%, 0.5) !important;
+  }
+
+  .col-md-3.border-end {
+    border-right: none !important;
+  }
+}
