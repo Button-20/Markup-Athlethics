@@ -13,16 +13,23 @@ export class LoginComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
+
   showPassword: boolean = false;
+
+  redirectUrl: string = '';
 
   constructor(
     private authService: AuthService,
     private globals: GlobalsService
-  ) {}
+  ) {
+    this.redirectUrl =
+      this.globals.activatedRoute.snapshot.queryParams['redirectUrl'] ||
+      'portal/dashboard';
+  }
 
   async onSubmit() {
     await this.authService.login(this.loginForm.value);
-    this.globals.router.navigate(['/portal/dashboard']);
+    this.globals.router.navigate([this.redirectUrl]);
   }
 
   get email() {

@@ -1,5 +1,5 @@
-<div class="d-flex align-items-center justify-content-between mt-5 mb-2">
-  <p class="mb-2 fw-bold mt-4">Video Upload</p>
+<div class="d-flex align-items-center justify-content-between mt-0 mt-md-5 mb-2">
+  <p class="mb-2 fw-bold mt-4 title">Video Upload</p>
   <i class="bi bi-x-lg mt-4 pointer" (click)="gotoDashboard()"></i>
 </div>
 <p class="mb-5 opacity-50">Upload videos for your profile</p>
@@ -34,21 +34,21 @@
         </label>
       </div>
       <div
-        class="col-6 py-2 file"
+        class="col-12 col-md-6 py-2 file"
         *ngFor="let file of profileDataForm.value.videos; let i = index"
       >
-        <div class="d-flex align-items-start justify-content-between">
+        <div class="d-flex align-items-start justify-content-between gap-2">
           <div class="d-flex align-items-start">
             <i class="bi bi-file-earmark"></i>
             <div>
-              <p class="mb-0 ms-3 opacity-50 truncate" style="max-width: 300px">
+              <p class="mb-0 ms-3 opacity-50 filename">
                 {{ file.name || "File name" }}
               </p>
               <p class="mb-0 ms-3 opacity-50">
                 {{ file.size / 1000 | number }} KB
               </p>
               <div class="d-flex align-items-center gap-3 ms-3">
-                <div class="progress" style="min-width: 300px">
+                <div class="progress">
                   <div
                     class="progress-bar bg-primary"
                     role="progressbar"

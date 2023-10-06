@@ -143,6 +143,7 @@ input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+
 @media screen and (max-width: 768px) {
   .w-50 {
     width: 100% !important;

@@ -81,6 +81,7 @@
 
 .file .progress {
   height: 10px;
+  min-width: 300px;
 }
 
 .file .progress .progress-bar {
@@ -92,4 +93,25 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 768px) {
+  .w-50 {
+    width: 100% !important;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .file .progress {
+    min-width: 100%;
+  }
+
+  .filename{
+    width: 10em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

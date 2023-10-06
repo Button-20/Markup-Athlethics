@@ -81,9 +81,24 @@
 
 .file .progress {
   height: 10px;
+  min-width: 300px;
 }
 
 .file .progress .progress-bar {
   background: #88f63d !important;
   border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .w-50 {
+    width: 100% !important;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .file .progress {
+    min-width: 100%;
+  }
 }

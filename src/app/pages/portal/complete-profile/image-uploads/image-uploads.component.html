@@ -1,13 +1,22 @@
-<div class="d-flex align-items-center justify-content-between mt-5 mb-2">
-  <p class="mb-2 fw-bold mt-4">Image Upload</p>
-  <i class="bi bi-x-lg mt-4 pointer" (click)="gotoDashboard()"></i>
+<div
+  class="d-flex align-items-center justify-content-between mt-0 mt-md-5 mb-2"
+>
+  <p class="mb-2 fw-bold mt-4 title">Image Upload</p>
+  <i
+    class="bi bi-x-lg mt-4 pointer d-none d-md-block"
+    (click)="gotoDashboard()"
+  ></i>
 </div>
 <p class="mb-5 opacity-50">Upload images for your profile</p>
 <p class="mb-5 text-success">
   Use a square image with a minimum resolution of 400x400 pixels.<br />
   File Format: JPEG and PNG.
 </p>
-<form class="profile-form" [formGroup]="profileDataForm" (ngSubmit)="onSubmit()">
+<form
+  class="profile-form"
+  [formGroup]="profileDataForm"
+  (ngSubmit)="onSubmit()"
+>
   <div class="row g-4">
     <div class="col-12">
       <div
@@ -31,10 +40,10 @@
         </label>
       </div>
       <div
-        class="col-6 py-2 file"
+        class="col-12 col-md-6 py-2 file"
         *ngFor="let file of profileDataForm.value.images; let i = index"
       >
-        <div class="d-flex align-items-start justify-content-between">
+        <div class="d-flex align-items-start justify-content-between gap-2">
           <div class="d-flex align-items-start">
             <i class="bi bi-file-earmark"></i>
             <div>
@@ -43,7 +52,7 @@
                 {{ file.size / 1000 | number }} KB
               </p>
               <div class="d-flex align-items-center gap-3 ms-3">
-                <div class="progress" style="min-width: 300px">
+                <div class="progress">
                   <div
                     class="progress-bar bg-primary"
                     role="progressbar"
