@@ -2,7 +2,7 @@
   class="row g-0 gap-3 flex-nowrap justify-content-center justify-content-md-start"
 >
   <div
-    class="col-6"
+    class="col-12 col-md"
     [ngClass]="{
       'col-11': globals.user?.user_type == '2'
     }"
@@ -19,15 +19,15 @@
       <span class="opacity-50">Dashboard</span>
     </p>
     <div
-      class="my-5 dark-section d-flex align-items-center gap-4 p-4 rounded"
+      class="my-5 dark-section d-flex align-items-center flex-wrap gap-4 p-4 rounded"
       *ngIf="globals.user?.user_type != '2'"
     >
       <img src="assets/images/alert-circle.png" alt="alert" />
-      <p class="mb-0 opacity-50">
+      <p class="col col-md mb-0 opacity-50">
         Upload your ID for authentication. you can do this in your accounts
         settings.
       </p>
-      <div class="col-2">
+      <div class="col-12 col-md-2">
         <a href="#" class="text-white">Upload ID</a>
       </div>
     </div>
@@ -93,11 +93,11 @@
           </div>
           <div class="row g-0">
             <div
-              class="col-5 border-end border-2 border-opacity-50 border-light"
+              class="col-12 col-md-5 border-end border-2 border-opacity-50 border-light"
             >
               <p class="mb-0 fs-1 fw-bolder">Alex Payne</p>
             </div>
-            <div class="col-5 d-flex align-items-center justify-content-end">
+            <div class="col-12 col-md-5 d-flex align-items-center justify-content-md-end">
               <p class="mb-0 opacity-50">Harmony coaching academy</p>
             </div>
           </div>
@@ -123,7 +123,7 @@
       ></player-card>
     </div>
   </div>
-  <div class="col-5 dark-section p-5" *ngIf="globals.user?.user_type != '2'">
+  <div class="col-12 col-md-5 d-none d-md-block dark-section p-5" *ngIf="globals.user?.user_type != '2'">
     <div
       class="d-flex align-items-center justify-content-between"
       id="notification-bell"

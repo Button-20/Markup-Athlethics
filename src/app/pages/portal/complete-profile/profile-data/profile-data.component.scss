@@ -33,6 +33,12 @@
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
+
+      .selected-item {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 
     .select-list {
@@ -125,7 +131,8 @@ img[alt="profile"] {
 .btn.upload {
   border: 1px solid rgba(255, 255, 255, 0.54);
   padding: 0.625rem 1.25rem;
-  width: 20rem;
+  max-width: 20rem;
+  width: 100%;
 }
 
 input[type="number"] {
@@ -135,4 +142,13 @@ input[type="number"] {
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
+}
+@media screen and (max-width: 768px) {
+  .w-50 {
+    width: 100% !important;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
 }

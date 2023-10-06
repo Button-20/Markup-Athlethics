@@ -1,6 +1,8 @@
-<div class="d-flex align-items-center justify-content-between mt-5 mb-2">
-  <p class="mb-2 fw-bold mt-4">Educational Background</p>
-  <i class="bi bi-x-lg mt-4 pointer" (click)="gotoDashboard()"></i>
+<div
+  class="d-flex align-items-center justify-content-between mt-0 mt-md-5 mb-2"
+>
+  <p class="mb-2 fw-bold mt-4 title">Educational Background</p>
+  <i class="bi bi-x-lg mt-4 pointer d-none d-md-block" (click)="gotoDashboard()"></i>
 </div>
 <p class="mb-5 opacity-50">
   Enter the details below to update your educational background.
@@ -11,7 +13,7 @@
   (ngSubmit)="onSubmit()"
 >
   <div class="row g-4">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold">Course of Study</label>
       <input
         type="text"
@@ -32,7 +34,7 @@
         >
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold">Grade point average (GPA)</label>
       <input
         type="text"
@@ -48,7 +50,7 @@
         <small *ngIf="gpa.errors?.['required']">GPA is required</small>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold">Graduation Year</label>
       <input
         type="text"
@@ -77,7 +79,9 @@
         (click)="toggleSelectMenu($event, false)"
       >
         <div class="select-btn" style="pointer-events: none">
-          <span class="selected-item">Select extra curricular activities</span>
+          <span class="selected-item truncate"
+            >Select extra curricular activities</span
+          >
           <i class="bi bi-chevron-down"></i>
         </div>
         <ul class="select-list">
@@ -102,7 +106,9 @@
       >
         <li
           class="me-3 list-unstyled"
-          *ngFor="let activity of profileDataForm.value.extra_curricular_activities"
+          *ngFor="
+            let activity of profileDataForm.value.extra_curricular_activities
+          "
         >
           <span class="badge bg-dark p-3 position-relative">
             {{ activity }}
@@ -166,13 +172,15 @@
         id="transcript-preview"
         [ngClass]="{ 'd-none': !profileDataForm.value.transcript_path }"
       >
-        <img [src]="profileDataForm.value.transcript_path" alt="" class="w-100" />
+        <img
+          [src]="profileDataForm.value.transcript_path"
+          alt=""
+          class="w-100"
+        />
         <button
           class="btn btn-primary w-25 mt-3"
           id="transcript-btn"
-          (click)="
-            profileDataForm.patchValue({ transcript_path: null })
-          "
+          (click)="profileDataForm.patchValue({ transcript_path: null })"
         >
           <i class="bi bi-trash me-2"></i>
         </button>
@@ -180,9 +188,7 @@
     </div>
 
     <div class="col-12 text-end">
-      <button class="btn btn-primary w-50">
-        Save and continue
-      </button>
+      <button class="btn btn-primary w-50">Save and continue</button>
     </div>
   </div>
 </form>

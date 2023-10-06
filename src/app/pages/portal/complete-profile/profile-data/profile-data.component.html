@@ -1,6 +1,6 @@
-<div class="d-flex align-items-center justify-content-between mt-5 mb-2">
-  <p class="mb-2 fw-bold mt-4">Personal Data</p>
-  <i class="bi bi-x-lg mt-4 pointer" (click)="goBack()"></i>
+<div class="d-flex align-items-center justify-content-between mt-0 mt-md-5 mb-2">
+  <p class="mb-2 fw-bold mt-4 title">Personal Data</p>
+  <i class="bi bi-x-lg mt-4 pointer d-none d-md-block" (click)="goBack()"></i>
 </div>
 <p class="mb-5 opacity-50">
   Enter the details below to update your personal data.
@@ -30,12 +30,12 @@
     (change)="imageUpload($event)"
   />
   <div class="row g-4">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold" for="nationality"
         >Select Nationality</label
       >
       <button class="select-menu mt-2" (click)="toggleSelectMenu($event)">
-        <div class="select-btn">
+        <div class="select-btn" style="pointer-events: none">
           <span class="selected-item">
             {{ profileDataForm.value.nationality || "Select Nationality" }}
           </span>
@@ -52,7 +52,7 @@
         </ul>
       </button>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold">Date of birth</label>
       <input
         type="text"
@@ -75,7 +75,7 @@
         </small>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold">Height (cm)</label>
       <input
         type="number"
@@ -90,7 +90,7 @@
         <small *ngIf="height.errors?.['required']">Height is required</small>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold">Weight (lb)</label>
       <input
         type="number"
@@ -105,10 +105,10 @@
         <small *ngIf="weight.errors?.['required']">Weight is required</small>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold">Educational Level</label>
       <button class="select-menu mt-2" (click)="toggleSelectMenu($event)">
-        <div class="select-btn">
+        <div class="select-btn" style="pointer-events: none">
           <span class="selected-item">
             {{ profileDataForm.value.educational_level || "Select Level" }}
           </span>
@@ -133,7 +133,9 @@
         (click)="toggleSelectMenu($event, false)"
       >
         <div class="select-btn">
-          <span class="selected-item">Select your Interests</span>
+          <span class="selected-item" style="pointer-events: none"
+            >Select your Interests</span
+          >
           <i class="bi bi-chevron-down"></i>
         </div>
         <ul class="select-list">
@@ -168,9 +170,7 @@
       </ul>
     </div>
     <div class="col-12 text-end">
-      <button class="btn btn-primary w-50">
-        Save and continue
-      </button>
+      <button class="btn btn-primary w-50">Save and continue</button>
     </div>
   </div>
 </form>

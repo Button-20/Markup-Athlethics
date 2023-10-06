@@ -210,6 +210,12 @@ body {
   cursor: pointer;
 }
 
+.truncate{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .img-success {
   filter: invert(72%) sepia(50%) saturate(637%) hue-rotate(47deg)
     brightness(300%) contrast(93%);
