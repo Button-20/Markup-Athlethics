@@ -9,7 +9,7 @@
   </div>
   <button class="btn upload mb-5">Upload profile image here</button>
   <div class="row g-4">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold" for="nationality"
         >Select Nationality</label
       >
@@ -31,7 +31,7 @@
         </ul>
       </button>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold">Date of birth</label>
       <input
         type="text"
@@ -39,7 +39,7 @@
         placeholder="MM/DD/YY"
       />
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold">Height (cm)</label>
       <input
         type="text"
@@ -47,7 +47,7 @@
         placeholder="eg 162 cm"
       />
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold">Weight (lb)</label>
       <input
         type="text"
@@ -55,7 +55,7 @@
         placeholder="eg.138 lb"
       />
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <label for="phone" class="opacity-50 fw-bold mb-2">Phone Number</label>
       <intl-telephone-input
         [preferredCountries]="[CountryISO.Ghana, CountryISO.UnitedStates]"
@@ -93,10 +93,12 @@
       </div>
     </div>
 
-    <div class="col-12 text-end my-5">
+    <div
+      class="col-12 d-flex align-items-center justify-content-end gap-2 my-5 flex-wrap order-sm-reverse"
+    >
       <button class="btn btn-secondary" type="button">Cancel</button>
       <button
-        class="btn btn-primary ms-2"
+        class="btn btn-primary"
         type="submit"
         [disabled]="!profileDataForm.valid"
       >

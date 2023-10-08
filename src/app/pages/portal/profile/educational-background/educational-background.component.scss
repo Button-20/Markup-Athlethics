@@ -184,3 +184,17 @@ textarea {
   background: #bf2e1b !important;
   border-radius: 0.5rem;
 }
+
+@media screen and (max-width: 768px) {
+  .radio-input {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .order-sm-reverse {
+    flex-direction: column-reverse;
+  }
+}

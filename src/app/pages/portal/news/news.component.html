@@ -1,4 +1,6 @@
-<div class="row g-0 flex-nowrap me-5">
+<div
+  class="row g-0 flex-nowrap me-0 me-md-5 justify-content-md-start justify-content-center"
+>
   <div class="col-11 mb-5">
     <div class="d-flex align-items-center justify-content-between mb-5">
       <div class="d-flex align-items-center">
@@ -14,6 +16,7 @@
     <news-container
       [news]="newsService.news"
       [ngStyle]="{ width: 'auto', 'margin-inline': '0' }"
+      [contentStyle]="{ width: '100%' }"
       [baseLink]="'/portal/news'"
     ></news-container>
     <pagination

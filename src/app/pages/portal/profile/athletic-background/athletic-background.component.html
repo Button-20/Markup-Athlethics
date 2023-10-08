@@ -31,7 +31,7 @@
         Enter the details about your athletic abilities
       </p>
       <div class="row g-0 gx-5 mt-5">
-        <div class="col-6 pb-4">
+        <div class="col-12 col-md-6 pb-4">
           <label class="opacity-50">Skill level </label>
           <button
             class="select-menu mt-2"
@@ -57,7 +57,7 @@
             </ul>
           </button>
         </div>
-        <div class="col-6 pb-4">
+        <div class="col-12 col-md-6 pb-4">
           <label class="opacity-50">Position Played</label>
           <button
             class="select-menu mt-2"
@@ -92,7 +92,7 @@
 
       <p class="mb-0 opacity-50 fw-bold mb-5">Set your level of skill</p>
       <div class="row g-0 gx-5">
-        <div class="col-6">
+        <div class="col-12 col-md-6">
           <div class="mb-5">
             <p class="mb-0 pb-3 mb-3 border-bottom border-light">Pace</p>
             <div class="mb-3">
@@ -266,7 +266,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-md-6">
           <p class="mb-0 pb-3 mb-3 border-bottom border-light">Shooting</p>
           <div class="mb-4">
             <label class="form-label">Positioning</label>
@@ -385,7 +385,7 @@
         Enter the details about your athletic abilities
       </p>
       <div class="row g-0 gx-5 mt-5">
-        <div class="col-6 pb-4">
+        <div class="col-12 col-md-6 pb-4">
           <label class="opacity-50">Skill level </label>
           <button
             class="select-menu mt-2"
@@ -412,7 +412,7 @@
             </ul>
           </button>
         </div>
-        <div class="col-6 pb-4">
+        <div class="col-12 col-md-6 pb-4">
           <label class="opacity-50">Position Played</label>
           <button
             class="select-menu mt-2"
@@ -447,7 +447,7 @@
 
       <p class="mb-0 opacity-50 fw-bold mb-5">Set your level of skill</p>
       <div class="row g-0 gx-5">
-        <div class="col-6">
+        <div class="col-12 col-md-6">
           <p class="mb-0 pb-3 mb-3 border-bottom border-light">Shooting</p>
           <div class="mb-4">
             <label class="form-label">Positioning</label>
@@ -555,7 +555,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-md-6">
           <div class="mb-5">
             <p class="mb-0 pb-3 mb-3 border-bottom border-light">Pace</p>
             <div class="mb-3">
@@ -608,7 +608,7 @@
       <label class="opacity-50 fw-bold">Athletic achievements</label>
       <textarea name="achievements" id="achievements" rows="10"></textarea>
     </div>
-    <div class="col-12 mb-3 d-flex justify-content-between">
+    <div class="col-12 mb-3 d-flex justify-content-between flex-wrap gap-2">
       <div>
         <p class="mb-0 opacity-50 fw-bold mb-1">References</p>
         <p class="mb-0 opacity-50 fw-bold">
@@ -700,10 +700,12 @@
       </div>
     </div>
 
-    <div class="col-12 text-end my-5">
+    <div
+      class="col-12 d-flex align-items-center justify-content-end gap-2 my-5 flex-wrap order-sm-reverse"
+    >
       <button class="btn btn-secondary" type="button">Cancel</button>
       <button
-        class="btn btn-primary ms-2"
+        class="btn btn-primary"
         type="submit"
         [disabled]="!profileDataForm.valid"
       >

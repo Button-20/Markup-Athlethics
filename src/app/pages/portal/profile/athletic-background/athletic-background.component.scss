@@ -213,3 +213,17 @@ textarea {
   pointer-events: none;
   left: calc(0% + 5px);
 }
+
+@media screen and (max-width: 768px) {
+  .radio-input {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .order-sm-reverse {
+    flex-direction: column-reverse;
+  }
+}
