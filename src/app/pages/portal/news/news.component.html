@@ -13,17 +13,27 @@
       </div>
     </div>
     <h6>Latest News</h6>
+
     <news-container
+      *ngIf="newsService.news.length > 0"
       [news]="newsService.news"
       [ngStyle]="{ width: 'auto', 'margin-inline': '0' }"
       [contentStyle]="{ width: '100%' }"
       [baseLink]="'/portal/news'"
     ></news-container>
     <pagination
+      *ngIf="newsService.news.length > 0"
       [pagination]="newsService.pagination"
       (pageChanged)="
         newsService.pagination.current_page = $event; newsService.getNews()
       "
     ></pagination>
+    <div
+      *ngIf="newsService.news.length == 0"
+      style="height: 30em; width: 100%"
+      class="d-flex justify-content-center align-items-center"
+    >
+      <no-data message="Nothing to see here"></no-data>
+    </div>
   </div>
 </div>

@@ -1,0 +1,9 @@
+p {
+  width: 25%;
+}
+
+@media screen and (max-width: 768px) {
+  p {
+    width: 100%;
+  }
+}

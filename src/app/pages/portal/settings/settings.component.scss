@@ -20,3 +20,17 @@ a.active::after {
   background-color: #88f63d;
   opacity: 1;
 }
+
+.header {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin-bottom: 1em;
+}
+
+
+@media screen and (max-width: 768px) {
+  .col-11 {
+    margin-left: 0;
+  }
+}

@@ -25,6 +25,8 @@ export class LoginComponent {
     this.redirectUrl =
       this.globals.activatedRoute.snapshot.queryParams['redirectUrl'] ||
       'portal/dashboard';
+    this.globals.isLoggedIn() &&
+      this.globals.router.navigate([this.redirectUrl]);
   }
 
   async onSubmit() {

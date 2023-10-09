@@ -173,3 +173,13 @@ form {
   background: #bf2e1b !important;
   border-radius: 0.5rem;
 }
+
+@media screen and (max-width: 768px) {
+  .btn {
+    width: 100% !important;
+  }
+
+  .order-sm-reverse {
+    flex-direction: column-reverse;
+  }
+}

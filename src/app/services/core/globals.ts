@@ -36,7 +36,7 @@ export class GlobalsService {
     this.location.back();
   }
 
-  async isLoggedIn() {
+  isLoggedIn(): boolean {
     return this.storage.isAuthenticated();
   }
 
