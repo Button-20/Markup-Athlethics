@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { StudentsService } from 'src/app/services/api/students/students.service';
 import { UsersService } from 'src/app/services/api/users/users.service';
 import { GlobalsService } from 'src/app/services/core/globals';
 
@@ -31,16 +32,16 @@ export class EducationalBackgroundComponent {
 
   constructor(
     private globals: GlobalsService,
-    private usersService: UsersService
+    private studentsService: StudentsService
   ) {}
 
   async onSubmit() {
     this.profileDataForm.patchValue({
-      transcript_path: await this.usersService.uploadImage({
-        file: this.profileDataForm.value.transcript_path  ,
+      transcript_path: await this.studentsService.uploadImage({
+        file: this.profileDataForm.value.transcript_path,
       }),
     });
-    await this.usersService.postEducationalBackgroundData(
+    await this.studentsService.postEducationalBackgroundData(
       this.profileDataForm.value
     );
     this.profileDataForm.reset({

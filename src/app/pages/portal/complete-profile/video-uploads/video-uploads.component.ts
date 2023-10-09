@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UsersService } from 'src/app/services/api/users/users.service';
+import { StudentsService } from 'src/app/services/api/students/students.service';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
@@ -17,7 +17,7 @@ export class VideoUploadsComponent {
 
   constructor(
     private globals: GlobalsService,
-    private usersService: UsersService
+    private studentsService: StudentsService
   ) {}
 
   async onSubmit() {
@@ -25,14 +25,14 @@ export class VideoUploadsComponent {
     let video_path: string[] = [];
     for (let i = 0; i < this.profileDataForm.value.videos.length; i++) {
       const element = this.profileDataForm.value.videos[i];
-      let url: any = await this.usersService.uploadImage({
+      let url: any = await this.studentsService.uploadImage({
         file: element,
         resource_type: 'auto',
       });
       video_path.push(url);
       if (video_path.length !== this.profileDataForm.value.videos.length)
         return;
-      await this.usersService.postVideoData(video_path);
+      await this.studentsService.postVideoData(video_path);
       this.files = [];
       this.profileDataForm.reset();
       this.globals.router.navigate([

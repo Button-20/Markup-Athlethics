@@ -5,6 +5,7 @@ import {
   PhoneNumberFormat,
   SearchCountryField,
 } from 'ngx-intl-telephone-input';
+import { StudentsService } from 'src/app/services/api/students/students.service';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
@@ -45,7 +46,14 @@ export class EducationalBackgroundComponent {
     'Art',
   ];
 
-  constructor(public globals: GlobalsService) {}
+  constructor(
+    public globals: GlobalsService,
+    public studentsService: StudentsService
+  ) {}
+
+  async ngOnInit() {
+    await this.studentsService.getEducationalBackgroundData();
+  }
 
   onSubmit() {
     console.log(this.profileDataForm.value);

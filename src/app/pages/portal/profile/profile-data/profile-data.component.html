@@ -5,9 +5,17 @@
 >
   <small class="opacity-50 fw-bold">Profile picture</small>
   <div class="my-3 mb-4">
-    <img src="assets/images/profile-user.png" alt="profile" />
+    <img
+      [src]="
+        profileDataForm.value.profile_picture ||
+        'assets/images/profile-user.png'
+      "
+      alt="profile"
+    />
   </div>
-  <button class="btn upload mb-5">Upload profile image here</button>
+  <button class="btn upload mb-5" [disabled]="!studentsService.editable">
+    Upload profile image here
+  </button>
   <div class="row g-4">
     <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold" for="nationality"
@@ -37,7 +45,24 @@
         type="text"
         class="form-control mb-4 mt-2"
         placeholder="MM/DD/YY"
+        formControlName="date_of_birth"
+        [readOnly]="!studentsService.editable"
+        required
       />
+      <div
+        class="text-danger"
+        *ngIf="
+          date_of_birth.invalid &&
+          (date_of_birth.touched || date_of_birth.dirty)
+        "
+      >
+        <small *ngIf="date_of_birth.errors?.['required']"
+          >Date of birth is required</small
+        >
+        <small *ngIf="date_of_birth.errors?.['pattern']">
+          Date of birth is invalid
+        </small>
+      </div>
     </div>
     <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold">Height (cm)</label>
@@ -45,7 +70,15 @@
         type="text"
         class="form-control mb-4 mt-2"
         placeholder="eg 162 cm"
+        formControlName="height"
+        required
       />
+      <div
+        class="text-danger"
+        *ngIf="height.invalid && (height.touched || height.dirty)"
+      >
+        <small *ngIf="height.errors?.['required']">Height is required</small>
+      </div>
     </div>
     <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold">Weight (lb)</label>
@@ -53,7 +86,15 @@
         type="text"
         class="form-control mb-4 mt-2"
         placeholder="eg.138 lb"
+        formControlName="weight"
+        required
       />
+      <div
+        class="text-danger"
+        *ngIf="weight.invalid && (weight.touched || weight.dirty)"
+      >
+        <small *ngIf="weight.errors?.['required']">Weight is required</small>
+      </div>
     </div>
     <div class="col-12 col-md-6">
       <label for="phone" class="opacity-50 fw-bold mb-2">Phone Number</label>
@@ -69,8 +110,15 @@
         [inputId]="'phone'"
         (onChange)="onPhoneNumberChange($event)"
         [className]="'form-profile-input'"
+        formControlName="phone"
       >
       </intl-telephone-input>
+      <div
+        class="text-danger"
+        *ngIf="phone.invalid && (phone.touched || phone.dirty)"
+      >
+        <small *ngIf="phone.errors?.['required']">Phone is required</small>
+      </div>
     </div>
     <div class="col-12">
       <label class="opacity-50 fw-bold mb-2">Interests</label>

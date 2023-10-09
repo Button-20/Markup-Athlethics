@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UsersService } from 'src/app/services/api/users/users.service';
+import { StudentsService } from 'src/app/services/api/students/students.service';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
@@ -17,7 +17,7 @@ export class ImageUploadsComponent {
 
   constructor(
     private globals: GlobalsService,
-    public usersService: UsersService
+    public studentsService: StudentsService
   ) {}
 
   async onSubmit() {
@@ -28,13 +28,13 @@ export class ImageUploadsComponent {
       const reader = new FileReader();
       reader.readAsDataURL(element);
       reader.onload = async () => {
-        let url: any = await this.usersService.uploadImage({
+        let url: any = await this.studentsService.uploadImage({
           file: reader.result,
         });
         image_path.push(url);
         if (image_path.length !== this.profileDataForm.value.images.length)
           return;
-        await this.usersService.postImageData(image_path);
+        await this.studentsService.postImageData(image_path);
         this.files = [];
         this.profileDataForm.reset();
         this.globals.router.navigate([

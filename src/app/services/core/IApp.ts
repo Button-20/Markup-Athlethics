@@ -1,6 +1,5 @@
 export interface User {
   country: string;
-  created_at: Date;
   email: string;
   email_verified_at: boolean;
   id: number;
@@ -9,8 +8,26 @@ export interface User {
   phone: string;
   slug: string;
   status: string;
+  created_at: Date;
   updated_at: Date;
   user_type: string;
+}
+
+export interface Student {
+  id: number;
+  user_type: string;
+  user_id: number;
+  profile_picture: string;
+  nationality: string;
+  date_of_birth: string;
+  height: string;
+  weight: string;
+  educational_level: string;
+  interests: Array<string>;
+  featured: number;
+  phone: string;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export interface Sports {
@@ -50,4 +67,8 @@ export interface Faqs {
   id: number;
   question: string;
   answer: string;
+}
+
+export interface Education{
+  
 }

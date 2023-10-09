@@ -5,6 +5,8 @@ import {
   PhoneNumberFormat,
   SearchCountryField,
 } from 'ngx-intl-telephone-input';
+import { StudentsService } from 'src/app/services/api/students/students.service';
+import { Student } from 'src/app/services/core/IApp';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
@@ -15,8 +17,16 @@ import { GlobalsService } from 'src/app/services/core/globals';
 export class ProfileDataComponent {
   profileDataForm: FormGroup = new FormGroup({
     nationality: new FormControl('', [Validators.required]),
-    phone: new FormControl('', [Validators.required]),
     interests: new FormControl([], [Validators.required]),
+    educational_level: new FormControl('', [Validators.required]),
+    profile_picture: new FormControl('', [Validators.required]),
+    date_of_birth: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/([0-9]{4})-([0-9]{2})-([0-9]{2})/),
+    ]),
+    height: new FormControl('', [Validators.required]),
+    weight: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required]),
   });
 
   CountryISO = CountryISO;
@@ -41,7 +51,22 @@ export class ProfileDataComponent {
     'Art',
   ];
 
-  constructor(public globals: GlobalsService) {}
+  constructor(
+    public globals: GlobalsService,
+    public studentsService: StudentsService
+  ) {}
+
+  async ngOnInit() {
+    await this.studentsService.getStudentData();
+    this.profileDataForm.patchValue(this.studentsService.student as Student);
+  }
+
+  // setPhoneInput(phone: string) {
+  //   let phoneInput = document.querySelector('#phone');
+  //   if (phoneInput) {
+  //     phoneInput.setAttribute('value', phone);
+  //   }
+  // }
 
   onSubmit() {
     console.log(this.profileDataForm.value);
@@ -105,5 +130,25 @@ export class ProfileDataComponent {
       interests.push(event.target.value);
     }
     formControl.setValue(interests);
+  }
+
+  get nationality() {
+    return this.profileDataForm.get('nationality') as FormControl;
+  }
+
+  get date_of_birth() {
+    return this.profileDataForm.get('date_of_birth') as FormControl;
+  }
+
+  get height() {
+    return this.profileDataForm.get('height') as FormControl;
+  }
+
+  get weight() {
+    return this.profileDataForm.get('weight') as FormControl;
+  }
+
+  get phone() {
+    return this.profileDataForm.get('phone') as FormControl;
   }
 }

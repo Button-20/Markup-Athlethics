@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { StudentsService } from 'src/app/services/api/students/students.service';
 import { UsersService } from 'src/app/services/api/users/users.service';
 import { Skills, Sports } from 'src/app/services/core/IApp';
 import { GlobalsService } from 'src/app/services/core/globals';
@@ -24,11 +25,11 @@ export class AthleticBackgroundComponent {
 
   constructor(
     public globals: GlobalsService,
-    public usersService: UsersService
+    public studentsService: StudentsService
   ) {}
 
   async ngOnInit() {
-    await this.usersService.getSportsData();
+    await this.studentsService.getSportsData();
   }
 
   async onSubmit() {
@@ -62,7 +63,7 @@ export class AthleticBackgroundComponent {
     this.profileDataForm.patchValue({
       skills: this.mergeObjects(this.profileDataForm.value.skills),
     });
-    await this.usersService.postAthleticBackgroundData(
+    await this.studentsService.postAthleticBackgroundData(
       this.profileDataForm.value
     );
     this.globals.router.navigate(['/portal/complete-profile/image-uploads']);
