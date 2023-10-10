@@ -69,6 +69,17 @@ export interface Faqs {
   answer: string;
 }
 
-export interface Education{
-  
+export interface Education {
+  id: number;
+  course_of_study: string;
+  gpa: number;
+  graduation_year: number;
+  extra_curricular_activities: Array<string>;
+  academic_achievement: string;
+  transcript_path: string;
+  user_id: number;
+  created_at: Date;
+  updated_at: Date;
 }
+
+export interface Athletic {}

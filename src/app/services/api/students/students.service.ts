@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Education, Student } from '../../core/IApp';
+import { Athletic, Education, Student } from '../../core/IApp';
 import { GlobalsService } from '../../core/globals';
 import { RequestService } from '../../core/request';
 
@@ -9,7 +9,10 @@ import { RequestService } from '../../core/request';
 })
 export class StudentsService {
   student: Student | null = null;
+
   education: Education | null = null;
+
+  athletic: Athletic | null = null;
 
   editable: boolean = false;
 
@@ -38,7 +41,7 @@ export class StudentsService {
       try {
         this.globals.spinner.show();
         const resp: any = await this.api.get('students-data');
-        this.student = resp.students;
+        this.student = resp.data[0];
         this.globals.spinner.hide();
         resolve(resp);
       } catch (err: any) {
@@ -72,7 +75,7 @@ export class StudentsService {
       try {
         this.globals.spinner.show();
         const resp: any = await this.api.get('educational-backgrounds-data');
-        this.education = resp.educations;
+        this.education = resp.data[0];
         this.globals.spinner.hide();
         resolve(resp);
       } catch (err: any) {
@@ -118,6 +121,22 @@ export class StudentsService {
           'athletic-backgrounds-data',
           data
         );
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        this.globals.toast.error(err.message || '😭 Something went wrong');
+        reject(err);
+      }
+    });
+  }
+
+  async getAthleticBackgroundData() {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.get('athletic-backgrounds-data');
+        this.athletic = resp.data[0];
         this.globals.spinner.hide();
         resolve(resp);
       } catch (err: any) {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StudentsService } from 'src/app/services/api/students/students.service';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
@@ -35,7 +36,7 @@ export class ProfileComponent {
 
   currentNav: { name: string; route: string } = { name: '', route: '' };
   subscription: any;
-  constructor(public globals: GlobalsService) {
+  constructor(public globals: GlobalsService, public studentsService: StudentsService){
     this.subscription = this.globals.router.events.subscribe((event) => {
       this.currentNav = this.navigations.find(
         (nav) =>

@@ -15,7 +15,7 @@ import { GlobalsService } from 'src/app/services/core/globals';
 })
 export class EducationalBackgroundComponent {
   profileDataForm: FormGroup = new FormGroup({
-    course: new FormControl('', [Validators.required]),
+    course_of_study: new FormControl('', [Validators.required]),
     gpa: new FormControl('', [Validators.required]),
     graduation_year: new FormControl([], [Validators.required]),
     extra_curricular_activities: new FormControl([], [Validators.required]),
@@ -53,6 +53,13 @@ export class EducationalBackgroundComponent {
 
   async ngOnInit() {
     await this.studentsService.getEducationalBackgroundData();
+    this.profileDataForm.patchValue({
+      course_of_study: this.studentsService.education?.course_of_study,
+      gpa: this.studentsService.education?.gpa,
+      graduation_year: this.studentsService.education?.graduation_year,
+      extra_curricular_activities:
+        this.studentsService?.education?.extra_curricular_activities,
+    });
   }
 
   onSubmit() {
@@ -142,5 +149,17 @@ export class EducationalBackgroundComponent {
   onDragOver(event: any) {
     event.stopPropagation();
     event.preventDefault();
+  }
+
+  get course_of_study() {
+    return this.profileDataForm.get('course_of_study') as FormControl;
+  }
+
+  get gpa() {
+    return this.profileDataForm.get('gpa') as FormControl;
+  }
+
+  get graduation_year() {
+    return this.profileDataForm.get('graduation_year') as FormControl;
   }
 }

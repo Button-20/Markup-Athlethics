@@ -21,7 +21,11 @@
       <label class="opacity-50 fw-bold" for="nationality"
         >Select Nationality</label
       >
-      <button class="select-menu mt-2" (click)="toggleSelectMenu($event)">
+      <button
+        class="select-menu mt-2"
+        type="button"
+        (click)="!studentsService.editable ? null : toggleSelectMenu($event)"
+      >
         <div class="select-btn">
           <span class="selected-item">
             {{ profileDataForm.value.nationality || "Select Nationality" }}
@@ -72,6 +76,7 @@
         placeholder="eg 162 cm"
         formControlName="height"
         required
+        [readOnly]="!studentsService.editable"
       />
       <div
         class="text-danger"
@@ -88,6 +93,7 @@
         placeholder="eg.138 lb"
         formControlName="weight"
         required
+        [readOnly]="!studentsService.editable"
       />
       <div
         class="text-danger"
@@ -110,7 +116,6 @@
         [inputId]="'phone'"
         (onChange)="onPhoneNumberChange($event)"
         [className]="'form-profile-input'"
-        formControlName="phone"
       >
       </intl-telephone-input>
       <div
@@ -132,6 +137,7 @@
             id="{{ interest.toLowerCase() }}"
             (click)="onInterestChange($event)"
             [checked]="profileDataForm.value.interests.includes(interest)"
+            [readOnly]="!studentsService.editable"
           />
           <label [for]="interest.toLowerCase()" class="radio-btn"></label>
           <label [for]="interest.toLowerCase()" class="opacity-50 pointer">{{

@@ -71,6 +71,13 @@ export class GlobalsService {
     button.click();
   }
 
+  enablePhoneInput() {
+    let phoneInput = document.querySelector('#phone') as HTMLInputElement;
+    if (phoneInput) {
+      phoneInput.disabled = !phoneInput.disabled;
+    }
+  }
+
   scrollToBottom() {
     const element = document.getElementById('messages') as HTMLElement;
     setTimeout(() => {

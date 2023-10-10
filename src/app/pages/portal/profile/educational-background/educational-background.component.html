@@ -5,24 +5,79 @@
 >
   <div class="row g-4">
     <div class="col-12 col-md-6">
-      <label class="opacity-50 fw-bold">Course of Study</label>
+      <label class="opacity-50 fw-bold" for="course_of_study"
+        >Course of Study</label
+      >
       <input
         type="text"
         class="form-control mb-4 mt-2"
         placeholder="eg. Computer Science"
+        formControlName="course_of_study"
+        id="course_of_study"
+        name="course_of_study"
+        required
+        [readOnly]="!studentsService.editable"
       />
+      <div
+        class="text-danger"
+        *ngIf="
+          course_of_study.invalid &&
+          (course_of_study.touched || course_of_study.dirty)
+        "
+      >
+        <small *ngIf="course_of_study.errors?.['required']"
+          >Course Of Study is required</small
+        >
+      </div>
     </div>
     <div class="col-12 col-md-6">
-      <label class="opacity-50 fw-bold">Grade point average (GPA)</label>
-      <input type="text" class="form-control mb-4 mt-2" placeholder="eg. 3.5" />
-    </div>
-    <div class="col-12 col-md-6">
-      <label class="opacity-50 fw-bold">Graduation Year</label>
+      <label class="opacity-50 fw-bold" for="gpa"
+        >Grade point average (GPA)</label
+      >
       <input
         type="text"
         class="form-control mb-4 mt-2"
-        placeholder="eg. 2021"
+        placeholder="eg. 3.5"
+        formControlName="gpa"
+        id="gpa"
+        name="gpa"
+        required
+        [readOnly]="!studentsService.editable"
       />
+      <div
+        class="text-danger"
+        *ngIf="gpa.invalid && (gpa.touched || gpa.dirty)"
+      >
+        <small *ngIf="gpa.errors?.['required']"
+          >Grade point average (GPA) is required</small
+        >
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <label class="opacity-50 fw-bold" for="graduation_year"
+        >Graduation Year</label
+      >
+      <input
+        type="text"
+        class="form-control mb-4 mt-2"
+        id="graduation_year"
+        name="graduation_year"
+        placeholder="eg. 2021"
+        formControlName="graduation_year"
+        required
+        [readOnly]="!studentsService.editable"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          graduation_year.invalid &&
+          (graduation_year.touched || graduation_year.dirty)
+        "
+      >
+        <small *ngIf="graduation_year.errors?.['required']"
+          >Graduation Year is required</small
+        >
+      </div>
     </div>
     <div class="col-12">
       <label class="opacity-50 fw-bold mb-2">Extra curricular activities</label>
@@ -32,12 +87,12 @@
         <div class="radio-input" *ngFor="let activity of activities">
           <input
             type="checkbox"
-            name="interests"
             id="{{ activity.toLowerCase() }}"
+            name="extra_curricular_activities"
             (click)="onExtraChange($event)"
             [checked]="
               profileDataForm.value.extra_curricular_activities.includes(
-                activities
+                activity
               )
             "
           />
@@ -52,7 +107,14 @@
       <label class="opacity-50 fw-bold mb-2" for="achievements"
         >Academic achievements</label
       >
-      <textarea name="achievements" id="achievements" rows="10"></textarea>
+      <textarea
+        name="academic_achievement"
+        id="achievements"
+        rows="10"
+        formControlName="academic_achievement"
+        required
+        [readOnly]="!studentsService.editable"
+      ></textarea>
     </div>
     <div class="col-12">
       <label class="opacity-50 fw-bold"

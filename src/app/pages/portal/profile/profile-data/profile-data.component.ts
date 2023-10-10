@@ -59,14 +59,21 @@ export class ProfileDataComponent {
   async ngOnInit() {
     await this.studentsService.getStudentData();
     this.profileDataForm.patchValue(this.studentsService.student as Student);
+    this.profileDataForm.patchValue({
+      interests: JSON.parse(
+        this.studentsService.student?.interests as unknown as string
+      ),
+    });
+    this.setPhoneInput(this.studentsService.student?.phone as string);
   }
 
-  // setPhoneInput(phone: string) {
-  //   let phoneInput = document.querySelector('#phone');
-  //   if (phoneInput) {
-  //     phoneInput.setAttribute('value', phone);
-  //   }
-  // }
+  setPhoneInput(phone: string) {
+    let phoneInput = document.querySelector('#phone') as HTMLInputElement;
+    if (phoneInput && phone) {
+      phoneInput.value = phone.substring(phone.indexOf(' ') + 1);
+      phoneInput.disabled = true;
+    }
+  }
 
   onSubmit() {
     console.log(this.profileDataForm.value);

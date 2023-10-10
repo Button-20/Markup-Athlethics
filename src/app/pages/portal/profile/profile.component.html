@@ -1,4 +1,6 @@
-<div class="row g-0 justify-content-center justify-content-md-start flex-nowrap me-0 me-md-5">
+<div
+  class="row g-0 justify-content-center justify-content-md-start flex-nowrap me-0 me-md-5"
+>
   <div class="col-11">
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center">
@@ -42,6 +44,10 @@
         </div>
         <button
           class="btn btn-secondary d-none d-md-block"
+          (click)="
+            studentsService.editable = !studentsService.editable;
+            globals.enablePhoneInput()
+          "
           *ngIf="!currentNav.name.includes('uploads')"
         >
           Edit
