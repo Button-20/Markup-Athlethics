@@ -18,7 +18,6 @@
       *ngIf="newsService.news.length > 0"
       [news]="newsService.news"
       [ngStyle]="{ width: 'auto', 'margin-inline': '0' }"
-      [contentStyle]="{ width: '100%' }"
       [baseLink]="'/portal/news'"
     ></news-container>
     <pagination

@@ -1,7 +1,6 @@
 <div class="news-section mt-5" [ngStyle]="ngStyle">
   <div
     class="content"
-    [ngStyle]="contentStyle"
     *ngFor="let post of news"
     routerLink="{{ baseLink }}/{{ post.slug }}"
     routerLinkActive="active"

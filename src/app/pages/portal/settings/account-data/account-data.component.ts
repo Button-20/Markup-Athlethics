@@ -9,11 +9,13 @@ import { GlobalsService } from 'src/app/services/core/globals';
 })
 export class AccountDataComponent {
   constructor(
-    private usersService: UsersService,
+    public usersService: UsersService,
     public globals: GlobalsService
   ) {}
 
   ngOnInit(): void {}
 
-  async onSubmit(formData: any) {}
+  async onSubmit(formData: any) {
+    await this.usersService.updateUserProfile(formData);
+  }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { StudentsService } from 'src/app/services/api/students/students.service';
 
 @Component({
   selector: 'app-athletic-background',
@@ -23,6 +24,12 @@ export class AthleticBackgroundComponent {
   positions: string[] = ['Defender', 'Striker'];
 
   files: any[] = [];
+
+  constructor(public studentsService: StudentsService) {}
+
+  async ngOnInit() {
+    await this.studentsService.getAthleticBackgroundData();
+  }
 
   onSubmit() {
     console.log(this.profileDataForm.value);

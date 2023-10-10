@@ -5,6 +5,7 @@ import {
   PhoneNumberFormat,
   SearchCountryField,
 } from 'ngx-intl-telephone-input';
+import { User } from 'src/app/services/core/IApp';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
@@ -14,6 +15,10 @@ import { GlobalsService } from 'src/app/services/core/globals';
 })
 export class AccountDataFormComponent {
   @Input() user_type: string = '1';
+
+  @Input() user: User | null = null;
+
+  @Input() editable: boolean = false;
 
   @Output() onSubmit: EventEmitter<any> = new EventEmitter<any>();
 
@@ -46,8 +51,29 @@ export class AccountDataFormComponent {
   constructor(public globals: GlobalsService) {}
 
   ngOnInit() {
+    if (this.user) {
+      this.accountForm.patchValue({
+        name: this.user.name,
+        institution_name: this.user.institution_name,
+        email: this.user.email,
+        country: this.user.country,
+        phone: this.user.phone,
+        status: this.user.status,
+      });
+      setTimeout(() => {
+        this.setPhoneInput(this.user?.phone || '');
+      }, 100);
+    }
     if (this.user_type == '2') {
       this.accountForm.controls['educational_level'].setValidators(null);
+    }
+  }
+
+  setPhoneInput(phone: string) {
+    let phoneInput = document.querySelector('#phone') as HTMLInputElement;
+    if (phoneInput && phone) {
+      phoneInput.value = phone.substring(phone.indexOf(' ') + 1);
+      phoneInput.disabled = true;
     }
   }
 
