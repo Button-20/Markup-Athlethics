@@ -117,7 +117,6 @@ export class AuthService {
           password_confirmation,
         });
         this.globals.spinner.hide();
-        this.globals.toast.success('🎉 Password reset link sent to your email');
         resolve(resp);
       } catch (err: any) {
         this.globals.spinner.hide();

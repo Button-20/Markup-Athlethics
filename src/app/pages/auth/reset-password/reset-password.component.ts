@@ -23,6 +23,7 @@ export class ResetPasswordComponent {
     event.token = this.token;
     event.email = this.email;
     await this.authService.resetPassword(event);
+    this.globals.toast.success('🎉 Password reset link sent to your email');
     this.globals.router.navigate(['/auth/password-reset-success']);
   }
 }
