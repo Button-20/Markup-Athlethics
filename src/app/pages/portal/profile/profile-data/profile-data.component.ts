@@ -75,8 +75,8 @@ export class ProfileDataComponent {
     }
   }
 
-  onSubmit() {
-    console.log(this.profileDataForm.value);
+  async onSubmit() {
+    this.studentsService.updateStudentData(this.profileDataForm.value);
   }
 
   toggleSelectMenu(event: any, closeOnSelect: boolean = true) {

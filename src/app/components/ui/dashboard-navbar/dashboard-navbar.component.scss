@@ -32,3 +32,39 @@ header .profile-dropdown img {
   width: 2rem;
   height: 2rem;
 }
+
+.notification {
+  position: relative;
+  z-index: 0;
+}
+
+.notification::after {
+  content: "";
+  position: absolute;
+  background: #fbbc05;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  z-index: 1;
+  bottom: 0;
+  left: 1rem;
+}
+
+.notification-menu {
+  position: fixed;
+  background: #1a1a1e;
+  top: 4rem;
+  height: 100%;
+  left: 0;
+  width: 100%;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 100;
+  transform: translateY(-100%);
+}
+
+@media screen and (max-width: 768px) {
+  .notification-menu.active {
+    transform: translateY(0%);
+  }
+}

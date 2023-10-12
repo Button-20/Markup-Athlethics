@@ -1,4 +1,4 @@
-<div class="d-flex gap-5 flex-wrap my-3">
+<div class="d-flex justify-content-md-start justify-content-center gap-5 flex-wrap my-3">
   <div
     class="image"
     *ngFor="let image of profileDataForm.value.images; let i = index"
@@ -8,7 +8,7 @@
       <a href="#" class="text-white" (click)="removeImage($event, i)">Delete</a>
     </div>
   </div>
-  <div class="add-image">
+  <div class="add-image d-none d-md-block">
     <label for="image">
       <i class="bi bi-plus-lg"></i>
     </label>

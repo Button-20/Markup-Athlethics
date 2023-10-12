@@ -7,6 +7,7 @@ import { ConnectionCardComponent } from './application/connection-card/connectio
 import { FaqsComponent } from './application/faqs/faqs.component';
 import { NewsContainerComponent } from './application/news-container/news-container.component';
 import { NewsDetailComponent } from './application/news-detail/news-detail.component';
+import { NotificationComponent } from './application/notification/notification.component';
 import { PlayerCardComponent } from './application/player-card/player-card.component';
 import { PlayerProfileComponent } from './application/player-profile/player-profile.component';
 import { AccountDataFormComponent } from './forms/account-data-form/account-data-form.component';
@@ -39,6 +40,7 @@ const components: Array<any> = [
   AccountDataFormComponent,
   UpdatePasswordFormComponent,
   ConnectionCardComponent,
+  NotificationComponent,
 ];
 
 @NgModule({

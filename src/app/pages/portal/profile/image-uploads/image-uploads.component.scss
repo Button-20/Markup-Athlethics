@@ -7,7 +7,7 @@
     transition: all 0.3s ease;
     cursor: pointer;
 
-    &:hover{
+    &:hover {
       opacity: 0.8;
     }
   }
@@ -26,6 +26,15 @@
     i {
       font-size: 10rem;
       color: #2a2a2e;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .image {
+    img {
+      min-width: 20.625rem;
+      width: 100%;
     }
   }
 }

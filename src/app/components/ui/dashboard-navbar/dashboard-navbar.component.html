@@ -14,8 +14,9 @@
   <a class="pointer d-block d-md-none">
     <img
       src="assets/images/menu.png"
+      id="menu-icon"
       width="25"
-      (click)="openSidebar.emit((sidebarOpened = !sidebarOpened))"
+      (click)="openSidebar.emit((sidebarOpened = !sidebarOpened)); toggleMenu()"
     />
   </a>
   <div
@@ -25,7 +26,15 @@
     <img src="assets/images/logo.png" alt="logo" class="mini-logo" />
     <p class="mb-0">Markup Athletics</p>
   </div>
-  <a class="notification d-block d-md-none">
-    <img src="assets/images/bell.png" width="25" class="bell-icon" />
+  <a class="notification d-block d-md-none" (click)="toggleNotification()">
+    <img
+      src="assets/images/bell.png"
+      width="25"
+      class="bell-icon"
+      id="notification-icon"
+    />
   </a>
 </header>
+<div class="col-12 dark-section notification-menu p-4" id="notification-menu">
+  <notification></notification>
+</div>

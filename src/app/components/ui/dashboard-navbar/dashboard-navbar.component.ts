@@ -12,4 +12,16 @@ export class DashboardNavbarComponent {
   @Input() sidebarOpened: boolean = false;
 
   constructor(public globals: GlobalsService) {}
+
+  toggleNotification() {
+    let notificationMenu = document.getElementById('notification-menu');
+    let notificationIcon = document.getElementById('notification-icon');
+    notificationIcon?.classList.toggle('img-success');
+    notificationMenu?.classList.toggle('active');
+  }
+
+  toggleMenu() {
+    let menuIcon = document.getElementById('menu-icon');
+    menuIcon?.classList.toggle('img-success');
+  }
 }

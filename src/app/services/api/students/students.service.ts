@@ -52,6 +52,22 @@ export class StudentsService {
     });
   }
 
+  async updateStudentData(data: any) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.update('students-data', data);
+        this.student = resp.data[0];
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        this.globals.toast.error(err.message || '😭 Something went wrong');
+        reject(err);
+      }
+    });
+  }
+
   async postEducationalBackgroundData(data: any) {
     return await new Promise(async (resolve, reject) => {
       try {
