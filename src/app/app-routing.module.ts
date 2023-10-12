@@ -21,10 +21,13 @@ const routes: Routes = [
   {
     path: 'portal',
     loadChildren: () =>
-      import('./pages/portal/portal.module').then(
-        (m) => m.PortalModule
-      ),
+      import('./pages/portal/portal.module').then((m) => m.PortalModule),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./pages/admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path: '**',
