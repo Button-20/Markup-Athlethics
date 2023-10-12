@@ -11,6 +11,17 @@ export interface User {
   created_at: Date;
   updated_at: Date;
   user_type: string;
+  user_progress: {
+    id: number;
+    user_id: number;
+    videos_completed: number;
+    images_completed: number;
+    personal_data_completed: number;
+    athletic_background_completed: number;
+    educational_background_completed: number;
+    created_at: Date;
+    updated_at: Date;
+  };
 }
 
 export interface Student {
@@ -82,4 +93,3 @@ export interface Education {
   updated_at: Date;
 }
 
-export interface Athletic {}

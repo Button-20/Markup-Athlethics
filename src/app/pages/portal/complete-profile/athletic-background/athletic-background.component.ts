@@ -18,7 +18,8 @@ export class AthleticBackgroundComponent {
     references: new FormControl([]),
     skills: new FormControl([]),
   });
-
+  
+  positions: string[] = ['Defender', 'Striker'];
   skillLevels: string[] = ['Beginner', 'Intermediate', 'Advanced'];
 
   files: any[] = [];

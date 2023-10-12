@@ -52,8 +52,10 @@
 
         <div class="my-5">
           <p class="mb-0 fs-4">{{ globals.user?.name }}</p>
-          <p class="mb-0 opacity-50">Harmony University</p>
-          <small class="opacity-50 fw-bolder">Ghana</small>
+          <p class="mb-0 opacity-50">{{ globals.user?.institution_name }}</p>
+          <small class="opacity-50 fw-bolder">{{
+            globals.user?.country
+          }}</small>
         </div>
 
         <div class="d-flex align-items-center justify-content-center gap-5">
@@ -68,15 +70,26 @@
         </div>
       </div>
       <div class="col dark-section rounded px-4">
-        <div class="text-center"><span class="percentage"> 5% </span></div>
-        <div class="bar my-5 mb-0"></div>
-        <p class="my-4 fw-medium">Your profile is 5% complete.</p>
+        <div class="text-center">
+          <span class="percentage position-relative" id="progress-circle"
+            >{{ calculatePercentage }}%</span
+          >
+        </div>
+        <div class="bar my-5 mb-0" id="progress-bar"></div>
+        <p class="my-4 fw-medium">
+          Your profile is {{ calculatePercentage }}% complete.
+        </p>
         <p class="mb-0 opacity-50">
           A complete profile allows you to showcase your skills, achievements,
           and potential to a wider audience, including college coaches,
           recruiters, and sports enthusiasts. Complete profile
         </p>
-        <button class="btn btn-primary mt-4 w-100">Complete Profile</button>
+        <button
+          class="btn btn-primary mt-4 w-100"
+          (click)="navigateToCompleteProfile()"
+        >
+          Complete Profile
+        </button>
       </div>
     </div>
     <p class="mb-0 fw-semibold my-5">Recent connections</p>

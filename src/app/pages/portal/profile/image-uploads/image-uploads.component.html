@@ -3,7 +3,7 @@
     class="image"
     *ngFor="let image of profileDataForm.value.images; let i = index"
   >
-    <img src="{{ image.url }}" alt="image" />
+    <img src="{{ image.image_url }}" alt="image" />
     <div class="text-center mt-3">
       <a href="#" class="text-white" (click)="removeImage($event, i)">Delete</a>
     </div>

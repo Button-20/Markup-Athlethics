@@ -15,26 +15,35 @@
 }
 
 .dark-section:nth-child(2) .percentage {
-  padding: 1rem;
-  border-radius: 50%;
-  position: relative;
-  background: #26262a;
   z-index: 1;
-  margin-bottom: 1rem;
+  --percentage: 20deg;
+}
+
+.dark-section:nth-child(2) .percentage::before {
+  position: absolute;
+  content: "";
+  top: -0.8rem;
+  left: -0.5rem;
+  width: 3rem;
+  height: 3rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background: #26262a;
+  z-index: -1;
 }
 
 .dark-section:nth-child(2) .percentage::after {
   content: "";
   position: absolute;
-  top: -0.4rem;
-  left: -0.3rem;
+  top: -1.35rem;
+  left: -1rem;
   width: 4rem;
   height: 4rem;
   aspect-ratio: 1/1;
   border-radius: 50%;
   rotate: 220deg;
-  background: conic-gradient(var(--success) 20deg, #3a3a3b 0deg);
-  z-index: -1;
+  background: conic-gradient(var(--success) var(--percentage), #3a3a3b 0deg);
+  z-index: -2;
   transition: all 0.3s ease;
 }
 
@@ -45,6 +54,7 @@
   border-radius: 0.5rem;
   position: relative;
   overflow: hidden;
+  --width: 0%;
 }
 
 .dark-section:nth-child(2) .bar::after {
@@ -56,16 +66,16 @@
   height: 100%;
   background: var(--success);
   border-radius: 0.5rem;
-  animation: progress 10s linear forwards;
+  animation: progress 2s linear forwards;
   transition: all 0.3s ease;
 }
 
 @keyframes progress {
   0% {
-    width: 5%;
+    width: 0%;
   }
   100% {
-    width: 100%;
+    width: var(--width);
   }
 }
 

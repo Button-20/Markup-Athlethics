@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Athletic, Education, Student } from '../../core/IApp';
+import { Education, Student } from '../../core/IApp';
 import { GlobalsService } from '../../core/globals';
 import { RequestService } from '../../core/request';
 
@@ -12,11 +12,13 @@ export class StudentsService {
 
   education: Education | null = null;
 
-  athletic: Athletic | null = null;
+  athleticBackground: any = null;
 
   editable: boolean = false;
 
   sports: any[] = [];
+
+  images: string[] = [];
 
   constructor(private api: RequestService, private globals: GlobalsService) {}
 
@@ -138,6 +140,26 @@ export class StudentsService {
           data
         );
         this.globals.spinner.hide();
+        this.globals.toast.success(resp.message);
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        this.globals.toast.error(err.message || '😭 Something went wrong');
+        reject(err);
+      }
+    });
+  }
+
+  async updateAthleticBackgroundData(data: any) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.update(
+          'athletic-backgrounds-data',
+          data
+        );
+        this.globals.spinner.hide();
+        this.globals.toast.success('Athletic Background Updated');
         resolve(resp);
       } catch (err: any) {
         this.globals.spinner.hide();
@@ -152,7 +174,7 @@ export class StudentsService {
       try {
         this.globals.spinner.show();
         const resp: any = await this.api.get('athletic-backgrounds-data');
-        this.athletic = resp.data[0];
+        this.athleticBackground = resp.data[2];
         this.globals.spinner.hide();
         resolve(resp);
       } catch (err: any) {
@@ -189,10 +211,26 @@ export class StudentsService {
           image_path: data,
         });
         this.globals.spinner.hide();
+        this.globals.toast.success(resp.message);
         resolve(resp);
       } catch (err: any) {
         this.globals.spinner.hide();
         this.globals.toast.error(err.message);
+        reject(err);
+      }
+    });
+  }
+
+  async getImageData() {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.get('image-data');
+        this.images = resp.data;
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
         reject(err);
       }
     });
@@ -205,6 +243,7 @@ export class StudentsService {
         const resp: any = await this.api.post('video-data', {
           video_path: data,
         });
+        this.globals.toast.success(resp.message);
         this.globals.spinner.hide();
         resolve(resp);
       } catch (err: any) {

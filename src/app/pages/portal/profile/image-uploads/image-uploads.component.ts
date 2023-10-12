@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { StudentsService } from 'src/app/services/api/students/students.service';
 
 @Component({
   selector: 'app-image-uploads',
@@ -12,6 +13,16 @@ export class ImageUploadsComponent {
   });
 
   files: any[] = [];
+
+  constructor(public studentsService: StudentsService) {}
+
+  async ngOnInit() {
+    await this.studentsService.getImageData();
+    this.profileDataForm.patchValue({
+      images: this.studentsService.images,
+    });
+    this.files = this.studentsService.images;
+  }
 
   onSubmit() {
     console.log(this.profileDataForm.value);
@@ -28,7 +39,7 @@ export class ImageUploadsComponent {
           name: file.name,
           type: file.type,
           size: file.size,
-          url: reader.result,
+          image_url: reader.result,
         });
       };
     }
