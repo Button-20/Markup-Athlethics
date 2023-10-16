@@ -23,15 +23,22 @@ export class LoginComponent {
     private globals: GlobalsService
   ) {
     this.redirectUrl =
-      this.globals.activatedRoute.snapshot.queryParams['redirectUrl'] ||
-      'portal/dashboard';
+      this.globals.activatedRoute.snapshot.queryParams['redirectUrl'];
     this.globals.isLoggedIn() &&
-      this.globals.router.navigate([this.redirectUrl]);
+      this.globals.router.navigate([
+        this.redirectUrl || globals.user?.user_type !== '3'
+          ? '/portal/dashboard'
+          : '/admin/dashboard',
+      ]);
   }
 
   async onSubmit() {
     await this.authService.login(this.loginForm.value);
-    this.globals.router.navigate([this.redirectUrl]);
+    this.globals.router.navigate([
+      this.redirectUrl || this.globals.user?.user_type !== '3'
+        ? '/portal/dashboard'
+        : '/admin/dashboard',
+    ]);
   }
 
   get email() {
