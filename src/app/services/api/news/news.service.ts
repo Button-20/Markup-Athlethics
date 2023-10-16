@@ -70,4 +70,37 @@ export class NewsService {
       }
     });
   }
+
+  async updateNews(data: News) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.update(
+          'posts-data/' + data.slug,
+          data
+        );
+        this.globals.toast.success(resp.message);
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        reject(err);
+      }
+    });
+  }
+
+  async deleteNews(slug: string) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.delete('posts-data/' + slug);
+        this.globals.toast.success(resp.message);
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        reject(err);
+      }
+    });
+  }
 }

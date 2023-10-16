@@ -38,6 +38,7 @@
       [noScaleAnimation]="true"
       [ngStyle]="{ width: 'auto', 'margin-inline': '0' }"
       [baseLink]="'/admin/news/view'"
+      (deleteNews)="deleteNews($event)"
     ></news-container>
     <pagination
       *ngIf="newsService.news.length > 0"

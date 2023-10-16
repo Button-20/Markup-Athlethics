@@ -17,7 +17,7 @@
         >
           <img src="assets/images/edit.png" alt="edit" />
         </button>
-        <button class="roundBtn">
+        <button class="roundBtn" (click)="deleteNews.emit(post.slug)">
           <img src="assets/images/trash-2.png" alt="trash" />
         </button>
       </div>

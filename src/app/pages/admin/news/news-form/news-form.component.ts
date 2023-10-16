@@ -15,11 +15,14 @@ export class NewsFormComponent {
   }
 
   async ngOnInit() {
-    await this.newsService.getNewsBySlug(this.slug);
+    this.globals.router.url.includes('edit') &&
+      (await this.newsService.getNewsBySlug(this.slug));
   }
 
   async onSubmit(event: any) {
-    await this.newsService.postNews(event);
+    !this.globals.router.url.includes('edit')
+      ? await this.newsService.postNews(event)
+      : await this.newsService.updateNews(event);
     this.globals.router.navigate(['/admin/news']);
   }
 }

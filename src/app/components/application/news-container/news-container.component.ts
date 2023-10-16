@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { News } from 'src/app/services/core/IApp';
 import { GlobalsService } from 'src/app/services/core/globals';
 
@@ -15,6 +15,8 @@ export class NewsContainerComponent {
   @Input() news: News[] = [];
 
   @Input() noScaleAnimation: boolean = false;
+
+  @Output() deleteNews: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private globals: GlobalsService) {
     globals.reuseStrategy.shouldReuseRoute = () => false;

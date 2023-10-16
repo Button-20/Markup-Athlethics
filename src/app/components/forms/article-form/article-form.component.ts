@@ -19,6 +19,7 @@ export class ArticleFormComponent {
     body: new FormControl('', [Validators.required]),
     imagePath: new FormControl(null, [Validators.required]),
     tag: new FormControl('', [Validators.required]),
+    slug: new FormControl(''),
   });
 
   tagList: string[] = ['News', 'Article'];
@@ -44,6 +45,7 @@ export class ArticleFormComponent {
         body: this.article.body,
         imagePath: this.article.imagePath,
         tag: this.article.tag,
+        slug: this.article.slug,
       });
     }
   }

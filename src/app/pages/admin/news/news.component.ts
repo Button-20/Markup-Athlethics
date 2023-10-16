@@ -13,6 +13,13 @@ export class NewsComponent {
     await this.newsService.getNews();
   }
 
+  async deleteNews(slug: string) {
+    if (confirm('Are you sure you want to delete this news?')) {
+      await this.newsService.deleteNews(slug);
+      await this.newsService.getNews();
+    }
+  }
+
   ngOnDestroy() {
     this.newsService.news = [];
   }
