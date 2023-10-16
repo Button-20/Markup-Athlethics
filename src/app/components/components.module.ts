@@ -11,6 +11,7 @@ import { NotificationComponent } from './application/notification/notification.c
 import { PlayerCardComponent } from './application/player-card/player-card.component';
 import { PlayerProfileComponent } from './application/player-profile/player-profile.component';
 import { AccountDataFormComponent } from './forms/account-data-form/account-data-form.component';
+import { ArticleFormComponent } from './forms/article-form/article-form.component';
 import { ContactFormComponent } from './forms/contact-form/contact-form.component';
 import { PasswordFormComponent } from './forms/password-form/password-form.component';
 import { UpdatePasswordFormComponent } from './forms/update-password-form/update-password-form.component';
@@ -41,6 +42,7 @@ const components: Array<any> = [
   UpdatePasswordFormComponent,
   ConnectionCardComponent,
   NotificationComponent,
+  ArticleFormComponent,
 ];
 
 @NgModule({

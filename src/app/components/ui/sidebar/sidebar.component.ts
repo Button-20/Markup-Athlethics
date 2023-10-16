@@ -41,20 +41,74 @@ export class SidebarComponent {
     },
   ];
 
+  adminNavigations: { name: string; route: string; image: string }[] = [
+    {
+      name: 'Dashboard',
+      route: '/admin/dashboard',
+      image: 'assets/images/grid.png',
+    },
+    {
+      name: 'Approvals',
+      route: '/admin/approvals',
+      image: 'assets/images/rotate-ccw.png',
+    },
+    {
+      name: 'Athletes',
+      route: '/admin/athletes',
+      image: 'assets/images/dumbbell.png',
+    },
+    {
+      name: 'Coaches',
+      route: '/admin/coaches',
+      image: 'assets/images/users.png',
+    },
+    {
+      name: 'News',
+      route: '/admin/news',
+      image: 'assets/images/book-open.png',
+    },
+    {
+      name: 'Connections',
+      route: '/admin/connections',
+      image: 'assets/images/mdi_connection.png',
+    },
+    {
+      name: 'Settings',
+      route: '/admin/settings',
+      image: 'assets/images/settings.png',
+    },
+    {
+      name: 'Admins',
+      route: '/admin/admins',
+      image: 'assets/images/user.png',
+    },
+  ];
+
   @Input() openSidebar: boolean = false;
+  @Input() showMenuName: boolean = false;
 
   constructor(
     private globals: GlobalsService,
     private authService: AuthService
   ) {
-    if (this.globals.user?.user_type !== '2') {
-      this.navigations = this.navigations.filter(
-        (nav) => nav.name !== 'Connections' && nav.name !== 'Athletics'
-      );
-    } else {
-      this.navigations = this.navigations.filter(
-        (nav) => nav.name !== 'Profile'
-      );
+    if (this.globals.user) this.globals.user.user_type = '3';
+    switch (this.globals.user?.user_type) {
+      case '3':
+        this.navigations = this.adminNavigations;
+        break;
+      case '2':
+        this.navigations = this.navigations.filter(
+          (nav) => nav.name !== 'Connections' && nav.name !== 'Athletics'
+        );
+        break;
+      case '1':
+        this.navigations = this.navigations.filter(
+          (nav) => nav.name !== 'Profile'
+        );
+        break;
+      default:
+        this.navigations = this.adminNavigations;
+        break;
     }
   }
 

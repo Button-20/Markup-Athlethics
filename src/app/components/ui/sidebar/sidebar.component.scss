@@ -14,6 +14,10 @@
   align-items: center;
   justify-content: center;
   gap: 2.5rem;
+
+  &.active {
+    width: 13rem;
+  }
 }
 
 .sidebar ul {
@@ -48,6 +52,7 @@
     height: 4rem;
 
     &.active {
+      width: 100%;
       height: 100%;
 
       ul {

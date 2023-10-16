@@ -1,0 +1,27 @@
+<div
+  class="row g-0 flex-nowrap justify-content-md-start justify-content-center me-0 me-md-5"
+>
+  <div class="col-11">
+    <div class="d-flex align-items-center justify-content-between mb-5">
+      <div class="d-flex align-items-center">
+        <img
+          src="assets/images/book-open.png"
+          alt="dashboard"
+          class="me-2 img-success"
+        />
+        <p class="mb-0 opacity-50">News</p>
+      </div>
+      <a href="#" class="opacity-50 text-white">< Go back</a>
+    </div>
+    <news-detail
+      [displayGoBack]="false"
+      [ngStyle]="{ width: 'auto', 'margin-inline': '0', 'padding-top': '0' }"
+      [news]="newsService.singleNews"
+    ></news-detail>
+    <news-container
+      [ngStyle]="{ width: 'auto', 'margin-inline': '0' }"
+      [baseLink]="'/student/news'"
+      [news]="newsService.news.slice(0, 3)"
+    ></news-container>
+  </div>
+</div>

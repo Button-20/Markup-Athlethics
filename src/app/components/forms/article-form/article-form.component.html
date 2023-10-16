@@ -1,0 +1,95 @@
+<form class="row g-0 gx-5 mt-5" [formGroup]="articleForm" (ngSubmit)="submit()">
+  <div class="form-input mb-3 col-12">
+    <label for="title" class="form-label">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      name="title"
+      formControlName="title"
+      id="title"
+      placeholder="eg. John Doe goes pro"
+      required
+    />
+    <small
+      class="text-danger"
+      *ngIf="title.errors?.['required'] && (title.dirty || title.touched)"
+    >
+      Please enter the title of your article
+    </small>
+  </div>
+  <div class="form-input mb-3 col-12">
+    <label for="content" class="form-label">Content</label>
+    <textarea
+      class="form-control"
+      name="content"
+      formControlName="content"
+      id="content"
+      placeholder="eg. Article content here"
+      required
+      rows="10"
+    ></textarea>
+    <small
+      class="text-danger"
+      *ngIf="content.errors?.['required'] && (content.dirty || content.touched)"
+    >
+      Please enter the content of your article
+    </small>
+  </div>
+  <div class="form-input mb-3 col-12">
+    <label for="name" class="form-label">Select tag</label>
+    <button class="select-menu" (click)="toggleSelectMenu($event)">
+      <div class="select-btn" style="pointer-events: none">
+        <span
+          class="selected-item"
+          [ngClass]="[articleForm.value.tag ? 'opacity-100' : 'opacity-50']"
+        >
+          {{ articleForm.value.tag || "News or Article" }}
+        </span>
+        <i class="bi bi-chevron-down top-0"></i>
+      </div>
+      <ul class="select-list">
+        <li
+          class="select-item"
+          *ngFor="let tag of tagList"
+          (click)="selectItem(tag, 'tag')"
+        >
+          {{ tag }}
+        </li>
+      </ul>
+    </button>
+  </div>
+
+  <div class="col-12">
+    <label class="my-3 opacity-50">Add images</label>
+    <div class="position-relative image-upload mb-3" id="transcript-container">
+      <input
+        type="file"
+        (change)="dropImage($event)"
+        (drop)="dropImage($event)"
+        (dragover)="onDragOver($event)"
+        name="image"
+        id="transcript"
+      />
+      <label for="transcript" class="w-100 mb-0">
+        <img src="assets/images/upload.png" alt="image upload" class="mb-3" />
+        <p class="mb-0">
+          <span class="text-danger">Click to upload</span> or drag and drop
+        </p>
+      </label>
+    </div>
+  </div>
+
+  <div
+    class="d-flex align-items-center justify-content-end gap-2 mb-5 order-sm-reverse"
+  >
+    <button class="btn btn-secondary">Cancel</button>
+    <button
+      class="btn btn-primary"
+      [disabled]="!articleForm.valid"
+      type="submit"
+      style="width: 300px"
+    >
+      Upload article
+    </button>
+  </div>
+</form>

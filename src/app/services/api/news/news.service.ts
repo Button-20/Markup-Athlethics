@@ -9,6 +9,8 @@ import { RequestService } from '../../core/request';
 export class NewsService {
   news: News[] = [];
 
+  search: string = '';
+
   singleNews: News | any;
 
   pagination = {

@@ -12,6 +12,16 @@ form {
     opacity: 0.54;
   }
 
+  .form-input textarea {
+    border-radius: 0.375rem;
+    border: 1px solid #fff;
+    background-color: transparent;
+    opacity: 0.87;
+    color: #fff;
+    padding: 0.75rem 1.3rem;
+    resize: none;
+  }
+
   .form-input input,
   .form-input-select input {
     border-radius: 0.375rem;
@@ -22,51 +32,17 @@ form {
     padding: 0.75rem 1.3rem;
   }
   .form-input input:focus,
+  .form-input textarea:focus,
   .form-input-select input:focus {
     box-shadow: none;
   }
 
   .form-input input::placeholder,
+  .form-input textarea::placeholder,
   .form-input-select input::placeholder {
     opacity: 0.54;
     color: #fff;
   }
-
-  select {
-    border-radius: 0.375rem;
-    border: 1px solid #fff;
-    background-color: transparent;
-    opacity: 0.87;
-    color: #fff;
-    padding: 0.75rem 1.3rem;
-  }
-
-  .form-input select option {
-    color: #000;
-  }
-
-  .form-input select:focus {
-    box-shadow: none;
-  }
-
-  .form-input select option img {
-    width: 1.5rem;
-    height: 1.5rem;
-    object-fit: cover;
-  }
-
-  .form-input-select select {
-    border-radius: 0.375rem 0 0 0.375rem;
-    border-right: none;
-  }
-}
-
-.confirm-email h3 {
-  font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1.5rem; /* 100% */
-  letter-spacing: -0.03rem;
 }
 
 .select-menu {
@@ -121,7 +97,7 @@ form {
   cursor: pointer;
   width: 100%;
   border-radius: 0.5rem;
-  border: 1px dashed #e4e7ec;
+  border: 1px solid #e4e7ec;
   text-align: center;
   padding: 1.2rem 1.5rem;
   margin-block: 1rem;
@@ -156,14 +132,4 @@ form {
 .file .progress .progress-bar {
   background: #bf2e1b !important;
   border-radius: 0.5rem;
-}
-
-@media screen and (max-width: 768px) {
-  .btn {
-    width: 100% !important;
-  }
-
-  .order-sm-reverse {
-    flex-direction: column-reverse;
-  }
 }

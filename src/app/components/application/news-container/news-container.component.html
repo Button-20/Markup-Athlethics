@@ -2,17 +2,38 @@
   <div
     class="content"
     *ngFor="let post of news"
-    routerLink="{{ baseLink }}/{{ post.slug }}"
-    routerLinkActive="active"
+    [ngClass]="{ 'no-scale': noScaleAnimation }"
   >
-    <img [src]="post.imagePath" [alt]="post.id" />
-    <div class="tag">
-      <p class="mb-0 opacity-100">{{ post.tag | titlecase }}</p>
+    <div class="d-flex align-items-center gap-4">
+      <img
+        [src]="post.imagePath"
+        [alt]="post.id"
+        routerLink="{{ baseLink }}/{{ post.slug }}"
+      />
+      <div>
+        <button
+          class="roundBtn mb-5"
+          routerLink="{{ baseLink }}/edit/{{ post.id }}"
+        >
+          <img src="assets/images/edit.png" alt="edit" />
+        </button>
+        <button class="roundBtn">
+          <img src="assets/images/trash-2.png" alt="trash" />
+        </button>
+      </div>
     </div>
-    <h3 class="my-3 mt-4">
+    <div class="tag">
+      <p class="mb-0 opacity-100" routerLink="{{ baseLink }}/{{ post.slug }}">
+        {{ post.tag | titlecase }}
+      </p>
+    </div>
+    <h3 class="my-3 mt-4" routerLink="{{ baseLink }}/{{ post.slug }}">
       {{ post.title }}
     </h3>
-    <div class="d-flex align-items-center gap-2">
+    <div
+      class="d-flex align-items-center gap-2"
+      routerLink="{{ baseLink }}/{{ post.slug }}"
+    >
       <p class="mb-0" [innerHTML]="post.body.slice(0, 100) + '...'"></p>
       <span></span>
       <p class="mb-0 date">

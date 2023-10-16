@@ -3,6 +3,8 @@
   [ngClass]="{
     active: openSidebar
   }"
+  (mouseenter)="showMenuName && openSidebar = true"
+  (mouseleave)="showMenuName && openSidebar = false"
 >
   <ul class="m-0 p-0">
     <li *ngFor="let item of navigations">
@@ -10,9 +12,17 @@
         routerLink="{{ item.route }}"
         routerLinkActive="active"
         (click)="openSidebar = false"
+        class="d-flex align-items-center gap-3"
       >
         <img src="{{ item.image }}" alt="{{ item.name }}" />
-        <p class="d-block d-md-none mb-0 text-white opacity-50">
+        <p
+          class="d-block d-md-none mb-0 text-white opacity-50"
+          style="{{
+            showMenuName && openSidebar
+              ? 'display: block !important;'
+              : 'display: none;'
+          }}"
+        >
           {{ item.name }}
         </p>
       </a>
@@ -20,9 +30,22 @@
   </ul>
   <ul class="m-0 p-0">
     <li>
-      <a (click)="logout()" class="pointer">
+      <a
+        (click)="logout()"
+        class="pointer"
+        class="d-flex align-items-center gap-3"
+      >
         <img src="assets/images/log-out.png" alt="logout" />
-        <p class="d-block d-md-none mb-0 text-white opacity-50">Sign out</p>
+        <p
+          class="d-block d-md-none mb-0 text-white opacity-50 truncate"
+          style="{{
+            showMenuName && openSidebar
+              ? 'display: block !important;'
+              : 'display: none;'
+          }}"
+        >
+          Sign out
+        </p>
       </a>
     </li>
   </ul>

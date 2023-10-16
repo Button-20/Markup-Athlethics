@@ -1,0 +1,27 @@
+.col-11 {
+  margin-left: 7em;
+}
+
+.search-input {
+  border: 1px solid #fff;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  height: 3.3125rem;
+  width: 20.5625rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  input {
+    border: none;
+    outline: none;
+    background: none;
+    color: #fff;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .col-11 {
+    margin-left: 0;
+  }
+}

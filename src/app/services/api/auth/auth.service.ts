@@ -126,6 +126,33 @@ export class AuthService {
     });
   }
 
+  async authResetPassword({
+    current_password,
+    password,
+    password_confirmation,
+  }: {
+    current_password: string;
+    password: string;
+    password_confirmation: string;
+  }) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.post('auth/reset-password', {
+          current_password,
+          password,
+          password_confirmation,
+        });
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        this.globals.toast.error(err.message);
+        reject(err);
+      }
+    });
+  }
+
   async logout() {
     return await new Promise(async (resolve, reject) => {
       try {

@@ -11,7 +11,7 @@ export class UpdatePasswordFormComponent {
 
   passwordForm: FormGroup = new FormGroup(
     {
-      old_password: new FormControl('', [Validators.required]),
+      current_password: new FormControl('', [Validators.required]),
       password: new FormControl('', [
         Validators.required,
         Validators.pattern(
@@ -36,6 +36,7 @@ export class UpdatePasswordFormComponent {
 
   async submit() {
     this.onSubmit.emit(this.passwordForm.value);
+    this.passwordForm.reset();
   }
 
   passwordMatchValidator(password: string, confirmPassword: string): any {
@@ -64,8 +65,8 @@ export class UpdatePasswordFormComponent {
     };
   }
 
-  get old_password() {
-    return this.passwordForm.get('old_password') as FormControl;
+  get current_password() {
+    return this.passwordForm.get('current_password') as FormControl;
   }
 
   get password() {

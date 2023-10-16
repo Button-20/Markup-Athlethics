@@ -1,0 +1,9 @@
+.col-11 {
+  margin-left: 7em;
+}
+
+@media screen and (max-width: 768px) {
+  .col-11 {
+    margin-left: 0;
+  }
+}

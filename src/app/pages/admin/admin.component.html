@@ -1,1 +1,5 @@
-<p>admin works!</p>
+<dashboard-navbar (openSidebar)="openSidebar = $event"></dashboard-navbar>
+<main class="min-vh-100">
+  <sidebar [openSidebar]="openSidebar" [showMenuName]="true"></sidebar>
+  <router-outlet></router-outlet>
+</main>
