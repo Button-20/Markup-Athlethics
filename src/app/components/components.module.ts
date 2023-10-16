@@ -22,6 +22,7 @@ import { NoDataComponent } from './ui/no-data/no-data.component';
 import { PaginationComponent } from './ui/pagination/pagination.component';
 import { SidebarComponent } from './ui/sidebar/sidebar.component';
 import { SocialsHangingComponent } from './ui/socials-hanging/socials-hanging.component';
+import { NgxEditorModule } from 'ngx-editor';
 
 const components: Array<any> = [
   NavbarComponent,
@@ -52,6 +53,7 @@ const components: Array<any> = [
     RouterModule,
     NgxIntlTelephoneInputModule,
     ReactiveFormsModule,
+    NgxEditorModule,
   ],
   exports: components,
 })

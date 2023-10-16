@@ -14,6 +14,9 @@
       ><
       <a class="pointer text-white"> Go back </a>
     </span>
-    <article-form (onSubmit)="onSubmit($event)"></article-form>
+    <article-form
+      (onSubmit)="onSubmit($event)"
+      [article]="newsService.singleNews"
+    ></article-form>
   </div>
 </div>

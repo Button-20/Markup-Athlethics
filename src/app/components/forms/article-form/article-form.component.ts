@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Editor } from 'ngx-editor';
+import { News } from '../../../services/core/IApp';
 
 @Component({
   selector: 'article-form',
@@ -9,21 +11,45 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ArticleFormComponent {
   @Output() onSubmit: EventEmitter<any> = new EventEmitter<any>();
 
+  @Input() article: News | any = null;
+
   articleForm: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
-    content: new FormControl('', [Validators.required]),
-    image: new FormControl('', [Validators.required]),
+    body: new FormControl('', [Validators.required]),
+    imagePath: new FormControl(null, [Validators.required]),
     tag: new FormControl('', [Validators.required]),
   });
 
-  file: any = null;
-
   tagList: string[] = ['News', 'Article'];
+
+  editor: Editor | any;
+  html = '';
+
+  // make sure to destory the editor
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
 
   constructor() {}
 
+  ngOnInit() {
+    this.editor = new Editor();
+  }
+
+  ngOnChanges() {
+    if (this.article) {
+      this.articleForm.patchValue({
+        title: this.article.title,
+        body: this.article.body,
+        imagePath: this.article.imagePath,
+        tag: this.article.tag,
+      });
+    }
+  }
+
   submit() {
     this.onSubmit.emit(this.articleForm.value);
+    this.articleForm.reset();
   }
 
   toggleSelectMenu(event: any, closeOnSelect: boolean = true) {
@@ -72,19 +98,13 @@ export class ArticleFormComponent {
   dropImage(event: any) {
     event.preventDefault();
     event.stopPropagation();
-    this.file = event.dataTransfer?.files[0] || event.target.files[0];
-
-    this.articleForm.patchValue({
-      institution_id: this.file,
-    });
-  }
-
-  removeFile(e: any, index: number) {
-    e.preventDefault();
-    this.file = null;
-    this.articleForm.patchValue({
-      institution_id: this.file,
-    });
+    const file = event.dataTransfer?.files[0] || event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const imagePath = this.articleForm.get('imagePath') as FormControl;
+      imagePath.setValue(reader.result);
+    };
   }
 
   onDragOver(event: any) {
@@ -96,12 +116,12 @@ export class ArticleFormComponent {
     return this.articleForm.get('title') as FormControl;
   }
 
-  get content() {
-    return this.articleForm.get('content') as FormControl;
+  get body() {
+    return this.articleForm.get('body') as FormControl;
   }
 
-  get image() {
-    return this.articleForm.get('image') as FormControl;
+  get imagePath() {
+    return this.articleForm.get('imagePath') as FormControl;
   }
 
   get tag() {

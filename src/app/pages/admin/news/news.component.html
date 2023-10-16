@@ -21,7 +21,11 @@
             (ngModelChange)="newsService.getNews()"
           />
         </div>
-        <button class="btn btn-primary" style="width: 15em">
+        <button
+          class="btn btn-primary"
+          style="width: 15em"
+          routerLink="/admin/news/create"
+        >
           + New Article
         </button>
       </div>
@@ -33,7 +37,7 @@
       [news]="newsService.news"
       [noScaleAnimation]="true"
       [ngStyle]="{ width: 'auto', 'margin-inline': '0' }"
-      [baseLink]="'/admin/news'"
+      [baseLink]="'/admin/news/view'"
     ></news-container>
     <pagination
       *ngIf="newsService.news.length > 0"

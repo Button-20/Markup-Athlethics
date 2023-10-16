@@ -210,7 +210,7 @@ body {
   cursor: pointer;
 }
 
-.truncate{
+.truncate {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -267,6 +267,49 @@ body {
 
   & .dropdown__item:hover {
     background-color: var(--primary);
+  }
+}
+
+.NgxEditor__Wrapper {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  border: 1px solid #fff !important;
+
+  .NgxEditor__MenuBar {
+    background-color: #1b1c20 !important;
+    color: white;
+
+    .NgxEditor__MenuItem:hover {
+      background-color: #545454 !important;
+    }
+
+    .NgxEditor__Dropdown:hover {
+      background-color: #545454 !important;
+    }
+
+    .NgxEditor__Seperator {
+      border-left: none !important;
+    }
+  }
+
+  .NgxEditor {
+    min-height: 13em !important;
+    background-color: transparent;
+    color: #fff;
+  }
+  .NgxEditor__Content{
+    height: calc(100% - 3.5rem) !important;
+  }
+}
+
+.toolbar {
+  background: #e8e9ed;
+  border-radius: 0.5rem;
+  padding: 0rem 0.5rem;
+
+  .NgxEditor__MenuBar {
+    background-color: transparent;
+    color: #797b89;
   }
 }
 

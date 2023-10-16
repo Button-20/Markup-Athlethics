@@ -18,19 +18,18 @@
     </small>
   </div>
   <div class="form-input mb-3 col-12">
-    <label for="content" class="form-label">Content</label>
-    <textarea
-      class="form-control"
-      name="content"
-      formControlName="content"
-      id="content"
-      placeholder="eg. Article content here"
-      required
-      rows="10"
-    ></textarea>
+    <label for="body" class="form-label">Content</label>
+    <div class="NgxEditor__Wrapper">
+      <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+      <ngx-editor
+        [editor]="editor"
+        formControlName="body"
+        [placeholder]="'Type here...'"
+      ></ngx-editor>
+    </div>
     <small
       class="text-danger"
-      *ngIf="content.errors?.['required'] && (content.dirty || content.touched)"
+      *ngIf="body.errors?.['required'] && (body.dirty || body.touched)"
     >
       Please enter the content of your article
     </small>
@@ -61,13 +60,19 @@
 
   <div class="col-12">
     <label class="my-3 opacity-50">Add images</label>
-    <div class="position-relative image-upload mb-3" id="transcript-container">
+    <div
+      class="position-relative image-upload"
+      id="transcript-container"
+      [ngClass]="{ 'd-none': articleForm.value.imagePath }"
+    >
       <input
         type="file"
+        accept="image/*"
         (change)="dropImage($event)"
         (drop)="dropImage($event)"
-        (dragover)="onDragOver($event)"
+        (dragover)="dropImage($event)"
         name="image"
+        multiple="false"
         id="transcript"
       />
       <label for="transcript" class="w-100 mb-0">
@@ -77,10 +82,24 @@
         </p>
       </label>
     </div>
+    <div
+      class="position-relative"
+      id="transcript-preview"
+      [ngClass]="{ 'd-none': !articleForm.value.imagePath }"
+    >
+      <img [src]="articleForm.value.imagePath" alt="" class="w-100" />
+      <button
+        class="btn btn-primary w-25 mt-3"
+        id="transcript-btn"
+        (click)="articleForm.patchValue({ imagePath: null })"
+      >
+        <i class="bi bi-trash me-2"></i>
+      </button>
+    </div>
   </div>
 
   <div
-    class="d-flex align-items-center justify-content-end gap-2 mb-5 order-sm-reverse"
+    class="d-flex align-items-center justify-content-end mt-5 gap-2 mb-5 order-sm-reverse"
   >
     <button class="btn btn-secondary">Cancel</button>
     <button

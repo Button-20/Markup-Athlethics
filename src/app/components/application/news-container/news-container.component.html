@@ -10,10 +10,10 @@
         [alt]="post.id"
         routerLink="{{ baseLink }}/{{ post.slug }}"
       />
-      <div>
+      <div *ngIf="baseLink == '/admin/news/view'">
         <button
           class="roundBtn mb-5"
-          routerLink="{{ baseLink }}/edit/{{ post.id }}"
+          routerLink="/admin/news/edit/{{ post.slug }}"
         >
           <img src="assets/images/edit.png" alt="edit" />
         </button>

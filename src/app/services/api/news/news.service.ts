@@ -55,4 +55,19 @@ export class NewsService {
       }
     });
   }
+
+  async postNews(data: any) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.post('posts-data', data);
+        this.globals.toast.success(resp.message);
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        reject(err);
+      }
+    });
+  }
 }
