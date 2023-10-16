@@ -91,7 +91,7 @@ export class SidebarComponent {
     private globals: GlobalsService,
     private authService: AuthService
   ) {
-    if (this.globals.user) this.globals.user.user_type = '3';
+    // if (this.globals.user) this.globals.user.user_type = '1';
     switch (this.globals.user?.user_type) {
       case '3':
         this.navigations = this.adminNavigations;
