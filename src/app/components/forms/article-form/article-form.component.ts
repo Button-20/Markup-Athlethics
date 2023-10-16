@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Editor } from 'ngx-editor';
+import { StudentsService } from 'src/app/services/api/students/students.service';
 import { News } from '../../../services/core/IApp';
 
 @Component({
@@ -30,7 +31,7 @@ export class ArticleFormComponent {
     this.editor.destroy();
   }
 
-  constructor() {}
+  constructor(private studentService: StudentsService) {}
 
   ngOnInit() {
     this.editor = new Editor();
@@ -101,9 +102,12 @@ export class ArticleFormComponent {
     const file = event.dataTransfer?.files[0] || event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = () => {
+    reader.onload = async () => {
+      let url = await this.studentService.uploadImage({
+        file: reader.result as string,
+      });
       const imagePath = this.articleForm.get('imagePath') as FormControl;
-      imagePath.setValue(reader.result);
+      imagePath.setValue(url);
     };
   }
 
