@@ -1,0 +1,50 @@
+.col-11 {
+  margin-left: 7em;
+}
+
+.search-input {
+  border: 1px solid #fff;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  height: 3.3125rem;
+  width: 20.5625rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  input {
+    border: none;
+    outline: none;
+    background: none;
+    color: #fff;
+  }
+}
+
+.table > :not(caption) > * > * {
+  background-color: transparent;
+}
+
+.table td,
+.table th {
+  padding: 1.3rem;
+}
+
+img[alt="user"] {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid #88f63d;
+  object-fit: cover;
+}
+
+img[alt="flag"] {
+  width: 1.5rem;
+  height: 0.875rem;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .col-11 {
+    margin-left: 0;
+  }
+}

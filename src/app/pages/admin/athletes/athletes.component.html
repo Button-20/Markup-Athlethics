@@ -1,0 +1,81 @@
+<div
+  class="row g-0 flex-nowrap me-0 me-md-5 justify-content-md-start justify-content-center"
+>
+  <div class="col-11 mb-5">
+    <div class="d-flex align-items-center justify-content-between mb-5">
+      <div class="d-flex align-items-center">
+        <img
+          src="assets/images/book-open.png"
+          alt="dashboard"
+          class="me-2 img-success"
+        />
+        <p class="mb-0">Athletes</p>
+      </div>
+      <div class="d-flex align-items-center gap-4">
+        <div class="search-input">
+          <img src="assets/images/search.png" alt="search" width="20px" />
+          <input type="text" placeholder="Search here..." />
+        </div>
+        <button
+          class="btn btn-primary"
+          style="width: 15em"
+          routerLink="/admin/news/create"
+        >
+          + New Article
+        </button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="text-white opacity-50">Full name</th>
+            <th class="text-white opacity-50">Country</th>
+            <th class="text-white opacity-50">Phone Number</th>
+            <th class="text-white opacity-50">Institution Level</th>
+            <th class="text-white opacity-50">Institution</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="row"><p class="mb-0 text-white opacity-50">1</p></td>
+            <td>
+              <div class="d-flex align-item-center">
+                <img
+                  src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                  alt="user"
+                />
+                <p class="mb-0 ms-3 text-white opacity-50">John Doe</p>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex align-items-center">
+                <img
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATEAAAClCAMAAAADOzq7AAAAllBMVEXMIik3iVD/8i0AAADJACnuuCz/9i3/9Czc3TYgglJXlk3OLSz/8zhBjVH/+y9cVxDGuyPq3in//i/z5yvXzCbMGCvuuzT/9ziJghj57CzMwiSsox6TjBp6dBZ+eBa4riCclBsiIQZCPwwNDAIyLwlybBRQTA7g1Siwpx83NAprZhMjIgahmBxiXREZFwTv4ypKRg0dGwVwhq2bAAADkUlEQVR4nO3a2VajQBhFYYTuortVEkkcSNQ4D+0Qff+Xa6CDxgUaz1Wdi73vkivWt/iLYki2E1LaThDTQkwNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBT2072f5DSfnLwk5QOksNASofJTkpKO4iJ2YqFsxD7EIazFcuzIvYhDOcqFmbZNI99EIO5ihVHmelYuoqV59mF51iaiuV7WZZVsY9iMFOxMK/FxpZjaSpWjGqxU8uxNBXLa7DsErFvV+8tmm4d9xeeYvXeomnuuJCZip23YiPHsbQUa/cWTUzlN2v3Fk0zw7G0FGv3Fk3HhmNpKZauwLKrMvaR9HMUW+0tmpZ+K5mj2Gpv0bTwW8hii+VFv/L1Tey6HHg3Efe8iyyWT29uRr2y92bjXou4twKxz7FQXWdid3EnNbZYmpbTK8XrNI28tMUXq5ey+WaoVfe30XdoBmL1xbH6+z2weRF/t2Eh1ozmw2av6yr6CZbaiKWheNzg9TD1uAFwEatHc/L0FdhjYbKZ9RFL83L2/JnX08RhINuMxOrRDMeDXs+zMv6K32UlVo/mctQHOw4mA9lmJpYWZz2wO48Vv8tOrL+UvSD2Rfl0YBnb81nEUjuxtUdja+uYzXWyyU1s8FqJ2KetPa9ez+qVkpdYcfLOtPbc7MnpJPMSC2vnVbl2EXD6ksxKLIw7otdlSMPkvvvp9AGGlVjRPSYbpc2GIg/dZF4ZjaWVWPdm9207UXZPZ42+u3YSC4v/POP3TX6xWsyMPld0Elt9bvHhUX6oLto/OceGqhqai+rjKp8Xp83fPi/HjcTCXS1z0n/3UTbD6nM7biRWvtTbiCGY4jYzuh33EcuX9SVxeIEP6Y3P7biPWDh7nXy2WOXFkc3tuJHYSf7F4JWLsclY+oht+J4iuNxb1mI5Ke0kv0gr2fpNSlvJ7hYp7SImhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmq7yR/S+gdv5BsbptJDfQAAAABJRU5ErkJggg=="
+                  alt="flag"
+                />
+                <p class="mb-0 ms-3 text-white opacity-50">Ghana</p>
+              </div>
+            </td>
+            <td><p class="mb-0 text-white opacity-50">+233-576958462</p></td>
+            <td><p class="mb-0 text-white opacity-50">High School</p></td>
+            <td>
+              <p class="mb-0 text-white opacity-50">Harmoney High School</p>
+            </td>
+            <td><a href="#" class="text-white opacity-50">View Profile</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- <pagination
+      ></pagination>
+      <div
+        style="height: 30em; width: 100%"
+        class="d-flex justify-content-center align-items-center"
+      >
+        <no-data message="Nothing to see here"></no-data>
+      </div> -->
+    </div>
+  </div>
+</div>
