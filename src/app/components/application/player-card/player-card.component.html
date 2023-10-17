@@ -1,25 +1,23 @@
 <div
   class="player-card pointer"
   id="player5"
-  routerLink="/player/5"
+  routerLink="/player/{{ player.id }}"
   [ngStyle]="{
     'margin-right': margin_right || '2.5rem'
   }"
 >
   <div class="text-center">
-    <img
-      src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-    />
+    <img src="{{ player.students.profile_picture }}" />
   </div>
   <div class="mb-2 d-flex align-items-center gap-2">
     <img
-      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATEAAAClCAMAAAADOzq7AAAAllBMVEXMIik3iVD/8i0AAADJACnuuCz/9i3/9Czc3TYgglJXlk3OLSz/8zhBjVH/+y9cVxDGuyPq3in//i/z5yvXzCbMGCvuuzT/9ziJghj57CzMwiSsox6TjBp6dBZ+eBa4riCclBsiIQZCPwwNDAIyLwlybBRQTA7g1Siwpx83NAprZhMjIgahmBxiXREZFwTv4ypKRg0dGwVwhq2bAAADkUlEQVR4nO3a2VajQBhFYYTuortVEkkcSNQ4D+0Qff+Xa6CDxgUaz1Wdi73vkivWt/iLYki2E1LaThDTQkwNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBTQ0wNMTXE1BBT2072f5DSfnLwk5QOksNASofJTkpKO4iJ2YqFsxD7EIazFcuzIvYhDOcqFmbZNI99EIO5ihVHmelYuoqV59mF51iaiuV7WZZVsY9iMFOxMK/FxpZjaSpWjGqxU8uxNBXLa7DsErFvV+8tmm4d9xeeYvXeomnuuJCZip23YiPHsbQUa/cWTUzlN2v3Fk0zw7G0FGv3Fk3HhmNpKZauwLKrMvaR9HMUW+0tmpZ+K5mj2Gpv0bTwW8hii+VFv/L1Tey6HHg3Efe8iyyWT29uRr2y92bjXou4twKxz7FQXWdid3EnNbZYmpbTK8XrNI28tMUXq5ey+WaoVfe30XdoBmL1xbH6+z2weRF/t2Eh1ozmw2av6yr6CZbaiKWheNzg9TD1uAFwEatHc/L0FdhjYbKZ9RFL83L2/JnX08RhINuMxOrRDMeDXs+zMv6K32UlVo/mctQHOw4mA9lmJpYWZz2wO48Vv8tOrL+UvSD2Rfl0YBnb81nEUjuxtUdja+uYzXWyyU1s8FqJ2KetPa9ez+qVkpdYcfLOtPbc7MnpJPMSC2vnVbl2EXD6ksxKLIw7otdlSMPkvvvp9AGGlVjRPSYbpc2GIg/dZF4ZjaWVWPdm9207UXZPZ42+u3YSC4v/POP3TX6xWsyMPld0Elt9bvHhUX6oLto/OceGqhqai+rjKp8Xp83fPi/HjcTCXS1z0n/3UTbD6nM7biRWvtTbiCGY4jYzuh33EcuX9SVxeIEP6Y3P7biPWDh7nXy2WOXFkc3tuJHYSf7F4JWLsclY+oht+J4iuNxb1mI5Ke0kv0gr2fpNSlvJ7hYp7SImhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmqIqSGmhpgaYmq7yR/S+gdv5BsbptJDfQAAAABJRU5ErkJggg=="
+      src="https://flagcdn.com/{{ globals.getCountryCode(player.country) }}.svg"
       alt="logo"
       class="flag"
     />
-    <p class="mb-0 opacity-50">Ghana</p>
+    <p class="mb-0 opacity-50">{{ player.country }}</p>
   </div>
-  <h4 class="mb-2 fw-600 fs-34">Ryan Asiedu</h4>
+  <h4 class="mb-2 fw-600 fs-34">{{ player.name }}</h4>
   <p
     class="mb-0 pb-5 border-bottom border-opacity-50 border-2 border-light opacity-50"
   >
@@ -28,12 +26,12 @@
   <div class="row g-0 mt-3">
     <div class="col-6">
       <p class="mb-1 opacity-50">Height</p>
-      <h3 class="mb-1">162 cm</h3>
+      <h3 class="mb-1">{{ player.students.height }} cm</h3>
       <p class="mb-0 opacity-50">/ 5.3 ft</p>
     </div>
     <div class="col-6 text-end">
       <p class="mb-1 opacity-50">Weight</p>
-      <h3 class="mb-1">138 lb</h3>
+      <h3 class="mb-1">{{ player.students.weight }} lb</h3>
       <p class="mb-0 opacity-50">/ 62.5 kg</p>
     </div>
   </div>

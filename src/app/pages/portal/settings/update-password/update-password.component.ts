@@ -14,7 +14,7 @@ export class UpdatePasswordComponent {
   ) {}
 
   async onSubmit(event: any) {
-    await this.authService.authResetPassword(event);
+    await this.authService.updatePassword(event);
     this.globals.toast.success('🎉 Password updated successfully!');
   }
 }

@@ -17,8 +17,8 @@
           <input
             type="text"
             placeholder="Search here..."
-            [(ngModel)]="newsService.search"
-            (ngModelChange)="newsService.getNews()"
+            [(ngModel)]="newsService.pagination.search"
+            (input)="search()"
           />
         </div>
         <button

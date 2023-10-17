@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'player-card',
@@ -7,4 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class PlayerCardComponent {
   @Input() margin_right: string = '';
+
+  @Input() player: any;
+
+  constructor(public globals: GlobalsService) {}
 }

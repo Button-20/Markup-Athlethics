@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StudentsService } from 'src/app/services/api/students/students.service';
 
 @Component({
   selector: 'app-athletics',
@@ -9,7 +10,11 @@ export class AthleticsComponent {
   categories = ['All Categories', 'Soccer', 'Track and Field', 'Basketball'];
   activeTab: string = 'All Categories';
 
-  constructor() {}
+  constructor(public studentsService: StudentsService) {}
+
+  async ngOnInit() {
+    await this.studentsService.getStudentProfiles();
+  }
 
   toggleSearchFilter() {
     let searchFilter = document.querySelector('.search-filter');

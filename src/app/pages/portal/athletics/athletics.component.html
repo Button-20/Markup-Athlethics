@@ -36,11 +36,12 @@
       </a>
     </div>
     <div
-      class="d-flex align-items-center justify-content-between category-detail-section"
+      class="d-flex align-items-center gap-5 category-detail-section"
     >
       <player-card
         [margin_right]="'0px'"
-        *ngFor="let player of [].constructor(10); let i = index"
+        *ngFor="let player of studentsService.students; let i = index"
+        [player]="player"
       ></player-card>
     </div>
     <pagination></pagination>

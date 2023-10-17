@@ -9,14 +9,13 @@ import { RequestService } from '../../core/request';
 export class NewsService {
   news: News[] = [];
 
-  search: string = '';
-
   singleNews: News | any;
 
   pagination = {
     per_page: 5,
     last_page: 0,
     current_page: 1,
+    search: '',
   };
 
   constructor(private api: RequestService, private globals: GlobalsService) {}
@@ -26,7 +25,7 @@ export class NewsService {
       try {
         this.globals.spinner.show();
         const resp: any = await this.api.get(
-          `posts-data?page=${this.pagination.current_page}`
+          `posts-data?page=${this.pagination.current_page}&search=${this.pagination.search}`
         );
         this.news = resp.data.data;
         this.pagination.current_page = resp.data.current_page;

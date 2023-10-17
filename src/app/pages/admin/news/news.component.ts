@@ -20,6 +20,12 @@ export class NewsComponent {
     }
   }
 
+  async search() {
+    setTimeout(async () => {
+      await this.newsService.getNews();
+    }, 1000);
+  }
+
   ngOnDestroy() {
     this.newsService.news = [];
   }
