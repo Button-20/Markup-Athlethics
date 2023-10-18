@@ -11,8 +11,7 @@ export class DashboardComponent {
   constructor(
     public globals: GlobalsService,
     public usersService: UsersService
-  ) {
-  }
+  ) {}
 
   async ngOnInit() {
     await this.usersService.getUserProfile();
@@ -47,7 +46,6 @@ export class DashboardComponent {
     ) {
       percentage += 20;
     }
-
     return percentage;
   }
 
@@ -61,9 +59,9 @@ export class DashboardComponent {
           '/portal/complete-profile/athletic-background',
         ])
       : this.globals.user?.user_progress?.images_completed === 0
-      ? this.globals.router.navigate(['/portal/complete-profile/images'])
+      ? this.globals.router.navigate(['/portal/complete-profile/image-uploads'])
       : this.globals.user?.user_progress?.videos_completed === 0
-      ? this.globals.router.navigate(['/portal/complete-profile/videos'])
+      ? this.globals.router.navigate(['/portal/complete-profile/video-uploads'])
       : this.globals.router.navigate(['/portal/complete-profile']);
   }
 

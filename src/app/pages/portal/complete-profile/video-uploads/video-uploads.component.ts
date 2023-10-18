@@ -25,9 +25,10 @@ export class VideoUploadsComponent {
     let video_path: string[] = [];
     for (let i = 0; i < this.profileDataForm.value.videos.length; i++) {
       const element = this.profileDataForm.value.videos[i];
+      console.log(element);
       let url: any = await this.studentsService.uploadImage({
         file: element,
-        resource_type: 'auto',
+        resource_type: 'video',
       });
       video_path.push(url);
       if (video_path.length !== this.profileDataForm.value.videos.length)
