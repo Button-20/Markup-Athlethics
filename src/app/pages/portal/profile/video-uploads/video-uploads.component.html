@@ -3,7 +3,11 @@
     class="image"
     *ngFor="let video of profileDataForm.value.videos; let i = index"
   >
-    <img src="{{ video }}" alt="image" />
+    <video controls>
+      <source [src]="video.video_path" type="video/mp4"
+      class="img-fluid"
+      />
+    </video>
     <div class="text-center mt-3">
       <a href="#" class="text-white" (click)="removeVideo($event, i)">Delete</a>
     </div>

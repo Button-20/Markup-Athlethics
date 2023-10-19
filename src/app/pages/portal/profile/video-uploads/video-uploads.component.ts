@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { StudentsService } from 'src/app/services/api/students/students.service';
 
 @Component({
   selector: 'app-video-uploads',
@@ -12,6 +13,18 @@ export class VideoUploadsComponent {
   });
 
   files: any[] = [];
+
+  constructor(
+    public studentsService: StudentsService,
+  ){}
+
+  async ngOnInit() {
+    await this.studentsService.getVideoData();
+    this.profileDataForm.patchValue({
+      videos: this.studentsService.videos,
+    });
+    this.files = this.studentsService.videos;
+  }
 
   onSubmit() {
     console.log(this.profileDataForm.value);

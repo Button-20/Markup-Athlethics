@@ -76,7 +76,10 @@ export class ProfileDataComponent {
   }
 
   async onSubmit() {
-    this.studentsService.updateStudentData(this.profileDataForm.value);
+    this.studentsService.updateStudentData(
+      this.globals.user?.id as number,
+      this.profileDataForm.value
+    );
   }
 
   toggleSelectMenu(event: any, closeOnSelect: boolean = true) {

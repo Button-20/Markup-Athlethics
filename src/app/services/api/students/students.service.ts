@@ -20,6 +20,8 @@ export class StudentsService {
 
   images: string[] = [];
 
+  videos: string[] = [];
+
   students: any[] = [];
 
   constructor(private api: RequestService, private globals: GlobalsService) {}
@@ -72,11 +74,14 @@ export class StudentsService {
     });
   }
 
-  async updateStudentData(data: any) {
+  async updateStudentData(userId: number, data: any) {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        const resp: any = await this.api.update('students-data', data);
+        const resp: any = await this.api.update(
+          `students-data/${userId}`,
+          data
+        );
         this.student = resp.data[0];
         this.globals.spinner.hide();
         resolve(resp);
@@ -262,6 +267,22 @@ export class StudentsService {
           video_path: data,
         });
         this.globals.toast.success(resp.message);
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        this.globals.toast.error(err.message);
+        reject(err);
+      }
+    });
+  }
+
+  async getVideoData() {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.get('video-data');
+        this.videos = resp.data;
         this.globals.spinner.hide();
         resolve(resp);
       } catch (err: any) {
