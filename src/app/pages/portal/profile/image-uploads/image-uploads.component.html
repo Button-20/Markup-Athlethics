@@ -5,7 +5,7 @@
   >
     <img src="{{ image.image_url }}" alt="image" />
     <div class="text-center mt-3">
-      <a href="#" class="text-white" (click)="removeImage($event, i)">Delete</a>
+      <a href="#" class="text-white" (click)="removeImage($event, i, image.id)">Delete</a>
     </div>
   </div>
   <div class="add-image d-none d-md-block">

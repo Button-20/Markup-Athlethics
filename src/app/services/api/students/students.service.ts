@@ -82,7 +82,7 @@ export class StudentsService {
           `students-data/${userId}`,
           data
         );
-        this.student = resp.data[0];
+        this.globals.toast.success(resp.message);
         this.globals.spinner.hide();
         resolve(resp);
       } catch (err: any) {
@@ -118,6 +118,25 @@ export class StudentsService {
         const resp: any = await this.api.get('educational-backgrounds-data');
         this.education = resp.data[0];
         this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        this.globals.toast.error(err.message || '😭 Something went wrong');
+        reject(err);
+      }
+    });
+  }
+
+  async updateEducationalBackgroundData(data: any, id: number) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.update(
+          `educational-backgrounds-data/${id}`,
+          data
+        );
+        this.globals.spinner.hide();
+        this.globals.toast.success('Educational Background Updated');
         resolve(resp);
       } catch (err: any) {
         this.globals.spinner.hide();
@@ -173,12 +192,12 @@ export class StudentsService {
     });
   }
 
-  async updateAthleticBackgroundData(data: any) {
+  async updateAthleticBackgroundData(data: any, id: number) {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
         const resp: any = await this.api.update(
-          'athletic-backgrounds-data',
+          `athletic-backgrounds-data/${id}`,
           data
         );
         this.globals.spinner.hide();
@@ -197,7 +216,7 @@ export class StudentsService {
       try {
         this.globals.spinner.show();
         const resp: any = await this.api.get('athletic-backgrounds-data');
-        this.athleticBackground = resp.data[2];
+        this.athleticBackground = resp.data[0];
         this.globals.spinner.hide();
         resolve(resp);
       } catch (err: any) {
@@ -259,6 +278,22 @@ export class StudentsService {
     });
   }
 
+  async deleteImageData(id: number) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.delete(`image-data/${id}`);
+        this.globals.toast.success(resp.message);
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        this.globals.toast.error(err.message);
+        reject(err);
+      }
+    });
+  }
+
   async postVideoData(data: any) {
     return await new Promise(async (resolve, reject) => {
       try {
@@ -283,6 +318,22 @@ export class StudentsService {
         this.globals.spinner.show();
         const resp: any = await this.api.get('video-data');
         this.videos = resp.data;
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        this.globals.toast.error(err.message);
+        reject(err);
+      }
+    });
+  }
+
+  async deleteVideoData(id: number) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.delete(`video-data/${id}`);
+        this.globals.toast.success(resp.message);
         this.globals.spinner.hide();
         resolve(resp);
       } catch (err: any) {

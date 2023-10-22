@@ -26,10 +26,6 @@ export class VideoUploadsComponent {
     this.files = this.studentsService.videos;
   }
 
-  onSubmit() {
-    console.log(this.profileDataForm.value);
-  }
-
   onInputChange(event: any) {
     let reader = new FileReader();
     if (event.target.files && event.target.files.length) {
@@ -45,14 +41,14 @@ export class VideoUploadsComponent {
         })
       };
     }
-    console.log(this.files);
     this.profileDataForm.patchValue({
       videos: this.files,
     });
   }
 
-  removeVideo(e: any, index: number) {
+  async removeVideo(e: any, index: number, videoId: number) {
     e.preventDefault();
+    await this.studentsService.deleteVideoData(videoId);
     this.files.splice(index, 1);
     this.profileDataForm.patchValue({
       videos: this.files,

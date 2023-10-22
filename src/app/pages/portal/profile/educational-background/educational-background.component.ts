@@ -17,9 +17,10 @@ export class EducationalBackgroundComponent {
   profileDataForm: FormGroup = new FormGroup({
     course_of_study: new FormControl('', [Validators.required]),
     gpa: new FormControl('', [Validators.required]),
-    graduation_year: new FormControl([], [Validators.required]),
+    graduation_year: new FormControl('', [Validators.required]),
     extra_curricular_activities: new FormControl([], [Validators.required]),
-    transcripts: new FormControl([], [Validators.required]),
+    transcript_path: new FormControl([]),
+    academic_achievement: new FormControl(''),
   });
 
   CountryISO = CountryISO;
@@ -59,11 +60,17 @@ export class EducationalBackgroundComponent {
       graduation_year: this.studentsService.education?.graduation_year,
       extra_curricular_activities:
         this.studentsService?.education?.extra_curricular_activities,
+      transcript_path: this.studentsService?.education?.transcript_path,
+      academic_achievement:
+        this.studentsService?.education?.academic_achievement,
     });
   }
 
-  onSubmit() {
-    console.log(this.profileDataForm.value);
+  async onSubmit() {
+    await this.studentsService.updateEducationalBackgroundData(
+      this.profileDataForm.value,
+      this.studentsService.education?.id as number
+    );
   }
 
   toggleSelectMenu(event: any, closeOnSelect: boolean = true) {
@@ -134,7 +141,7 @@ export class EducationalBackgroundComponent {
     this.files = [...(event.dataTransfer?.files || event.target.files)];
 
     this.profileDataForm.patchValue({
-      transcripts: this.files,
+      transcript_path: this.files,
     });
   }
 
@@ -142,7 +149,7 @@ export class EducationalBackgroundComponent {
     e.preventDefault();
     this.files.splice(index, 1);
     this.profileDataForm.patchValue({
-      transcripts: this.files,
+      transcript_path: this.files,
     });
   }
 

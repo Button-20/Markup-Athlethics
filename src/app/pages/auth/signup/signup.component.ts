@@ -27,7 +27,15 @@ export class SignupComponent {
   PhoneNumberFormat = PhoneNumberFormat;
   separateDialCode = false;
 
-  constructor(public globals: GlobalsService) {}
+  constructor(public globals: GlobalsService) {
+    this.globals.activatedRoute.queryParams.subscribe((params) => {
+      if (params['userType']) {
+        this.signupForm.patchValue({
+          status: params['userType'] === 'student' ? '1' : '2',
+        });
+      }
+    });
+  }
 
   async onSubmit() {
     if (this.signupForm.invalid) {

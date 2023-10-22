@@ -8,14 +8,16 @@ import { GlobalsService } from 'src/app/services/core/globals';
   styleUrls: ['./password.component.scss'],
 })
 export class PasswordComponent {
-
   constructor(
     private authService: AuthService,
     private globals: GlobalsService
   ) {}
 
   async onSubmit(event: any) {
-    await this.authService.register(event);
+    await this.authService.register(
+      event,
+      event.status !== '1' ? 'coach' : 'student'
+    );
     this.globals.storage.clearRegistrationDetails();
     this.globals.router.navigate(['/portal/dashboard']);
   }

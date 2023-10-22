@@ -65,7 +65,8 @@ export class AthleticBackgroundComponent {
     });
 
     await this.studentsService.updateAthleticBackgroundData(
-      this.profileDataForm.value
+      this.profileDataForm.value,
+      this.studentsService.athleticBackground?.id as number
     );
   }
 
@@ -81,6 +82,9 @@ export class AthleticBackgroundComponent {
       }),
       references: JSON.parse(
         this.studentsService.athleticBackground.references
+      ),
+      letters_of_recommendation: JSON.parse(
+        this.studentsService.athleticBackground.letters_of_recommendation
       ),
     });
 
@@ -111,7 +115,7 @@ export class AthleticBackgroundComponent {
             }px))`;
           }
         }
-    }, 50);
+    }, 100);
   }
 
   addSport(sport: Sports) {
@@ -171,13 +175,20 @@ export class AthleticBackgroundComponent {
     }
   }
 
-  dropImage(event: any) {
+  async dropImage(event: any) {
     event.preventDefault();
     event.stopPropagation();
-    this.files = [...(event.dataTransfer?.files || event.target.files)];
-
+    for (const file of event.dataTransfer?.files || event.target.files) {
+      const response = await this.studentsService.uploadImage({ file });
+      this.files.push({
+        name: file.name,
+        type: file.type,
+        size: file.size,
+        url: response,
+      });
+    }
     this.profileDataForm.patchValue({
-      transcripts: this.files,
+      letters_of_recommendation: this.files,
     });
   }
 
@@ -185,7 +196,7 @@ export class AthleticBackgroundComponent {
     e.preventDefault();
     this.files.splice(index, 1);
     this.profileDataForm.patchValue({
-      transcripts: this.files,
+      letters_of_recommendation: this.files,
     });
   }
 

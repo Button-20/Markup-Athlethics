@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'app-user-type',
@@ -13,9 +14,13 @@ export class UserTypeComponent {
     userType: new FormControl(''),
   });
 
-  constructor() { }
-  
+  constructor(private globals: GlobalsService) {}
+
   onSubmit() {
-    console.log(this.userTypeForm.value);
+    this.globals.router.navigate([`/auth/signup`], {
+      queryParams: {
+        userType: this.userTypeForm.value.userType.toLowerCase(),
+      },
+    });
   }
 }

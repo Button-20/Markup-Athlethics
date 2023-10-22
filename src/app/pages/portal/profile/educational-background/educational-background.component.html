@@ -141,7 +141,7 @@
       </div>
       <div
         class="col-6 py-2 file"
-        *ngFor="let file of profileDataForm.value.transcripts; let i = index"
+        *ngFor="let file of profileDataForm.value.transcript_path; let i = index"
       >
         <div class="d-flex align-items-start justify-content-between">
           <div class="d-flex align-items-start">
@@ -183,7 +183,6 @@
       <button
         class="btn btn-primary"
         type="submit"
-        [disabled]="!profileDataForm.valid"
       >
         Upload profile
       </button>

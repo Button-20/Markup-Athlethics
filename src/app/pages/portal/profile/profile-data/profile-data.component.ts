@@ -77,7 +77,7 @@ export class ProfileDataComponent {
 
   async onSubmit() {
     this.studentsService.updateStudentData(
-      this.globals.user?.id as number,
+      this.studentsService.student?.id as number,
       this.profileDataForm.value
     );
   }

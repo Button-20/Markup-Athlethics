@@ -202,7 +202,10 @@
       </div>
       <div
         class="col-6 py-2 file"
-        *ngFor="let file of profileDataForm.value.transcripts; let i = index"
+        *ngFor="
+          let file of profileDataForm.value.letters_of_recommendation;
+          let i = index
+        "
       >
         <div class="d-flex align-items-start justify-content-between">
           <div class="d-flex align-items-start">
@@ -241,13 +244,7 @@
       class="col-12 d-flex align-items-center justify-content-end gap-2 my-5 flex-wrap order-sm-reverse"
     >
       <button class="btn btn-secondary" type="button">Cancel</button>
-      <button
-        class="btn btn-primary"
-        type="submit"
-        [disabled]="!profileDataForm.valid"
-      >
-        Upload profile
-      </button>
+      <button class="btn btn-primary" type="submit">Upload profile</button>
     </div>
   </div>
 </form>

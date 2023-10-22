@@ -24,10 +24,6 @@ export class ImageUploadsComponent {
     this.files = this.studentsService.images;
   }
 
-  onSubmit() {
-    console.log(this.profileDataForm.value);
-  }
-
   onInputChange(event: any) {
     let reader = new FileReader();
     if (event.target.files && event.target.files.length) {
@@ -49,8 +45,9 @@ export class ImageUploadsComponent {
     });
   }
 
-  removeImage(e: any, index: number) {
+  async removeImage(e: any, index: number, imageId: number) {
     e.preventDefault();
+    await this.studentsService.deleteImageData(imageId);
     this.files.splice(index, 1);
     this.profileDataForm.patchValue({
       images: this.files,
