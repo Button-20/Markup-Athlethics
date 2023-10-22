@@ -14,8 +14,6 @@ import { GlobalsService } from 'src/app/services/core/globals';
   styleUrls: ['./account-data-form.component.scss'],
 })
 export class AccountDataFormComponent {
-  @Input() user_type: string = '1';
-
   @Input() user: User | null = null;
 
   @Input() editable: boolean = false;
@@ -64,7 +62,7 @@ export class AccountDataFormComponent {
         this.setPhoneInput(this.user?.phone || '');
       }, 100);
     }
-    if (this.user_type == '2') {
+    if (this.user?.user_type == '2') {
       this.accountForm.controls['educational_level'].setValidators(null);
     }
   }
@@ -77,7 +75,7 @@ export class AccountDataFormComponent {
     }
   }
 
-  async submit() {
+  submit() {
     if (this.accountForm.invalid) {
       return;
     }

@@ -14,7 +14,6 @@ export class AccountDataComponent {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.globals.user)
   }
 
   async onSubmit(formData: any) {
