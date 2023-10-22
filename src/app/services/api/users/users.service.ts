@@ -17,7 +17,7 @@ export class UsersService {
       try {
         this.globals.spinner.show();
         const resp: any = await this.api.get('user');
-        this.globals.user = {...this.globals.user, ...resp.data};
+        this.globals.user = { ...this.globals.user, ...resp.user };
         this.globals.storage.setUserDetails(this.globals.user);
         this.globals.spinner.hide();
         resolve(resp);

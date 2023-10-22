@@ -2,7 +2,10 @@
   class="d-flex align-items-center justify-content-between mt-0 mt-md-5 mb-2"
 >
   <p class="mb-2 fw-bold mt-4 title">Educational Background</p>
-  <i class="bi bi-x-lg mt-4 pointer d-none d-md-block" (click)="gotoDashboard()"></i>
+  <i
+    class="bi bi-x-lg mt-4 pointer d-none d-md-block"
+    (click)="gotoDashboard()"
+  ></i>
 </div>
 <p class="mb-5 opacity-50">
   Enter the details below to update your educational background.
@@ -178,6 +181,7 @@
           class="w-100"
         />
         <button
+          type="button"
           class="btn btn-primary w-25 mt-3"
           id="transcript-btn"
           (click)="profileDataForm.patchValue({ transcript_path: null })"

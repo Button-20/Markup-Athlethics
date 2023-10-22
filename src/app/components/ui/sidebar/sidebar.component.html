@@ -3,8 +3,8 @@
   [ngClass]="{
     active: openSidebar
   }"
-  (mouseenter)="showMenuName && openSidebar = true"
-  (mouseleave)="showMenuName && openSidebar = false"
+  (mouseenter)="showMenuName && (openSidebar = true)"
+  (mouseleave)="showMenuName && (openSidebar = false)"
 >
   <ul class="m-0 p-0">
     <li *ngFor="let item of navigations">
@@ -35,7 +35,7 @@
         class="pointer"
         class="d-flex align-items-center gap-3"
       >
-        <img src="assets/images/log-out.png" alt="logout" />
+        <img src="assets/images/log-out.png" alt="logout" class="pointer" />
         <p
           class="d-block d-md-none mb-0 text-white opacity-50 truncate"
           style="{{
