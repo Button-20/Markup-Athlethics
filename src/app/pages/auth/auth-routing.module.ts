@@ -13,11 +13,6 @@ import { UserTypeComponent } from './user-type/user-type.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'user-type',
-    pathMatch: 'full',
-  },
-  {
-    path: '',
     component: AuthComponent,
     children: [
       {
@@ -31,6 +26,11 @@ const routes: Routes = [
       {
         path: 'password',
         component: PasswordComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
       },
     ],
   },

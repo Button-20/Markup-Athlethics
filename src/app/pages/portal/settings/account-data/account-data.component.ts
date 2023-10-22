@@ -13,7 +13,9 @@ export class AccountDataComponent {
     public globals: GlobalsService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.globals.user)
+  }
 
   async onSubmit(formData: any) {
     await this.usersService.updateUserProfile(formData);

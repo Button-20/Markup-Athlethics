@@ -135,11 +135,18 @@ export class EducationalBackgroundComponent {
     formControl.setValue(extras);
   }
 
-  dropImage(event: any) {
+  async dropImage(event: any) {
     event.preventDefault();
     event.stopPropagation();
-    this.files = [...(event.dataTransfer?.files || event.target.files)];
-
+    for (const file of event.dataTransfer?.files || event.target.files) {
+      const response = await this.studentsService.uploadImage({ file });
+      this.files.push({
+        name: file.name,
+        type: file.type,
+        size: file.size,
+        url: response,
+      });
+    }
     this.profileDataForm.patchValue({
       transcript_path: this.files,
     });
