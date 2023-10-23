@@ -17,11 +17,9 @@
         <img src="{{ item.image }}" alt="{{ item.name }}" />
         <p
           class="d-block d-md-none mb-0 text-white opacity-50"
-          style="{{
-            showMenuName && openSidebar
-              ? 'display: block !important;'
-              : 'display: none;'
-          }}"
+          [ngStyle]="{
+            display: showMenuName && openSidebar ? 'block !important' : 'none'
+          }"
         >
           {{ item.name }}
         </p>
@@ -38,11 +36,9 @@
         <img src="assets/images/log-out.png" alt="logout" class="pointer" />
         <p
           class="d-block d-md-none mb-0 text-white opacity-50 truncate"
-          style="{{
-            showMenuName && openSidebar
-              ? 'display: block !important;'
-              : 'display: none;'
-          }}"
+          [ngStyle]="{
+            display: showMenuName && openSidebar ? 'block !important' : 'none'
+          }"
         >
           Sign out
         </p>

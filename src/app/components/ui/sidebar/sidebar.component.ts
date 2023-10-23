@@ -100,13 +100,15 @@ export class SidebarComponent {
           (nav) => nav.name !== 'Profile'
         );
         break;
-        case '1':
-          this.navigations = this.navigations.filter(
+      case '1':
+        this.navigations = this.navigations.filter(
           (nav) => nav.name !== 'Connections' && nav.name !== 'Athletics'
-          );
-          break;
+        );
+        break;
       default:
-        this.navigations = this.adminNavigations;
+        this.navigations = this.navigations.filter(
+          (nav) => nav.name !== 'Profile'
+        );
         break;
     }
   }
