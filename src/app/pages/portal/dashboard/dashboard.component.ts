@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StudentsService } from 'src/app/services/api/students/students.service';
 import { UsersService } from 'src/app/services/api/users/users.service';
 import { GlobalsService } from 'src/app/services/core/globals';
 
@@ -10,11 +11,14 @@ import { GlobalsService } from 'src/app/services/core/globals';
 export class DashboardComponent {
   constructor(
     public globals: GlobalsService,
-    public usersService: UsersService
+    public usersService: UsersService,
+    public studentsService: StudentsService
   ) {}
 
   async ngOnInit() {
     await this.usersService.getUserProfile();
+    this.globals.user?.user_type === '2' &&
+      (await this.studentsService.getStudentProfiles('featured'));
   }
 
   ngAfterViewInit() {

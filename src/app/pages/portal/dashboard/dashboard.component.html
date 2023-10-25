@@ -28,7 +28,12 @@
         settings.
       </p>
       <div class="col-12 col-md-2">
-        <a href="#" class="text-white">Upload ID</a>
+        <a
+          href="javascript:void(0)"
+          routerLink="/portal/settings"
+          class="text-white"
+          >Upload ID</a
+        >
       </div>
     </div>
     <div
@@ -129,12 +134,13 @@
       Featured Profiles
     </p>
     <div
-      class="d-flex align-items-center flex-wrap gap-4 justify-content-between mt-5"
+      class="d-flex align-items-center flex-wrap gap-4 mt-5 mb-4"
       *ngIf="globals.user?.user_type == '2'"
     >
       <player-card
-        *ngFor="let player of [].constructor(3)"
+        *ngFor="let player of studentsService.students"
         [margin_right]="'0'"
+        [player]="player"
       ></player-card>
     </div>
   </div>

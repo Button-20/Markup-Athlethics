@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { StudentsService } from 'src/app/services/api/students/students.service';
+import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'app-athletics',
@@ -7,13 +8,21 @@ import { StudentsService } from 'src/app/services/api/students/students.service'
   styleUrls: ['./athletics.component.scss'],
 })
 export class AthleticsComponent {
-  categories = ['All Categories', 'Soccer', 'Track and Field', 'Basketball'];
+  categories = ['All Categories'];
   activeTab: string = 'All Categories';
 
-  constructor(public studentsService: StudentsService) {}
+  constructor(
+    public studentsService: StudentsService,
+    public globals: GlobalsService
+  ) {}
 
   async ngOnInit() {
+    await this.studentsService.getSportsData();
     await this.studentsService.getStudentProfiles();
+    this.categories = [
+      ...this.categories,
+      ...this.studentsService.sports.map((sport: any) => sport.sport_name),
+    ];
   }
 
   toggleSearchFilter() {

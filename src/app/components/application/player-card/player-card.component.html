@@ -1,23 +1,23 @@
 <div
   class="player-card pointer"
   id="player5"
-  routerLink="/player/{{ player.id }}"
+  routerLink="/player/{{ player?.id }}"
   [ngStyle]="{
     'margin-right': margin_right || '2.5rem'
   }"
 >
   <div class="text-center">
-    <img src="{{ player.students.profile_picture }}" />
+    <img src="{{ player?.students?.profile_picture }}" />
   </div>
   <div class="mb-2 d-flex align-items-center gap-2">
     <img
-      src="https://flagcdn.com/{{ globals.getCountryCode(player.country) }}.svg"
+      src="https://flagcdn.com/{{ globals.getCountryCode(player?.country) }}.svg"
       alt="logo"
       class="flag"
     />
-    <p class="mb-0 opacity-50">{{ player.country }}</p>
+    <p class="mb-0 opacity-50">{{ player?.country }}</p>
   </div>
-  <h4 class="mb-2 fw-600 fs-34">{{ player.name }}</h4>
+  <h4 class="mb-2 fw-600 fs-34">{{ player?.name }}</h4>
   <p
     class="mb-0 pb-5 border-bottom border-opacity-50 border-2 border-light opacity-50"
   >
@@ -26,12 +26,12 @@
   <div class="row g-0 mt-3">
     <div class="col-6">
       <p class="mb-1 opacity-50">Height</p>
-      <h3 class="mb-1">{{ player.students.height }} cm</h3>
+      <h3 class="mb-1">{{ player?.students?.height }} cm</h3>
       <p class="mb-0 opacity-50">/ 5.3 ft</p>
     </div>
     <div class="col-6 text-end">
       <p class="mb-1 opacity-50">Weight</p>
-      <h3 class="mb-1">{{ player.students.weight }} lb</h3>
+      <h3 class="mb-1">{{ player?.students?.weight }} lb</h3>
       <p class="mb-0 opacity-50">/ 62.5 kg</p>
     </div>
   </div>

@@ -26,11 +26,11 @@ export class StudentsService {
 
   constructor(private api: RequestService, private globals: GlobalsService) {}
 
-  async getStudentProfiles() {
+  async getStudentProfiles(type?: string) {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        const resp: any = await this.api.get('students-profile');
+        const resp: any = await this.api.get(`students-profile${type ? `?type=${type}` : ''}`);
         this.students = resp.students;
         this.globals.spinner.hide();
         resolve(resp);
