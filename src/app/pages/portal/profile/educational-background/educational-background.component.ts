@@ -30,7 +30,13 @@ export class EducationalBackgroundComponent {
 
   files: any[] = [];
 
-  educationLevels: string[] = ['Beginner', 'Intermediate', 'Advanced'];
+  educationLevels: string[] = [
+    'High School',
+    'College',
+    'University',
+    'Technical or vocational education',
+    'No formal education',
+  ];
 
   nationalities: string[] = ['Ghanaian', 'Nigerian', 'South African'];
 

@@ -17,8 +17,10 @@ export class DashboardComponent {
 
   async ngOnInit() {
     await this.usersService.getUserProfile();
-    this.globals.user?.user_type === '2' &&
-      (await this.studentsService.getStudentProfiles('featured'));
+    if (this.globals.user?.user_type === '2') {
+      this.studentsService.studentsQuery.type = 'featured';
+      await this.studentsService.getStudentProfiles();
+    }
   }
 
   ngAfterViewInit() {

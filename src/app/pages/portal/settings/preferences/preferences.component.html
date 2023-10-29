@@ -10,14 +10,21 @@
             class="form-check-input"
             type="checkbox"
             id="r&r-push"
-            name="review_rating_push"
+            name="all_notifications"
+            [checked]="
+              globals.user &&
+              globals.user.preferences[0].all_notifications === true
+            "
+            (click)="updatePreferences($event)"
           />
         </div>
       </div>
     </div>
     <div class="row g-0 mb-3 justify-content-between">
       <div class="col-6">
-        <p class="form-label font-14 mb-0">Notify me when there’s a profile view</p>
+        <p class="form-label font-14 mb-0">
+          Notify me when there’s a profile view
+        </p>
       </div>
       <div class="col-6 d-flex justify-content-end">
         <div class="form-check form-switch mb-3">
@@ -25,14 +32,17 @@
             class="form-check-input"
             type="checkbox"
             id="r&r-push"
-            name="review_rating_push"
+            name="profile_visits"
+            [checked]="globals.user && globals.user.preferences[1].profile_visits === true"
           />
         </div>
       </div>
     </div>
     <div class="row g-0 mb-3 justify-content-between">
       <div class="col-6">
-        <p class="form-label font-14 mb-0">Notify me when a coach makes a connection</p>
+        <p class="form-label font-14 mb-0">
+          Notify me when a coach makes a connection
+        </p>
       </div>
       <div class="col-6 d-flex justify-content-end">
         <div class="form-check form-switch mb-3">
@@ -40,7 +50,8 @@
             class="form-check-input"
             type="checkbox"
             id="r&r-push"
-            name="review_rating_push"
+            name="connection_requests"
+            [checked]="globals.user && globals.user.preferences[2].connection_requests === true"
           />
         </div>
       </div>

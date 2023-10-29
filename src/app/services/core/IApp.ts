@@ -11,6 +11,7 @@ export interface User {
   created_at: Date;
   updated_at: Date;
   user_type: string;
+  institution_id: string;
   user_progress: {
     id: number;
     user_id: number;
@@ -22,6 +23,11 @@ export interface User {
     created_at: Date;
     updated_at: Date;
   };
+  preferences: [
+    { all_notifications: boolean },
+    { profile_visits: boolean },
+    { connection_requests: boolean }
+  ];
 }
 
 export interface Student {
@@ -92,4 +98,3 @@ export interface Education {
   created_at: Date;
   updated_at: Date;
 }
-

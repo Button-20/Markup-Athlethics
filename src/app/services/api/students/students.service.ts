@@ -24,13 +24,29 @@ export class StudentsService {
 
   students: any[] = [];
 
+  studentsQuery: any = {
+    type: '',
+    category: 'All Categories',
+  };
+
   constructor(private api: RequestService, private globals: GlobalsService) {}
 
-  async getStudentProfiles(type?: string) {
+  async getStudentProfiles() {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        const resp: any = await this.api.get(`students-profile${type ? `?type=${type}` : ''}`);
+        let params = '';
+        Object.keys(this.studentsQuery).forEach((key) => {
+          if (this.studentsQuery[key]) {
+            if (key === 'category' && this.studentsQuery[key] === 'All Categories') {
+              return;
+            }
+            params += `${key}=${this.studentsQuery[key]}&`;
+          }
+        });
+        const resp: any = await this.api.get(
+          `students-profile${params ? `?${params}` : ''}`
+        );
         this.students = resp.students;
         this.globals.spinner.hide();
         resolve(resp);

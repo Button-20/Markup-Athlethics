@@ -17,6 +17,6 @@ export class AccountDataComponent {
   }
 
   async onSubmit(formData: any) {
-    await this.usersService.updateUserProfile(formData);
+    await this.usersService.updateUserProfile(formData, this.globals.user?.slug as string);
   }
 }

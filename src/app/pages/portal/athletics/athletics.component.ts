@@ -9,7 +9,6 @@ import { GlobalsService } from 'src/app/services/core/globals';
 })
 export class AthleticsComponent {
   categories = ['All Categories'];
-  activeTab: string = 'All Categories';
 
   constructor(
     public studentsService: StudentsService,
@@ -25,7 +24,8 @@ export class AthleticsComponent {
     ];
   }
 
-  toggleSearchFilter() {
+  toggleSearchFilter(event: any) {
+    event.preventDefault();
     let searchFilter = document.querySelector('.search-filter');
     searchFilter?.classList.toggle('show');
     document.addEventListener('mousedown', (e: any) => {
@@ -33,5 +33,10 @@ export class AthleticsComponent {
         searchFilter?.classList.remove('show');
       }
     });
+  }
+
+  async filterByCategory(category: string) {
+    this.studentsService.studentsQuery.category = category;
+    await this.studentsService.getStudentProfiles();
   }
 }

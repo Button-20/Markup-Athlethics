@@ -5,6 +5,7 @@ import {
   PhoneNumberFormat,
   SearchCountryField,
 } from 'ngx-intl-telephone-input';
+import { StudentsService } from 'src/app/services/api/students/students.service';
 import { User } from 'src/app/services/core/IApp';
 import { GlobalsService } from 'src/app/services/core/globals';
 
@@ -37,16 +38,19 @@ export class AccountDataFormComponent {
   separateDialCode = false;
 
   educational_levels = [
-    'Primary Education',
-    'Middle School or Junior High School',
-    'Secondary Education',
-    'Tertiary Education',
-    'Vocational and Technical Education',
+    'High School',
+    'College',
+    'University',
+    'Technical or vocational education',
+    'No formal education',
   ];
 
-  files: any[] = [];
+  file: any = null;
 
-  constructor(public globals: GlobalsService) {}
+  constructor(
+    public globals: GlobalsService,
+    public studentsService: StudentsService
+  ) {}
 
   ngOnInit() {
     if (this.user) {
@@ -75,10 +79,20 @@ export class AccountDataFormComponent {
     }
   }
 
-  submit() {
+  async submit() {
     if (this.accountForm.invalid) {
       return;
     }
+    this.accountForm.patchValue({
+      institution_id: {
+        name: this.file?.name,
+        type: this.file?.type,
+        size: this.file?.size,
+        image_url: await this.studentsService.uploadImage({
+          file: this.accountForm.value.institution_id.image_url,
+        }),
+      },
+    });
     this.onSubmit.emit(this.accountForm.value);
   }
 
@@ -131,27 +145,38 @@ export class AccountDataFormComponent {
     formControl.setValue(item);
   }
 
-  dropImage(event: any) {
+  async dropImage(event: any) {
     event.preventDefault();
     event.stopPropagation();
-    this.files = [...(event.dataTransfer?.files || event.target.files)];
-
+    this.file = event.dataTransfer?.files[0] || event.target.files[0];
     this.accountForm.patchValue({
-      institution_id: this.files,
+      institution_id: {
+        name: this.file.name,
+        type: this.file.type,
+        size: this.file.size,
+        image_url: await this.convertToBase64(this.file),
+      },
     });
   }
 
-  removeFile(e: any, index: number) {
+  removeFile(e: any) {
     e.preventDefault();
-    this.files.splice(index, 1);
-    this.accountForm.patchValue({
-      institution_id: this.files,
-    });
+    e.stopPropagation();
+    this.file = null;
   }
 
   onDragOver(event: any) {
     event.stopPropagation();
     event.preventDefault();
+  }
+
+  convertToBase64(file: any) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result?.toString());
+      reader.onerror = (error) => reject(error);
+    });
   }
 
   get name() {
