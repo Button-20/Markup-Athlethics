@@ -28,8 +28,9 @@ export class PreferencesComponent {
     }
 
     await this.usersService.updateUserProfile(
-      { preferences: this.globals.user?.preferences },
+      this.globals.user || {},
       this.globals.user?.slug || ''
     );
+    this.globals.toast.success('Preferences updated successfully!');
   }
 }
