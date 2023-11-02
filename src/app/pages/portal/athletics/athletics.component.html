@@ -18,9 +18,6 @@
         (click)="filterByCategory(cat)"
         >{{ cat }}</a
       >
-      <a href="#">
-        <i class="bi bi-search"></i>
-      </a>
     </div>
 
     <div
@@ -52,6 +49,6 @@
       ></no-data>
     </div>
     <pagination></pagination>
-    <search-filter></search-filter>
+    <search-filter (search)="search($event)"></search-filter>
   </div>
 </div>

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AuthService } from './api/auth/auth.service';
+import { CoachesService } from './api/coaches/coaches.service';
 import { FaqsService } from './api/faqs/faqs.service';
 import { NewsService } from './api/news/news.service';
 import { StudentsService } from './api/students/students.service';
@@ -19,7 +20,8 @@ const providers: Array<any> = [
   UsersService,
   NewsService,
   FaqsService,
-  StudentsService
+  StudentsService,
+  CoachesService,
 ];
 
 @NgModule({

@@ -24,6 +24,10 @@ export class AthleticsComponent {
     ];
   }
 
+  async search(searchForm: any) {
+    this.studentsService.getStudentProfiles();
+  }
+
   toggleSearchFilter(event: any) {
     event.preventDefault();
     let searchFilter = document.querySelector('.search-filter');

@@ -1,4 +1,3 @@
-
 .search-filter {
   position: fixed;
   top: 0;
@@ -229,6 +228,43 @@ input[type="range"]::-ms-thumb {
   pointer-events: auto;
 }
 
+.select {
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  &.show {
+    .dropdown-options {
+      display: block;
+    }
+  }
+
+  .dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20rem;
+    overflow-y: scroll;
+    background: #1c1c1d;
+    border: 1px solid #fff;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    z-index: 9999;
+    display: none;
+
+    .dropdown-option {
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background: rgba(55, 55, 55, 0.478);
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 768px) {
-  
 }
