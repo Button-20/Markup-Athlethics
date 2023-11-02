@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CoachesService } from 'src/app/services/api/coaches/coaches.service';
 import { StudentsService } from 'src/app/services/api/students/students.service';
 import { GlobalsService } from 'src/app/services/core/globals';
 
@@ -12,6 +13,7 @@ export class AthleticsComponent {
 
   constructor(
     public studentsService: StudentsService,
+    public coachesService: CoachesService,
     public globals: GlobalsService
   ) {}
 
@@ -37,6 +39,13 @@ export class AthleticsComponent {
         searchFilter?.classList.remove('show');
       }
     });
+  }
+
+  async viewProfileCount(athlete_id: string) {
+    await this.coachesService.postViews(
+      athlete_id,
+      this.globals.user?.id.toString() || ''
+    );
   }
 
   async filterByCategory(category: string) {

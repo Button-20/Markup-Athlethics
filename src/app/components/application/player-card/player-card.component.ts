@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
@@ -10,6 +10,8 @@ export class PlayerCardComponent {
   @Input() margin_right: string = '';
 
   @Input() player: any;
+
+  @Output() emitViewProfile: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(public globals: GlobalsService) {}
 }

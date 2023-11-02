@@ -2,6 +2,7 @@
   class="player-card pointer"
   id="player5"
   routerLink="/player/{{ player?.id }}"
+  (click)="emitViewProfile.emit(player?.id)"
   [ngStyle]="{
     'margin-right': margin_right || '2.5rem'
   }"
@@ -11,7 +12,9 @@
   </div>
   <div class="mb-2 d-flex align-items-center gap-2">
     <img
-      src="https://flagcdn.com/{{ globals.getCountryCode(player?.country) }}.svg"
+      src="https://flagcdn.com/{{
+        globals.getCountryCode(player?.country)
+      }}.svg"
       alt="logo"
       class="flag"
     />

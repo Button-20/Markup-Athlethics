@@ -40,6 +40,7 @@
     >
       <player-card
         [margin_right]="'0px'"
+        (emitViewProfile)="viewProfileCount($event)"
         *ngFor="let player of studentsService.students; let i = index"
         [player]="player"
       ></player-card>
