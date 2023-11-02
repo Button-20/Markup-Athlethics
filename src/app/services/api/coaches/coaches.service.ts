@@ -28,12 +28,11 @@ export class CoachesService {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        const resp: any = await this.api.post(`api/profile/view`, {
+        const resp: any = await this.api.post(`profile/view`, {
           athlete_id,
           coach_id,
         });
         this.globals.spinner.hide();
-        this.globals.toast.success(resp.message);
         resolve(resp);
       } catch (err: any) {
         this.globals.spinner.hide();
