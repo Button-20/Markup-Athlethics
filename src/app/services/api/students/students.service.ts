@@ -38,7 +38,10 @@ export class StudentsService {
         let params = '';
         Object.keys(this.studentsQuery).forEach((key) => {
           if (this.studentsQuery[key]) {
-            if (key === 'category' && this.studentsQuery[key] === 'All Categories') {
+            if (
+              key === 'category' &&
+              this.studentsQuery[key] === 'All Categories'
+            ) {
               return;
             }
             params += `${key}=${this.studentsQuery[key]}&`;
@@ -53,6 +56,31 @@ export class StudentsService {
       } catch (err: any) {
         this.globals.spinner.hide();
         this.globals.toast.error(err.message || '😭 Something went wrong');
+        reject(err);
+      }
+    });
+  }
+
+  async getStudentProfile(id: string) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.get(`student-profile/${id}`);
+        this.student = resp.students[0];
+        if (!this.student) return;
+        this.student.athletic_backgrounds =
+          resp.students[0]?.athletic_backgrounds[0];
+        this.student.athletic_backgrounds.skills = JSON.parse(
+          resp.students[0]?.athletic_backgrounds.skills
+        );
+        this.student.athletic_backgrounds.references = JSON.parse(
+          resp.students[0]?.athletic_backgrounds.references
+        );
+        console.log(this.student);
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
         reject(err);
       }
     });

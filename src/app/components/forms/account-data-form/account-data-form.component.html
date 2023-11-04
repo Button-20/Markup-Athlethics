@@ -134,10 +134,7 @@
         </p>
       </label>
     </div>
-    <div
-      class="col-6 py-2 file"
-      *ngIf="file"
-    >
+    <div class="col-6 py-2 file" *ngIf="file">
       <div class="d-flex align-items-start justify-content-between">
         <div class="d-flex align-items-start">
           <i class="bi bi-file-earmark"></i>
@@ -161,18 +158,17 @@
             </div>
           </div>
         </div>
-        <a
-          href="#"
-          class="opacity-50 text-white"
-          (click)="removeFile($event)"
+        <a href="#" class="opacity-50 text-white" (click)="removeFile($event)"
           >Delete</a
         >
       </div>
     </div>
   </div>
 
-  <div class="d-flex align-items-center justify-content-end gap-2 mb-5 order-sm-reverse">
-    <button class="btn btn-secondary">Cancel</button>
+  <div
+    class="d-flex align-items-center justify-content-end gap-2 mb-5 order-sm-reverse"
+  >
+    <button class="btn btn-secondary" type="button">Cancel</button>
     <button
       class="btn btn-primary"
       [disabled]="!accountForm.valid"

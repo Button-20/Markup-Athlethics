@@ -36,6 +36,7 @@ export interface Student {
   user_id: number;
   profile_picture: string;
   nationality: string;
+  name: string;
   date_of_birth: string;
   height: string;
   weight: string;
@@ -43,8 +44,73 @@ export interface Student {
   interests: Array<string>;
   featured: number;
   phone: string;
+  country: string;
   created_at: Date;
   updated_at: Date;
+  email: string;
+  institution_name: string;
+  educational_backgrounds: {
+    id: number;
+    course_of_study: string;
+    gpa: number;
+    graduation_year: number;
+    extra_curricular_activities: string[];
+    academic_achievement: null;
+    transcript_path: null;
+    user_id: number;
+  };
+  students: {
+    id: number;
+    user_id: number;
+    profile_picture: string;
+    nationality: string;
+    date_of_birth: string;
+    height: string;
+    weight: string;
+    educational_level: string;
+    interests: string[];
+    featured: number;
+  };
+  athletic_backgrounds: {
+    id: number;
+    sports: string[];
+    athletic_achievements: string;
+    references: { id: number; name: string; email: string }[];
+    letters_of_recommendation: [];
+    skills: {
+      soccer_skill_level: string;
+      soccer_position_played: {
+        id: number;
+        position_name: string;
+        sport_id: number;
+        skills: {
+          id: number;
+          position_id: number;
+          skill_title: string;
+          skills: string[];
+        }[];
+      };
+      soccer_ball_control: string;
+      soccer_agility: string;
+      soccer_speed: string;
+      soccer_accuracy: string;
+      soccer_power: string;
+      soccer_finesse: string;
+      track_and_field_skill_level: string;
+      track_and_field_position_played: {
+        id: number;
+        position_name: string;
+        sport_id: number;
+        skills: [];
+      };
+    };
+    user_id: number;
+  };
+  images: {
+    id: number;
+    image_path: string;
+    user_id: number;
+  }[];
 }
 
 export interface Sports {

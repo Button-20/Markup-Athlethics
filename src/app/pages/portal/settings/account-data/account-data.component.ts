@@ -13,10 +13,12 @@ export class AccountDataComponent {
     public globals: GlobalsService
   ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   async onSubmit(formData: any) {
-    await this.usersService.updateUserProfile(formData, this.globals.user?.slug as string);
+    await this.usersService.updateUserProfile(
+      formData,
+      this.globals.user?.slug as string
+    );
   }
 }

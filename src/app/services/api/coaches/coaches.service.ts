@@ -8,11 +8,14 @@ import { RequestService } from '../../core/request';
 export class CoachesService {
   constructor(private api: RequestService, private globals: GlobalsService) {}
 
-  async postConnection() {
+  async postConnection(athlete_id: string, coach_id: string) {
     return await new Promise(async (resolve, reject) => {
       try {
         this.globals.spinner.show();
-        const resp: any = await this.api.post('connections/connect', {});
+        const resp: any = await this.api.post('connections/connect', {
+          athlete_id,
+          coach_id,
+        });
         this.globals.spinner.hide();
         this.globals.toast.success(resp.message);
         resolve(resp);

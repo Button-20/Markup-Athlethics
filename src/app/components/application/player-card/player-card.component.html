@@ -18,9 +18,9 @@
       alt="logo"
       class="flag"
     />
-    <p class="mb-0 opacity-50">{{ player?.country }}</p>
+    <p class="mb-0 opacity-50">{{ player?.country | titlecase }}</p>
   </div>
-  <h4 class="mb-2 fw-600 fs-34">{{ player?.name }}</h4>
+  <h4 class="mb-2 fw-600 fs-34">{{ player?.name | titlecase }}</h4>
   <p
     class="mb-0 pb-5 border-bottom border-opacity-50 border-2 border-light opacity-50"
   >

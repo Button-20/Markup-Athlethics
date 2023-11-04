@@ -23,6 +23,11 @@ export class DashboardComponent {
     }
   }
 
+  ngOnDestroy() {
+    this.studentsService.studentsQuery.type = '';
+    this.studentsService.students = [];
+  }
+
   ngAfterViewInit() {
     this.startProgressBar();
     this.startProgressCircle();

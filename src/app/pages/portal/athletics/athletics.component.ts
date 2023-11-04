@@ -26,6 +26,10 @@ export class AthleticsComponent {
     ];
   }
 
+  ngOnDestroy() {
+    this.studentsService.students = [];
+  }
+
   async search(searchForm: any) {
     this.studentsService.getStudentProfiles();
   }
