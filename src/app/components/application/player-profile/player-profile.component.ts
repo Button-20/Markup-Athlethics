@@ -15,4 +15,8 @@ export class PlayerProfileComponent {
   getField(skill: string, skills: any, property: string) {
     return skills[skill.toLowerCase().replaceAll(' ', '_') + '_' + property];
   }
+
+  convertToNumber(value: string) {
+    return parseInt(value);
+  }
 }

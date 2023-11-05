@@ -264,117 +264,142 @@
           </p>
         </div>
       </div>
-      <div class="col-12 row g-0 py-4">
+      <div class="col-12 row g-0 py-4" *ngIf="sport === 'Soccer'">
         <p class="mb-0 fw-600">Stats</p>
       </div>
-      <div class="row g-0 pb-5 border-bottom border-light border-opacity-25">
+      <div class="row g-0 pb-5" *ngIf="sport === 'Soccer'">
         <div
           class="col-12 position-relative header d-flex justify-content-between align-items-center ps-0 py-2 px-3 border-3 border-bottom border-light border-opacity-25"
         >
-          <p class="mb-0">Pace</p>
-          <p class="mb-0 text-success fw-bold">91</p>
+          <p class="mb-0">Dribbling</p>
+          <p class="mb-0 text-success fw-bold">
+            {{
+              convertToNumber(
+                getField(
+                  sport,
+                  student?.athletic_backgrounds?.skills,
+                  "ball_control"
+                )
+              ) +
+                convertToNumber(
+                  getField(
+                    sport,
+                    student?.athletic_backgrounds?.skills,
+                    "speed"
+                  )
+                ) +
+                convertToNumber(
+                  getField(
+                    sport,
+                    student?.athletic_backgrounds?.skills,
+                    "agility"
+                  )
+                ) /
+                  3 | number : "1.0-0"
+            }}
+          </p>
         </div>
         <div
           class="col-12 d-flex justify-content-between align-items-center px-3 py-2 bg-grey"
         >
-          <p class="mb-0 ms-3">Acceleration</p>
-          <p class="mb-0 text-success fw-bold">89</p>
+          <p class="mb-0 ms-3">Ball Control</p>
+          <p class="mb-0 text-success fw-bold">
+            {{
+              getField(
+                sport,
+                student?.athletic_backgrounds?.skills,
+                "ball_control"
+              )
+            }}
+          </p>
         </div>
         <div
           class="col-12 d-flex justify-content-between align-items-center px-3 py-2 bg-slight-dark"
         >
-          <p class="mb-0 ms-3">Sprint Speed</p>
-          <p class="mb-0 text-success fw-bold">92</p>
-        </div>
-      </div>
-      <div class="row g-0 pb-5">
-        <div
-          class="col-12 position-relative header d-flex justify-content-between align-items-center ps-0 py-2 px-3 border-3 border-bottom border-light border-opacity-25"
-        >
-          <p class="mb-0">Passing</p>
-          <p class="mb-0 text-success fw-bold">91</p>
-        </div>
-        <div
-          class="col-12 d-flex justify-content-between align-items-center px-3 py-2 bg-grey"
-        >
-          <p class="mb-0 ms-3">Vision</p>
-          <p class="mb-0 text-success fw-bold">89</p>
+          <p class="mb-0 ms-3">Agility</p>
+          <p class="mb-0 text-success fw-bold">
+            {{
+              getField(sport, student?.athletic_backgrounds?.skills, "agility")
+            }}
+          </p>
         </div>
         <div
           class="col-12 d-flex justify-content-between align-items-center px-3 py-2 bg-slight-dark"
         >
-          <p class="mb-0 ms-3">Crossing</p>
-          <p class="mb-0 text-success fw-bold">92</p>
-        </div>
-        <div
-          class="col-12 d-flex justify-content-between align-items-center px-3 py-2 bg-grey"
-        >
-          <p class="mb-0 ms-3">Accuracy</p>
-          <p class="mb-0 text-success fw-bold">89</p>
-        </div>
-        <div
-          class="col-12 d-flex justify-content-between align-items-center px-3 py-2 bg-slight-dark"
-        >
-          <p class="mb-0 ms-3">Short Passing</p>
-          <p class="mb-0 text-success fw-bold">92</p>
-        </div>
-        <div
-          class="col-12 d-flex justify-content-between align-items-center px-3 py-2 bg-grey"
-        >
-          <p class="mb-0 ms-3">Long Passing</p>
-          <p class="mb-0 text-success fw-bold">89</p>
-        </div>
-        <div
-          class="col-12 d-flex justify-content-between align-items-center px-3 py-2 bg-slight-dark"
-        >
-          <p class="mb-0 ms-3">Curve</p>
-          <p class="mb-0 text-success fw-bold">92</p>
+          <p class="mb-0 ms-3">Speed</p>
+          <p class="mb-0 text-success fw-bold">
+            {{
+              getField(sport, student?.athletic_backgrounds?.skills, "speed")
+            }}
+          </p>
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-5 d-flex align-items-center">
+    <div
+      class="col-12 col-md-5 d-flex align-items-center"
+      *ngIf="sport === 'Soccer'"
+    >
       <div class="row g-0 pb-5">
         <div
           class="col-12 position-relative shooting header d-flex justify-content-between align-items-center ps-0 py-2 px-3 border-3 border-bottom border-light border-opacity-25"
         >
           <p class="mb-0">Shooting</p>
-          <p class="mb-0 text-success fw-bold">91</p>
-        </div>
-        <div
-          class="col-12 d-flex justify-content-between align-items-center px-3 py-2 bg-grey"
-        >
-          <p class="mb-0 ms-3">Vision</p>
-          <p class="mb-0 text-success fw-bold">89</p>
-        </div>
-        <div
-          class="col-12 d-flex justify-content-between align-items-center px-3 py-2 bg-slight-dark"
-        >
-          <p class="mb-0 ms-3">Crossing</p>
-          <p class="mb-0 text-success fw-bold">92</p>
+          <p class="mb-0 text-success fw-bold">
+            {{
+              convertToNumber(
+                getField(
+                  sport,
+                  student?.athletic_backgrounds?.skills,
+                  "accuracy"
+                )
+              ) +
+                convertToNumber(
+                  getField(
+                    sport,
+                    student?.athletic_backgrounds?.skills,
+                    "power"
+                  )
+                ) +
+                convertToNumber(
+                  getField(
+                    sport,
+                    student?.athletic_backgrounds?.skills,
+                    "finesse"
+                  )
+                ) /
+                  3 | number : "1.0-0"
+            }}
+          </p>
         </div>
         <div
           class="col-12 d-flex justify-content-between align-items-center px-3 py-2 bg-grey"
         >
           <p class="mb-0 ms-3">Accuracy</p>
-          <p class="mb-0 text-success fw-bold">89</p>
+          <p class="mb-0 text-success fw-bold">
+            {{
+              getField(sport, student?.athletic_backgrounds?.skills, "accuracy")
+            }}
+          </p>
         </div>
         <div
           class="col-12 d-flex justify-content-between align-items-center px-3 py-2 bg-slight-dark"
         >
-          <p class="mb-0 ms-3">Short Passing</p>
-          <p class="mb-0 text-success fw-bold">92</p>
+          <p class="mb-0 ms-3">Power</p>
+          <p class="mb-0 text-success fw-bold">
+            {{
+              getField(sport, student?.athletic_backgrounds?.skills, "power")
+            }}
+          </p>
         </div>
         <div
           class="col-12 d-flex justify-content-between align-items-center px-3 py-2 bg-grey"
         >
-          <p class="mb-0 ms-3">Long Passing</p>
-          <p class="mb-0 text-success fw-bold">89</p>
-        </div>
-        <div
-          class="col-12 d-flex justify-content-between align-items-center px-3 py-2 bg-slight-dark"
-        >
-          <p class="mb-0 ms-3">Curve</p>
-          <p class="mb-0 text-success fw-bold">92</p>
+          <p class="mb-0 ms-3">Finesse</p>
+          <p class="mb-0 text-success fw-bold">
+            {{
+              getField(sport, student?.athletic_backgrounds?.skills, "finesse")
+            }}
+          </p>
         </div>
       </div>
     </div>
@@ -448,10 +473,7 @@
       class="col-12 col-md-3 text-center text-md-start"
       *ngFor="let image of student?.images"
     >
-      <img
-        [src]="image?.image_path"
-        alt="image"
-      />
+      <img [src]="image?.image_path" alt="image" />
     </div>
   </div>
 </section>
