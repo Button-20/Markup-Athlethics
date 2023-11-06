@@ -1,4 +1,6 @@
-<div class="d-flex align-items-center justify-content-between mt-0 mt-md-5 mb-2">
+<div
+  class="d-flex align-items-center justify-content-between mt-0 mt-md-5 mb-2"
+>
   <p class="mb-2 fw-bold mt-4 title">Personal Data</p>
   <i class="bi bi-x-lg mt-4 pointer d-none d-md-block" (click)="goBack()"></i>
 </div>
@@ -105,6 +107,28 @@
       >
         <small *ngIf="weight.errors?.['required']">Weight is required</small>
       </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <label class="opacity-50 fw-bold" for="nationality"
+        >Select Gender</label
+      >
+      <button class="select-menu mt-2" (click)="toggleSelectMenu($event)">
+        <div class="select-btn" style="pointer-events: none">
+          <span class="selected-item">
+            {{ profileDataForm.value.gender || "Select Gender" }}
+          </span>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <ul class="select-list">
+          <li
+            class="select-item"
+            *ngFor="let gender of genders"
+            (click)="selectItem(gender, 'nationality')"
+          >
+            {{ gender }}
+          </li>
+        </ul>
+      </button>
     </div>
     <div class="col-12 col-md-6">
       <label class="opacity-50 fw-bold">Educational Level</label>

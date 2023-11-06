@@ -1,0 +1,45 @@
+<div class="mb-3 range-input">
+  <label class="form-label">{{ label }}</label>
+  <div class="slider-container">
+    <div class="slider-track" #track></div>
+    <input
+      type="range"
+      min="0"
+      max="100"
+      [value]="value[0]"
+      #slider1
+      (input)="slideOne()"
+    />
+    <input
+      type="range"
+      min="0"
+      max="100"
+      [value]="value[1]"
+      #slider2
+      (input)="slideTwo()"
+    />
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <input
+      type="number"
+      [value]="value[0]"
+      name="min"
+      [min]="value[0]"
+      #range1
+      (input)="changeRange($event, 'min')"
+      placeholder="Select age range"
+      aria-describedby="helpId"
+    />
+    -
+    <input
+      type="number"
+      name="max"
+      [value]="value[1]"
+      #range2
+      [max]="value[1]"
+      (input)="changeRange($event, 'max')"
+      placeholder="Select age range"
+      aria-describedby="helpId"
+    />
+  </div>
+</div>

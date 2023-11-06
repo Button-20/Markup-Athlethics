@@ -24,6 +24,7 @@ import { NoDataComponent } from './ui/no-data/no-data.component';
 import { PaginationComponent } from './ui/pagination/pagination.component';
 import { SidebarComponent } from './ui/sidebar/sidebar.component';
 import { SocialsHangingComponent } from './ui/socials-hanging/socials-hanging.component';
+import { RangeSliderComponent } from './ui/range-slider/range-slider.component';
 
 const components: Array<any> = [
   NavbarComponent,
@@ -46,6 +47,7 @@ const components: Array<any> = [
   NotificationComponent,
   ArticleFormComponent,
   SearchFilterComponent,
+  RangeSliderComponent
 ];
 
 @NgModule({

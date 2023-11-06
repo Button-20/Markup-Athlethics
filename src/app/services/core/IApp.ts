@@ -64,6 +64,7 @@ export interface Student {
     user_id: number;
     profile_picture: string;
     nationality: string;
+    gender: string;
     date_of_birth: string;
     height: string;
     weight: string;

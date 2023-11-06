@@ -13,14 +13,31 @@ export class SearchFilterComponent {
   searchForm: FormGroup = new FormGroup({
     name: new FormControl(''),
     country: new FormControl(''),
-    minAge: new FormControl(''),
-    maxAge: new FormControl(''),
+    min_age: new FormControl(''),
+    max_age: new FormControl(''),
+    min_height: new FormControl(''),
+    max_height: new FormControl(''),
+    min_gpa: new FormControl(''),
+    max_gpa: new FormControl(''),
+    gender: new FormControl(''),
+    educational_level: new FormControl(''),
   });
 
   constructor(public globals: GlobalsService) {}
 
   onSubmit() {
     this.search.emit(this.searchForm.value);
+    this.searchForm.reset({
+      name: '',
+      country: '',
+      min_age: '',
+      max_age: '',
+      min_height: '',
+      max_height: '',
+      min_gpa: '',
+      max_gpa: '',
+      educational_level: '',
+    });
     this.toggleSearch();
   }
 
@@ -52,5 +69,11 @@ export class SearchFilterComponent {
 
   selectCountry(country: string) {
     this.searchForm.controls['country'].setValue(country);
+  }
+
+  onUserChange({ min, max }: { min: number; max: number }, input: string) {
+    console.log(min, max);
+    this.searchForm.controls[`min_${input}`].setValue(min);
+    this.searchForm.controls[`max_${input}`].setValue(max);
   }
 }

@@ -28,7 +28,10 @@
             </div>
             <div class="mb-3">
               <label for="country" class="form-label">Country</label>
-              <div class="form-input select pointer" (click)="toggleDropdown($event)">
+              <div
+                class="form-input select pointer"
+                (click)="toggleDropdown($event)"
+              >
                 <span style="pointer-events: none">{{
                   searchForm.value.country || "Select country"
                 }}</span>
@@ -44,88 +47,16 @@
                 </div>
               </div>
             </div>
-            <div class="mb-3 range-input">
-              <label for="name" class="form-label">Age range</label>
-              <div class="slider-container">
-                <div class="slider-track"></div>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value="0"
-                  id="slider-1"
-                  oninput="slideOne()"
-                />
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value="100"
-                  id="slider-2"
-                  oninput="slideTwo()"
-                />
-              </div>
-              <div class="d-flex align-items-center gap-2">
-                <input
-                  type="number"
-                  value="5"
-                  name=""
-                  id="range1"
-                  placeholder="Select age range"
-                  aria-describedby="helpId"
-                />
-                -
-                <input
-                  type="number"
-                  name=""
-                  value="45"
-                  id="range2"
-                  placeholder="Select age range"
-                  aria-describedby="helpId"
-                />
-              </div>
-            </div>
-            <div class="mb-3 range-input">
-              <label for="name" class="form-label">Height range</label>
-              <div class="slider-container">
-                <div class="slider-track"></div>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value="0"
-                  id="slider-3"
-                  oninput="slideThree()"
-                />
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value="100"
-                  id="slider-4"
-                  #slider4
-                />
-              </div>
-              <div class="d-flex align-items-center gap-2">
-                <input
-                  type="number"
-                  value="5"
-                  name=""
-                  id="range3"
-                  placeholder="Select age range"
-                  aria-describedby="helpId"
-                />
-                -
-                <input
-                  type="number"
-                  name=""
-                  [value]="slider4.value"
-                  id="range4"
-                  placeholder="Select age range"
-                  aria-describedby="helpId"
-                />
-              </div>
-            </div>
+            <range-slider
+              [value]="[0, 100]"
+              label="Age range"
+              (userChange)="onUserChange($event, 'age')"
+            ></range-slider>
+            <range-slider
+              [value]="[0, 100]"
+              label="Height range"
+              (userChange)="onUserChange($event, 'height')"
+            ></range-slider>
           </div>
         </form>
       </div>
@@ -151,15 +82,33 @@
             >
               <div class="accordion-body pt-0">
                 <label class="list-group-item px-0">
-                  <input class="form-check-input" type="checkbox" value="" />
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="male"
+                    name="gender"
+                    formControlName="gender"
+                  />
                   Male
                 </label>
                 <label class="list-group-item px-0">
-                  <input class="form-check-input" type="checkbox" value="" />
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="gender"
+                    formControlName="gender"
+                    value="female"
+                  />
                   Female
                 </label>
                 <label class="list-group-item px-0">
-                  <input class="form-check-input" type="checkbox" value="" />
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="gender"
+                    formControlName="gender"
+                    value="other"
+                  />
                   Other
                 </label>
               </div>
@@ -298,46 +247,12 @@
             </div>
           </div>
         </div>
-        <div class="mb-3 range-input me-3">
-          <label for="name" class="form-label">GPA range</label>
-          <div class="slider-container">
-            <div class="slider-track"></div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value="0"
-              id="slider-5"
-              oninput="slideFive()"
-            />
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value="100"
-              id="slider-6"
-              oninput="slideSix()"
-            />
-          </div>
-          <div class="d-flex align-items-center gap-2">
-            <input
-              type="number"
-              value="5"
-              name=""
-              id="range5"
-              placeholder="Select age range"
-              aria-describedby="helpId"
-            />
-            -
-            <input
-              type="number"
-              name=""
-              value="45"
-              id="range6"
-              placeholder="Select age range"
-              aria-describedby="helpId"
-            />
-          </div>
+        <div class="me-3">
+          <range-slider
+            [value]="[0, 100]"
+            label="GPA range"
+            (userChange)="onUserChange($event, 'gpa')"
+          ></range-slider>
         </div>
       </div>
       <button class="btn btn-primary w-25 ms-auto m-3">Search</button>

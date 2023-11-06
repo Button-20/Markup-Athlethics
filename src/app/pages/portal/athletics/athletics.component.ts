@@ -31,7 +31,8 @@ export class AthleticsComponent {
   }
 
   async search(searchForm: any) {
-    this.studentsService.getStudentProfiles();
+    this.studentsService.studentsQuery = {...this.studentsService.studentsQuery, ...searchForm};
+    await this.studentsService.getStudentProfiles();
   }
 
   toggleSearchFilter(event: any) {
