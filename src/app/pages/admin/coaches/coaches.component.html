@@ -5,11 +5,11 @@
     <div class="d-flex align-items-center justify-content-between mb-5">
       <div class="d-flex align-items-center">
         <img
-          src="assets/images/book-open.png"
-          alt="dashboard"
+          src="assets/images/users.png"
+          alt="admin"
           class="me-2 img-success"
         />
-        <p class="mb-0">Athletes</p>
+        <p class="mb-0">Coaches</p>
       </div>
       <div class="d-flex align-items-center gap-4">
         <div class="search-input">
@@ -26,62 +26,51 @@
             <th class="text-white opacity-50">Full name</th>
             <th class="text-white opacity-50">Country</th>
             <th class="text-white opacity-50">Phone Number</th>
-            <th class="text-white opacity-50">Institution Level</th>
             <th class="text-white opacity-50">Institution</th>
-            <th></th>
+            <th class="text-white opacity-50">Email Address</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let student of studentsService.students; let i = index">
+          <tr *ngFor="let coach of coachesService.coaches; let i = index">
             <td scope="row">
-              <p class="mb-0 text-white opacity-50">
-                {{ i + 1 }}
-              </p>
+              <p class="mb-0 text-white opacity-50">{{ i + 1 }}</p>
             </td>
             <td>
               <div class="d-flex align-item-center">
                 <img
                   src="{{
-                    student?.institution_id ||
+                    coach?.institution_id ||
                       'https://ui-avatars.com/api/?name=' +
-                        student.name.replace(' ', '+')
+                        coach.name.replace(' ', '+')
                   }}"
                   alt="user"
                 />
-                <p class="mb-0 ms-3 text-white opacity-50">
-                  {{ student.name | titlecase }}
-                </p>
+                <p class="mb-0 ms-3 text-white opacity-50">{{ coach.name }}</p>
               </div>
             </td>
             <td>
               <div class="d-flex align-items-center">
                 <img
                   src="https://flagcdn.com/{{
-                    globals.getCountryCode(student?.country)
+                    globals.getCountryCode(coach?.country)
                   }}.svg"
                   alt="flag"
                 />
                 <p class="mb-0 ms-3 text-white opacity-50">
-                  {{ student?.country | titlecase }}
+                  {{ coach?.country | titlecase }}
                 </p>
               </div>
             </td>
             <td>
-              <p class="mb-0 text-white opacity-50">{{ student?.phone }}</p>
+              <p class="mb-0 text-white opacity-50">{{ coach.phone }}</p>
             </td>
-            <td><p class="mb-0 text-white opacity-50">High School</p></td>
             <td>
               <p class="mb-0 text-white opacity-50">
-                {{ student.institution_name | titlecase }}
+                {{ coach.institution_name }}
               </p>
             </td>
             <td>
-              <a
-                href="#"
-                class="text-white opacity-50"
-                routerLink="/player/{{ student?.id }}"
-                >View Profile</a
-              >
+              <p class="mb-0 text-white opacity-50">{{ coach.email }}</p>
             </td>
           </tr>
         </tbody>

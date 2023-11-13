@@ -3,18 +3,21 @@ import { StudentsService } from 'src/app/services/api/students/students.service'
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
-  selector: 'app-athletes',
-  templateUrl: './athletes.component.html',
-  styleUrls: ['./athletes.component.scss'],
+  selector: 'app-approvals',
+  templateUrl: './approvals.component.html',
+  styleUrls: ['./approvals.component.scss'],
 })
-export class AthletesComponent {
+export class ApprovalsComponent {
   constructor(
     public studentsService: StudentsService,
     public globals: GlobalsService
   ) {}
 
   async ngOnInit() {
-    await this.studentsService.getSportsData();
-    await this.studentsService.getStudentProfiles();
+    await this.studentsService.getStudentsPendingApproval();
+  }
+
+  ngOnDestroy() {
+    this.studentsService.students = [];
   }
 }

@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
+import { AdminsComponent } from './admins/admins.component';
 import { AthletesComponent } from './athletes/athletes.component';
+import { CoachesComponent } from './coaches/coaches.component';
+import { ConnectionsComponent } from './connections/connections.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ApprovalsComponent } from './approvals/approvals.component';
 
 const routes: Routes = [
   {
@@ -14,8 +18,24 @@ const routes: Routes = [
         component: DashboardComponent,
       },
       {
+        path: 'connections',
+        component: ConnectionsComponent,
+      },
+      {
+        path: 'admins',
+        component: AdminsComponent,
+      },
+      {
+        path: 'coaches',
+        component: CoachesComponent,
+      },
+      {
         path: 'athletes',
         component: AthletesComponent,
+      },
+      {
+        path: 'approvals',
+        component: ApprovalsComponent,
       },
       {
         path: 'news',

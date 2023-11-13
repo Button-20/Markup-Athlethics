@@ -6,6 +6,10 @@ import { RequestService } from '../../core/request';
   providedIn: 'root',
 })
 export class CoachesService {
+  connections: any[] = [];
+
+  coaches: any[] = [];
+
   constructor(private api: RequestService, private globals: GlobalsService) {}
 
   async postConnection(athlete_id: string, coach_id: string) {
@@ -40,6 +44,35 @@ export class CoachesService {
       } catch (err: any) {
         this.globals.spinner.hide();
         this.globals.toast.error(err.message || '😭 Something went wrong');
+        reject(err);
+      }
+    });
+  }
+
+  async getAllConnectionsData() {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.get('get-all-connections-data');
+        console.log(resp);
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
+        reject(err);
+      }
+    });
+  }
+  async getAllCoachesData() {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.get('get-all-coaches-data');
+        console.log(resp);
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
         reject(err);
       }
     });

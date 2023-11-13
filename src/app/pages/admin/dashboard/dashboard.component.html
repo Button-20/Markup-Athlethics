@@ -16,19 +16,27 @@
     >
       <div class="card dark-section text-center p-3 px-5 border-0">
         <p class="mb-2 text-white">Number of Coaches</p>
-        <h1 class="text-white">54</h1>
+        <h1 class="text-white">
+          {{ usersService.dashboardData?.totalCoaches || 0 }}
+        </h1>
       </div>
       <div class="card dark-section text-center p-3 px-5 border-0">
         <p class="mb-2 text-white">Number of Students</p>
-        <h1 class="text-white">54</h1>
+        <h1 class="text-white">
+          {{ usersService.dashboardData?.totalStudents || 0 }}
+        </h1>
       </div>
       <div class="card dark-section text-center p-3 px-5 border-0">
         <p class="mb-2 text-white">Pending profile approvals</p>
-        <h1 class="text-white">54</h1>
+        <h1 class="text-white">
+          {{ usersService.dashboardData?.totalPendingStudents || 0 }}
+        </h1>
       </div>
       <div class="card dark-section text-center p-3 px-5 border-0">
         <p class="mb-2 text-white">Connections</p>
-        <h1 class="text-white">54</h1>
+        <h1 class="text-white">
+          {{ usersService.dashboardData?.totalConnection || 0 }}
+        </h1>
       </div>
     </div>
   </div>

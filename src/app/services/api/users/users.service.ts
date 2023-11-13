@@ -10,6 +10,8 @@ export class UsersService {
 
   editable: boolean = false;
 
+  dashboardData: any = {};
+
   constructor(private api: RequestService, private globals: GlobalsService) {}
 
   async getUserProfile() {
@@ -54,7 +56,7 @@ export class UsersService {
       try {
         this.globals.spinner.show();
         const resp: any = await this.api.get('dashboard-data');
-        console.log(resp);
+        this.dashboardData = resp;
         this.globals.spinner.hide();
         resolve(resp);
       } catch (err: any) {
@@ -63,4 +65,6 @@ export class UsersService {
       }
     });
   }
+
+  
 }

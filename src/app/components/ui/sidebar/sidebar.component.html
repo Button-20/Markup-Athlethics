@@ -16,7 +16,10 @@
       >
         <img src="{{ item.image }}" alt="{{ item.name }}" />
         <p
-          class="d-block d-md-none mb-0 text-white opacity-50"
+          class="d-block mb-0 text-white opacity-50"
+          [ngClass]="{
+            'd-md-none': showMenuName && !openSidebar
+          }"
           [ngStyle]="{
             display: showMenuName && openSidebar ? 'block !important' : 'none'
           }"
@@ -36,6 +39,9 @@
         <img src="assets/images/log-out.png" alt="logout" class="pointer" />
         <p
           class="d-block d-md-none mb-0 text-white opacity-50 truncate"
+          [ngClass]="{
+            'd-md-none': showMenuName && !openSidebar
+          }"
           [ngStyle]="{
             display: showMenuName && openSidebar ? 'block !important' : 'none'
           }"
