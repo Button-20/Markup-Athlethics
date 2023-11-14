@@ -1,0 +1,20 @@
+<div class="profile-section">
+  <div class="d-flex align-items-center justify-content-between mb-5">
+    <a
+      (click)="globals.goBack()"
+      class="text-decoration-none opacity-50 text-white pointer"
+    >
+      <i class="bi bi-chevron-left"></i>
+      <span class="text-decoration-underline">Go back</span>
+    </a>
+    <div class="d-none align-items-center gap-2 d-md-flex">
+      <button class="btn btn-secondary" (click)="rejectStudent()">
+        Reject
+      </button>
+      <button class="btn btn-primary" (click)="approveStudent()">
+        Approve
+      </button>
+    </div>
+  </div>
+  <player-profile [student]="studentsService.student"></player-profile>
+</div>

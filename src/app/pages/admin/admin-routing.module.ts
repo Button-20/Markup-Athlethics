@@ -35,7 +35,7 @@ const routes: Routes = [
       },
       {
         path: 'approvals',
-        component: ApprovalsComponent,
+        loadChildren: () => import('./approvals/approvals.module').then(m => m.ApprovalsModule)
       },
       {
         path: 'news',
