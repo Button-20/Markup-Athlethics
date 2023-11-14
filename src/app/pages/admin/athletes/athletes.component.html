@@ -5,7 +5,7 @@
     <div class="d-flex align-items-center justify-content-between mb-5">
       <div class="d-flex align-items-center">
         <img
-          src="assets/images/book-open.png"
+          src="assets/images/dumbbell.png"
           alt="dashboard"
           class="me-2 img-success"
         />
@@ -28,6 +28,7 @@
             <th class="text-white opacity-50">Phone Number</th>
             <th class="text-white opacity-50">Institution Level</th>
             <th class="text-white opacity-50">Institution</th>
+            <th></th>
             <th></th>
           </tr>
         </thead>
@@ -78,10 +79,31 @@
             <td>
               <a
                 href="#"
-                class="text-white opacity-50"
+                class="text-white opacity-50 word-nowrap"
                 routerLink="/player/{{ student?.id }}"
                 >View Profile</a
               >
+            </td>
+            <td>
+              <button
+                class="btn btn-transparent dropdown-btn"
+                type="button"
+                (click)="toggleDropdown($event)"
+              >
+                <img src="assets/images/more-horizontal.png" alt="ellipses" />
+                <div class="dropdown-menu">
+                  <div class="dropdown-item">
+                    <a href="#" (click)="suspendStudent($event, student.id)"
+                      >Suspend Athlete</a
+                    >
+                    <img
+                      src="assets/images/x.png"
+                      alt="close"
+                      (click)="closeDropdown($event)"
+                    />
+                  </div>
+                </div>
+              </button>
             </td>
           </tr>
         </tbody>

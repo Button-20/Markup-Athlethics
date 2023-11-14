@@ -90,7 +90,9 @@ export class SidebarComponent {
   constructor(
     private globals: GlobalsService,
     private authService: AuthService
-  ) {
+  ) {}
+
+  ngOnChanges() {
     switch (this.globals.user?.user_type) {
       case '3':
         this.navigations = this.adminNavigations;
