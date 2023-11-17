@@ -85,10 +85,9 @@ export class SidebarComponent {
   ];
 
   @Input() openSidebar: boolean = false;
-  @Input() showMenuName: boolean = false;
 
   constructor(
-    private globals: GlobalsService,
+    public globals: GlobalsService,
     private authService: AuthService
   ) {}
 

@@ -3,8 +3,8 @@
   [ngClass]="{
     active: openSidebar
   }"
-  (mouseenter)="showMenuName && (openSidebar = true)"
-  (mouseleave)="showMenuName && (openSidebar = false)"
+  (mouseenter)="globals.user?.user_type == '3' && (openSidebar = true)"
+  (mouseleave)="globals.user?.user_type == '3' && (openSidebar = false)"
 >
   <ul class="m-0 p-0">
     <li *ngFor="let item of navigations">
@@ -18,10 +18,13 @@
         <p
           class="d-block mb-0 text-white opacity-50"
           [ngClass]="{
-            'd-md-none': showMenuName && !openSidebar
+            'd-md-none': globals.user?.user_type == '3' && !openSidebar
           }"
           [ngStyle]="{
-            display: showMenuName && openSidebar ? 'block !important' : 'none'
+            display:
+              globals.user?.user_type == '3' && openSidebar
+                ? 'block !important'
+                : 'none'
           }"
         >
           {{ item.name }}
@@ -40,10 +43,13 @@
         <p
           class="d-block d-md-none mb-0 text-white opacity-50 truncate"
           [ngClass]="{
-            'd-md-none': showMenuName && !openSidebar
+            'd-md-none': globals.user?.user_type == '3' && !openSidebar
           }"
           [ngStyle]="{
-            display: showMenuName && openSidebar ? 'block !important' : 'none'
+            display:
+              globals.user?.user_type == '3' && openSidebar
+                ? 'block !important'
+                : 'none'
           }"
         >
           Sign out
