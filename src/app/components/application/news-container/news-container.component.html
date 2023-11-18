@@ -6,7 +6,7 @@
   >
     <div class="d-flex align-items-center gap-4">
       <img
-        [src]="post.imagePath"
+        [src]="post.imagePath || 'https://images.placeholders.dev/300x300'"
         [alt]="post.id"
         routerLink="{{ baseLink }}/{{ post.slug }}"
       />
@@ -34,8 +34,6 @@
       class="d-flex align-items-center gap-2"
       routerLink="{{ baseLink }}/{{ post.slug }}"
     >
-      <p class="mb-0" [innerHTML]="post.body.slice(0, 100) + '...'"></p>
-      <span></span>
       <p class="mb-0 date">
         {{ post.created_at | date : "dd/MM/yyyy" }}
       </p>

@@ -6,7 +6,22 @@
   (mouseenter)="globals.user?.user_type == '3' && (openSidebar = true)"
   (mouseleave)="globals.user?.user_type == '3' && (openSidebar = false)"
 >
-  <ul class="m-0 p-0">
+  <ul class="m-0 p-0" *ngIf="globals.user?.user_type !== '3'">
+    <li *ngFor="let item of navigations">
+      <a
+        routerLink="{{ item.route }}"
+        routerLinkActive="active"
+        (click)="openSidebar = false"
+        class="d-flex align-items-center gap-3"
+      >
+        <img src="{{ item.image }}" alt="{{ item.name }}" />
+        <p class="d-block d-md-none mb-0 text-white opacity-50">
+          {{ item.name }}
+        </p>
+      </a>
+    </li>
+  </ul>
+  <ul class="m-0 p-0" *ngIf="globals.user?.user_type === '3'">
     <li *ngFor="let item of navigations">
       <a
         routerLink="{{ item.route }}"
@@ -33,7 +48,7 @@
     </li>
   </ul>
   <ul class="m-0 p-0">
-    <li>
+    <li *ngIf="globals.user?.user_type === '3'">
       <a
         (click)="logout()"
         class="pointer"
@@ -41,7 +56,7 @@
       >
         <img src="assets/images/log-out.png" alt="logout" class="pointer" />
         <p
-          class="d-block d-md-none mb-0 text-white opacity-50 truncate"
+          class="d-block mb-0 text-white opacity-50 truncate"
           [ngClass]="{
             'd-md-none': globals.user?.user_type == '3' && !openSidebar
           }"
@@ -54,6 +69,16 @@
         >
           Sign out
         </p>
+      </a>
+    </li>
+    <li *ngIf="globals.user?.user_type !== '3'">
+      <a
+        (click)="logout()"
+        class="pointer"
+        class="d-flex align-items-center gap-3"
+      >
+        <img src="assets/images/log-out.png" alt="logout" class="pointer" />
+        <p class="d-block d-md-none mb-0 text-white opacity-50">Sign out</p>
       </a>
     </li>
   </ul>

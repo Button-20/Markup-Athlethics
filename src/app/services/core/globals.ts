@@ -87,6 +87,16 @@ export class GlobalsService {
 
   getCountryCode(country: string) {
     let countries: { [name: string]: string } = getNameList();
-    return countries[country.toLowerCase()].toLowerCase();
+    return countries[country?.toLowerCase()]?.toLowerCase();
+  }
+
+  convertCMtoFeet(cm: string) {
+    let feet = Math.floor(Number(cm) / 30.48);
+    let inches = Math.round((Number(cm) / 30.48 - feet) * 12);
+    return `${feet}' ${inches}"`;
+  }
+
+  convertPoundsToKg(pounds: string) {
+    return Math.round(Number(pounds) / 2.205);
   }
 }

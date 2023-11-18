@@ -29,8 +29,10 @@ export class DashboardComponent {
   }
 
   ngAfterViewInit() {
-    this.startProgressBar();
-    this.startProgressCircle();
+    setTimeout(() => {
+      this.startProgressBar();
+      this.startProgressCircle();
+    }, 1000);
   }
 
   get calculatePercentage(): number {

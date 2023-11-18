@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { StudentsService } from 'src/app/services/api/students/students.service';
+import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
   selector: 'app-categories',
@@ -6,14 +8,36 @@ import { Component } from '@angular/core';
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent {
-  categories = ['All Categories', 'Soccer', 'Track and Field', 'Basketball'];
-  activeTab: string = 'All Categories';
-  
+  categories = ['All Categories'];
 
+  constructor(
+    public studentsService: StudentsService,
+    public globals: GlobalsService
+  ) {}
 
-  constructor() {}
+  async ngOnInit() {
+    // await this.studentsService.getSportsData();
+    // await this.studentsService.getStudentProfiles();
+    // this.categories = [
+    //   ...this.categories,
+    //   ...this.studentsService.sports.map((sport: any) => sport.sport_name),
+    // ];
+  }
 
-  toggleSearchFilter() {
+  ngOnDestroy() {
+    this.studentsService.students = [];
+  }
+
+  async search(searchForm: any) {
+    this.studentsService.studentsQuery = {
+      ...this.studentsService.studentsQuery,
+      ...searchForm,
+    };
+    await this.studentsService.getStudentProfiles();
+  }
+
+  toggleSearchFilter(event: any) {
+    event.preventDefault();
     let searchFilter = document.querySelector('.search-filter');
     searchFilter?.classList.toggle('show');
     document.addEventListener('mousedown', (e: any) => {
@@ -21,5 +45,10 @@ export class CategoriesComponent {
         searchFilter?.classList.remove('show');
       }
     });
+  }
+
+  async filterByCategory(category: string) {
+    this.studentsService.studentsQuery.category = category;
+    await this.studentsService.getStudentProfiles();
   }
 }

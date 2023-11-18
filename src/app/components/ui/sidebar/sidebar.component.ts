@@ -89,9 +89,32 @@ export class SidebarComponent {
   constructor(
     public globals: GlobalsService,
     private authService: AuthService
-  ) {}
+  ) {
+    this.globals.user ? (this.globals.user.user_type = '2') : null;
+    switch (this.globals.user?.user_type) {
+      case '3':
+        this.navigations = this.adminNavigations;
+        break;
+      case '2':
+        this.navigations = this.navigations.filter(
+          (nav) => nav.name !== 'Profile'
+        );
+        break;
+      case '1':
+        this.navigations = this.navigations.filter(
+          (nav) => nav.name !== 'Connections' && nav.name !== 'Athletics'
+        );
+        break;
+      default:
+        this.navigations = this.navigations.filter(
+          (nav) => nav.name !== 'Profile'
+        );
+        break;
+    }
+  }
 
   ngOnChanges() {
+    this.globals.user ? (this.globals.user.user_type = '2') : null;
     switch (this.globals.user?.user_type) {
       case '3':
         this.navigations = this.adminNavigations;
