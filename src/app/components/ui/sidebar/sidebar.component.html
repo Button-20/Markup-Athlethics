@@ -3,8 +3,8 @@
   [ngClass]="{
     active: openSidebar
   }"
-  (mouseenter)="globals.user?.user_type == '3' && (openSidebar = true)"
-  (mouseleave)="globals.user?.user_type == '3' && (openSidebar = false)"
+  (mouseenter)="globals.user?.user_type === '3' && (openSidebar = true)"
+  (mouseleave)="globals.user?.user_type === '3' && (openSidebar = false)"
 >
   <ul class="m-0 p-0" *ngIf="globals.user?.user_type !== '3'">
     <li *ngFor="let item of navigations">
@@ -51,8 +51,7 @@
     <li *ngIf="globals.user?.user_type === '3'">
       <a
         (click)="logout()"
-        class="pointer"
-        class="d-flex align-items-center gap-3"
+        class="d-flex align-items-center gap-3 pointer"
       >
         <img src="assets/images/log-out.png" alt="logout" class="pointer" />
         <p
@@ -74,8 +73,7 @@
     <li *ngIf="globals.user?.user_type !== '3'">
       <a
         (click)="logout()"
-        class="pointer"
-        class="d-flex align-items-center gap-3"
+        class="d-flex align-items-center gap-3 pointer"
       >
         <img src="assets/images/log-out.png" alt="logout" class="pointer" />
         <p class="d-block d-md-none mb-0 text-white opacity-50">Sign out</p>

@@ -50,7 +50,7 @@
     </div>
 
     <div class="row g-0 gap-4">
-      <div class="col-12 row g-0 gap-2" *ngFor="let item of steps">
+      <div class="col-12 row g-0 gap-2 pointer" *ngFor="let item of steps" routerLink="{{ item.route }}">
         <div class="col-1">
           <img
             [src]="

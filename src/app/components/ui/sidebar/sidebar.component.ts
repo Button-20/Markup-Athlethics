@@ -90,7 +90,7 @@ export class SidebarComponent {
     public globals: GlobalsService,
     private authService: AuthService
   ) {
-    this.globals.user ? (this.globals.user.user_type = '2') : null;
+    this.globals.user ? (this.globals.user.user_type = '1') : null;
     switch (this.globals.user?.user_type) {
       case '3':
         this.navigations = this.adminNavigations;
@@ -114,7 +114,7 @@ export class SidebarComponent {
   }
 
   ngOnChanges() {
-    this.globals.user ? (this.globals.user.user_type = '2') : null;
+    this.globals.user ? (this.globals.user.user_type = '1') : null;
     switch (this.globals.user?.user_type) {
       case '3':
         this.navigations = this.adminNavigations;
