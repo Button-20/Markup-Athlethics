@@ -10,6 +10,8 @@ import { GlobalsService } from 'src/app/services/core/globals';
 export class NewsContainerComponent {
   @Input() ngStyle: { [key: string]: string } = {};
 
+  @Input() center: boolean = false;
+
   @Input() baseLink: string = '/news';
 
   @Input() news: News[] = [];

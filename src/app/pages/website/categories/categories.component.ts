@@ -16,12 +16,12 @@ export class CategoriesComponent {
   ) {}
 
   async ngOnInit() {
-    // await this.studentsService.getSportsData();
-    // await this.studentsService.getStudentProfiles();
-    // this.categories = [
-    //   ...this.categories,
-    //   ...this.studentsService.sports.map((sport: any) => sport.sport_name),
-    // ];
+    await this.studentsService.getSportsData();
+    await this.studentsService.getStudentProfiles();
+    this.categories = [
+      ...this.categories,
+      ...this.studentsService.sports.map((sport: any) => sport.sport_name),
+    ];
   }
 
   ngOnDestroy() {

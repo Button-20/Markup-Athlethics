@@ -1,4 +1,10 @@
-<div class="news-section mt-5" [ngStyle]="ngStyle">
+<div
+  class="news-section mt-5"
+  [ngStyle]="ngStyle"
+  [ngClass]="{
+  'justify-content-center': center,
+}"
+>
   <div
     class="content"
     *ngFor="let post of news"
