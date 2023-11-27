@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import Pusher from 'pusher-js';
+import { INotification } from '../../core/IApp';
 import { GlobalsService } from '../../core/globals';
 import { RequestService } from '../../core/request';
-import { INotification } from '../../core/IApp';
-
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +12,7 @@ export class NotificationsService {
 
   constructor(private globals: GlobalsService, private api: RequestService) {}
 
-  async listenForNotifications() {
+  async listenForNotifications(athleteId: string) {
     return await new Promise((resolve, reject) => {
       try {
         // Enable pusher logging - don't include this in production
@@ -23,7 +22,7 @@ export class NotificationsService {
           cluster: 'eu',
         });
 
-        var channel = pusher.subscribe('my-channel');
+        var channel = pusher.subscribe('private-athlete.' + athleteId);
         channel.bind('my-event', (data: any) => {
           alert(JSON.stringify(data));
         });

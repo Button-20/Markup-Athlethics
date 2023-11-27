@@ -16,7 +16,7 @@ export class DashboardNavbarComponent {
     public notificationService: NotificationsService,
     public globals: GlobalsService
   ) {
-    this.notificationService.listenForNotifications();
+    notificationService.listenForNotifications(globals.user?.id as unknown as string);
   }
 
   async ngOnInit() {
