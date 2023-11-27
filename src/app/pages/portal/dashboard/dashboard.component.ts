@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NotificationsService } from 'src/app/services/api/notifications/notifications.service';
 import { StudentsService } from 'src/app/services/api/students/students.service';
 import { UsersService } from 'src/app/services/api/users/users.service';
 import { GlobalsService } from 'src/app/services/core/globals';
@@ -12,7 +13,8 @@ export class DashboardComponent {
   constructor(
     public globals: GlobalsService,
     public usersService: UsersService,
-    public studentsService: StudentsService
+    public studentsService: StudentsService,
+    public notificationsService: NotificationsService
   ) {}
 
   async ngOnInit() {

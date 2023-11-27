@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxEditorModule } from 'ngx-editor';
 import { NgxIntlTelephoneInputModule } from 'ngx-intl-telephone-input';
+import { ServicesModule } from '../services/services.module';
 import { ConnectionCardComponent } from './application/connection-card/connection-card.component';
 import { FaqsComponent } from './application/faqs/faqs.component';
 import { NewsContainerComponent } from './application/news-container/news-container.component';
@@ -22,9 +23,10 @@ import { FooterComponent } from './ui/footer/footer.component';
 import { NavbarComponent } from './ui/navbar/navbar.component';
 import { NoDataComponent } from './ui/no-data/no-data.component';
 import { PaginationComponent } from './ui/pagination/pagination.component';
+import { RangeSliderComponent } from './ui/range-slider/range-slider.component';
 import { SidebarComponent } from './ui/sidebar/sidebar.component';
 import { SocialsHangingComponent } from './ui/socials-hanging/socials-hanging.component';
-import { RangeSliderComponent } from './ui/range-slider/range-slider.component';
+import { DateAsAgoPipe } from '../services/pipes/dateAsAgo';
 
 const components: Array<any> = [
   NavbarComponent,
@@ -47,7 +49,8 @@ const components: Array<any> = [
   NotificationComponent,
   ArticleFormComponent,
   SearchFilterComponent,
-  RangeSliderComponent
+  RangeSliderComponent,
+  DateAsAgoPipe
 ];
 
 @NgModule({
@@ -58,7 +61,9 @@ const components: Array<any> = [
     NgxIntlTelephoneInputModule,
     ReactiveFormsModule,
     NgxEditorModule,
+    ServicesModule,
   ],
   exports: components,
+  
 })
 export class ComponentsModule {}

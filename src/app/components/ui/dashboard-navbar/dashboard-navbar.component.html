@@ -36,5 +36,7 @@
   </a>
 </header>
 <div class="col-12 dark-section notification-menu p-4" id="notification-menu">
-  <notification></notification>
+  <notification
+    [notifications]="notificationService.notifications"
+  ></notification>
 </div>

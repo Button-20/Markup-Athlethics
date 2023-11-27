@@ -20,19 +20,16 @@
   />
   <input type="text" placeholder="Search" />
 </div>
-<div class="row g-0 gap-4">
-  <div class="col-12 ms-4 notification">
+<div class="row g-0 gap-4 notification-section">
+  <div
+    class="col-12 ms-4 hoverable"
+    [ngClass]="{'notification': !notification.read_at}"
+    *ngFor="let notification of notifications"
+  >
     <p>Account created</p>
-    <p class="mb-3 opacity-50 text">
-      Thank you for signing up!
-      <br /><br />
-      We're thrilled to have you onboard and excited to see what the future
-      holds for you.
-      <br /><br />
-
-      Your profile has been submitted and will be reviewed. well let you know as
-      soon as the process is complete.
-    </p>
-    <small class="opacity-50 fw-bold">3 minutes ago</small>
+    <p class="mb-3 opacity-50 text" [innerHTML]="notification.message"></p>
+    <small class="opacity-50 fw-bold">
+      {{ notification.created_at | dateAsAgo}}
+    </small>
   </div>
 </div>

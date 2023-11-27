@@ -6,6 +6,7 @@ import { AuthService } from './api/auth/auth.service';
 import { CoachesService } from './api/coaches/coaches.service';
 import { FaqsService } from './api/faqs/faqs.service';
 import { NewsService } from './api/news/news.service';
+import { NotificationsService } from './api/notifications/notifications.service';
 import { StudentsService } from './api/students/students.service';
 import { UsersService } from './api/users/users.service';
 import { GlobalsService } from './core/globals';
@@ -24,6 +25,7 @@ const providers: Array<any> = [
   StudentsService,
   CoachesService,
   AdminsService,
+  NotificationsService,
 ];
 
 @NgModule({

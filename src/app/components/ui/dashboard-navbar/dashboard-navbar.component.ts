@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NotificationsService } from 'src/app/services/api/notifications/notifications.service';
 import { GlobalsService } from 'src/app/services/core/globals';
 
 @Component({
@@ -11,7 +12,18 @@ export class DashboardNavbarComponent {
 
   @Input() sidebarOpened: boolean = false;
 
-  constructor(public globals: GlobalsService) {}
+  constructor(
+    public notificationService: NotificationsService,
+    public globals: GlobalsService
+  ) {
+    this.notificationService.listenForNotifications();
+  }
+
+  async ngOnInit() {
+    await this.notificationService.getNotifications(
+      this.globals.user?.id as number
+    );
+  }
 
   toggleNotification() {
     let notificationMenu = document.getElementById('notification-menu');

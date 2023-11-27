@@ -165,3 +165,13 @@ export interface Education {
   created_at: Date;
   updated_at: Date;
 }
+
+export interface INotification {
+  id: number;
+  athlete_id: number;
+  coach_id: number;
+  message: string;
+  read_at: string;
+  created_at: Date;
+  updated_at: Date;
+}

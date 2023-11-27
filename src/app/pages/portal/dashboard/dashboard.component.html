@@ -20,7 +20,9 @@
     </p>
     <div
       class="my-5 dark-section d-flex align-items-center flex-wrap gap-4 p-4 rounded"
-      *ngIf="globals.user?.user_type != '2' && globals.user?.institution_id == ''"
+      *ngIf="
+        globals.user?.user_type != '2' && globals.user?.institution_id == ''
+      "
     >
       <img src="assets/images/alert-circle.png" alt="alert" />
       <p class="col col-md mb-0 opacity-50">
@@ -150,6 +152,8 @@
     class="col-12 col-md-5 d-none d-md-block dark-section p-5"
     *ngIf="globals.user?.user_type != '2'"
   >
-    <notification></notification>
+    <notification
+      [notifications]="notificationsService.notifications"
+    ></notification>
   </div>
 </div>
