@@ -482,89 +482,14 @@
   <div
     class="black-container p-4 row g-3 mt-0 justify-content-center justify-content-md-start"
   >
-    <div class="col-12 col-md-3 text-center text-md-start">
-      <a href="#" class="text-decoration-none image position-relative">
-        <img
-          src="assets/images/41947e7da868072d92bcc456279a43a8.jpeg"
-          alt="image"
-        />
-        <img
-          src="assets/images/play.png"
-          alt="play"
-          class="play"
-          width="80px"
-        />
-      </a>
+    <div
+      class="col-12 col-md-3 text-center text-md-start"
+      *ngFor="let video of student?.videos"
+    >
+      <video controls>
+        <source [src]="video.video_path" type="video/mp4" class="img-fluid" />
+      </video>
     </div>
-    <div class="col-12 col-md-3 text-center text-md-start">
-      <a href="#" class="text-decoration-none image position-relative">
-        <img
-          src="assets/images/41947e7da868072d92bcc456279a43a8.jpeg"
-          alt="image"
-        />
-        <img
-          src="assets/images/play.png"
-          alt="play"
-          class="play"
-          width="80px"
-        />
-      </a>
-    </div>
-    <div class="col-12 col-md-3 text-center text-md-start">
-      <a href="#" class="text-decoration-none image position-relative">
-        <img
-          src="assets/images/41947e7da868072d92bcc456279a43a8.jpeg"
-          alt="image"
-        />
-        <img
-          src="assets/images/play.png"
-          alt="play"
-          class="play"
-          width="80px"
-        />
-      </a>
-    </div>
-    <div class="col-12 col-md-3 text-center text-md-start">
-      <a href="#" class="text-decoration-none image position-relative">
-        <img
-          src="assets/images/41947e7da868072d92bcc456279a43a8.jpeg"
-          alt="image"
-        />
-        <img
-          src="assets/images/play.png"
-          alt="play"
-          class="play"
-          width="80px"
-        />
-      </a>
-    </div>
-    <div class="col-12 col-md-3 text-center text-md-start">
-      <a href="#" class="text-decoration-none image position-relative">
-        <img
-          src="assets/images/41947e7da868072d92bcc456279a43a8.jpeg"
-          alt="image"
-        />
-        <img
-          src="assets/images/play.png"
-          alt="play"
-          class="play"
-          width="80px"
-        />
-      </a>
-    </div>
-    <div class="col-12 col-md-3 text-center text-md-start">
-      <a href="#" class="text-decoration-none image position-relative">
-        <img
-          src="assets/images/41947e7da868072d92bcc456279a43a8.jpeg"
-          alt="image"
-        />
-        <img
-          src="assets/images/play.png"
-          alt="play"
-          class="play"
-          width="80px"
-        />
-      </a>
-    </div>
+
   </div>
 </section>

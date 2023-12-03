@@ -112,6 +112,11 @@ export interface Student {
     image_path: string;
     user_id: number;
   }[];
+  videos: {
+    id: number;
+    video_path: string;
+    user_id: number;
+  }[];
 }
 
 export interface Sports {
