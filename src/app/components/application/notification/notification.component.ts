@@ -9,5 +9,7 @@ import { INotification } from 'src/app/services/core/IApp';
 export class NotificationComponent {
   @Input() notifications: INotification[] = [];
 
+  search: string = '';
+
   constructor() {}
 }

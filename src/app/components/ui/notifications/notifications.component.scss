@@ -1,0 +1,30 @@
+.notification-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #1a1a1e;
+
+  p {
+    max-width: 70%;
+  }
+}
+
+.bg-success {
+  background-color: #88f63d !important;
+}
+
+.animate-bar-close {
+  height: 5px;
+  transition: width 5s linear;
+  animation: bar_close 5s linear;
+  border-radius: 0.5rem;
+}
+
+@keyframes bar_close {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}

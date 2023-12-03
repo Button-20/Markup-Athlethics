@@ -6,6 +6,7 @@ import { Sports, User } from './IApp';
 import { SpinnerService } from './spinner';
 import { StorageService } from './storage';
 import { ToasterService } from './toaster';
+import { NotificationService } from './notification';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,7 @@ export class GlobalsService {
     public activatedRoute: ActivatedRoute,
     public location: Location,
     public toast: ToasterService,
+    public sound: NotificationService,
     public reuseStrategy: RouteReuseStrategy,
     public spinner: SpinnerService
   ) {
@@ -98,5 +100,9 @@ export class GlobalsService {
 
   convertPoundsToKg(pounds: string) {
     return Math.round(Number(pounds) / 2.205);
+  }
+
+  getWindowFocus(): boolean {
+    return window.document.hasFocus();
   }
 }

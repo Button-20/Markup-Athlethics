@@ -169,6 +169,7 @@ export interface Education {
 export interface INotification {
   id: number;
   athlete_id: number;
+  title: string;
   coach_id: number;
   message: string;
   read_at: string;

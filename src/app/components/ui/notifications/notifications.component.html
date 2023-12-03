@@ -1,0 +1,17 @@
+<div class="notification-container">
+  <p class="mb-0 truncate" [innerHTML]="toastRef.data.message"></p>
+  <button
+    class="btn btn-link text-white text-decoration-none fw-light"
+    (click)="toastRef.close()"
+  >
+    Dismiss
+  </button>
+</div>
+<div
+  (click)="toastRef.close()"
+  class="pointer position-absolute top-0 start-0 bottom-0 end-0"
+></div>
+<div
+  id="bar-close"
+  class="bg-success position-absolute start-0 top-0 end-0 animate-bar-close"
+></div>

@@ -18,18 +18,20 @@
     height="25px"
     class="me-2"
   />
-  <input type="text" placeholder="Search" />
+  <input type="text" placeholder="Search" [(ngModel)]="search" />
 </div>
 <div class="row g-0 gap-4 notification-section">
   <div
     class="col-12 ms-4 hoverable"
-    [ngClass]="{'notification': !notification.read_at}"
-    *ngFor="let notification of notifications"
+    [ngClass]="{ notification: !notification.read_at }"
+    *ngFor="
+      let notification of notifications | search : search : ['message', 'title']
+    "
   >
-    <p>Account created</p>
+    <p>{{ notification.title }}</p>
     <p class="mb-3 opacity-50 text" [innerHTML]="notification.message"></p>
     <small class="opacity-50 fw-bold">
-      {{ notification.created_at | dateAsAgo}}
+      {{ notification.created_at | dateAsAgo }}
     </small>
   </div>
 </div>
