@@ -23,6 +23,9 @@ export class DashboardComponent {
       this.studentsService.studentsQuery.type = 'featured';
       await this.studentsService.getStudentProfiles();
     }
+    if (this.globals.user?.user_type === '1') {
+      await this.studentsService.getStudentConnections(this.globals.user.id);
+    }
   }
 
   ngOnDestroy() {

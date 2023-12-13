@@ -29,6 +29,8 @@ export class StudentsService {
     category: 'All Categories',
   };
 
+  studentConnections: Array<any> = [];
+
   constructor(private api: RequestService, private globals: GlobalsService) {}
 
   async getStudentProfiles() {
@@ -447,6 +449,23 @@ export class StudentsService {
       } catch (err: any) {
         this.globals.spinner.hide();
         this.globals.toast.error(err.message);
+        reject(err);
+      }
+    });
+  }
+
+  async getStudentConnections(id: number) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this.globals.spinner.show();
+        const resp: any = await this.api.get(
+          `students-connections/${id}`
+        );
+        this.studentConnections = resp;
+        this.globals.spinner.hide();
+        resolve(resp);
+      } catch (err: any) {
+        this.globals.spinner.hide();
         reject(err);
       }
     });

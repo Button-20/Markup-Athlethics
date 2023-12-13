@@ -69,7 +69,9 @@
 
         <div class="d-flex align-items-center justify-content-center gap-5">
           <div class="me-3">
-            <p class="mb-0 fs-3 fw-bolder">12</p>
+            <p class="mb-0 fs-3 fw-bolder">
+              {{ 0 }}
+            </p>
             <p class="mb-0">Profile views</p>
           </div>
           <div>
@@ -102,37 +104,54 @@
       </div>
     </div>
     <p class="mb-0 fw-semibold my-5">Recent connections</p>
-    <div class="row g-0 mb-5">
-      <div class="col-12" *ngIf="globals.user?.user_type != '2'">
+    <div class="row g-0 mb-5" *ngIf="globals.user?.user_type != '2'">
+      <div
+        class="col-12"
+        *ngFor="
+          let connection of studentsService.studentConnections | slice : 0 : 3
+        "
+      >
         <div class="my-5 mb-3 dark-section p-4 rounded">
           <div class="d-flex align-items-center">
             <img
-              src="https://icons.iconarchive.com/icons/wikipedia/flags/512/US-United-States-Flag-icon.png"
+              src="https://flagcdn.com/{{
+                globals.getCountryCode(connection.coach.country)
+              }}.svg"
               width="30px"
               alt="U.S.A image"
             />
-            <p class="mb-0 ms-1 fw-semibold opacity-50">USA</p>
+            <p class="mb-0 ms-1 fw-semibold opacity-50">
+              {{ connection.coach.country }}
+            </p>
           </div>
           <div class="row g-0">
             <div
               class="col-12 col-md-5 border-end border-2 border-opacity-50 border-light"
             >
-              <p class="mb-0 fs-3 fw-bolder">Alex Payne</p>
+              <p class="mb-0 fs-3 fw-bolder">{{ connection.coach.name }}</p>
             </div>
             <div
               class="col-12 col-md-5 d-flex align-items-center justify-content-md-end"
             >
-              <p class="mb-0 opacity-50">Harmony coaching academy</p>
+              <p class="mb-0 opacity-50">
+                {{ connection.coach.institution_name }}
+              </p>
             </div>
           </div>
         </div>
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <p class="mb-0 opacity-50">3 minutes ago</p>
+          <p class="mb-0 opacity-50">{{ connection.created_at | dateAsAgo }}</p>
           <a href="#" class="text-white">Report an issue</a>
         </div>
       </div>
       <connection-card *ngIf="globals.user?.user_type == '2'"></connection-card>
-      <!-- <no-data [message]="'Nothing to see here'"></no-data> -->
+      <no-data
+        [message]="'Nothing to see here'"
+        *ngIf="
+          globals.user?.user_type != '2' &&
+          studentsService.studentConnections.length == 0
+        "
+      ></no-data>
     </div>
     <p class="mb-0 opacity-50" *ngIf="globals.user?.user_type == '2'">
       Featured Profiles
