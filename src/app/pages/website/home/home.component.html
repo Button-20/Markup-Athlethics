@@ -89,7 +89,9 @@
 <!---------------- HOW IT WORKS ----------------->
 <div class="row g-0">
   <div class="col-12 mb-5">
-    <h3 class="mb-3 text-center title">Here’s how it works for <span>students.</span></h3>
+    <h3 class="mb-3 text-center title">
+      Here’s how it works for <span>students.</span>
+    </h3>
     <p class="mb-0 text-center sub-title">
       Empowering African high school student athletes to achieve academic and
       sports excellence by providing a platform that connects them with college
@@ -162,7 +164,9 @@
 <!---------------- COACHES ----------------->
 <div class="row g-0 coaches">
   <div class="col-12 mb-5 pt-5">
-    <h3 class="mb-3 text-center title">Here’s how it works for <span>coaches.</span></h3>
+    <h3 class="mb-3 text-center title">
+      Here’s how it works for <span>coaches.</span>
+    </h3>
     <p class="mb-0 text-center sub-title">
       Empowering African high school student athletes to achieve academic and
       sports excellence by providing a platform that connects them with college
@@ -220,25 +224,62 @@
 <!---------------- COACHES ----------------->
 
 <!---------------- SPOTLIGHT ----------------->
-<!-- <div class="spotlight-section mb-3">
+<div class="spotlight-section mb-3">
   <h3 class="mb-0 text-center pt-3">Spotlight.</h3>
-  <div class="card-section">
-    <player-card></player-card>
-    <player-card></player-card>
-    <player-card></player-card>
-    <player-card></player-card>
+  <div
+    id="carouselExampleAutoplaying"
+    class="carousel"
+  >
+    <div class="carousel-inner">
+      <div
+        class="carousel-item"
+        [ngClass]="{ active: i == 0 }"
+        *ngFor="let student of carouselArray; let i = index"
+      >
+        <div class="card-section">
+          <div
+            class="col-md"
+            *ngFor="
+              let student of studentsService.students.slice(i * 3, (i + 1) * 3)
+            "
+          >
+            <player-card [player]="student"></player-card>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="..." />
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="..." />
+      </div> -->
+    </div>
   </div>
+
+  <!-- <div class="card-section">
+    <player-card></player-card>
+  </div> -->
   <div
     class="d-flex align-items-center justify-content-between card-navigations"
   >
-    <a href="#player1" class="card-navigation">
+    <a
+      href="javascript:void(0)"
+      data-bs-target="#carouselExampleAutoplaying"
+      data-bs-slide="prev"
+      class="card-navigation"
+    >
       <i class="bi bi-chevron-left"></i>
     </a>
-    <a href="#player5" class="card-navigation">
+    <a
+      data-bs-target="#carouselExampleAutoplaying"
+      data-bs-slide="next"
+      class="card-navigation"
+      href="javascript:void(0)"
+    >
       <i class="bi bi-chevron-right"></i>
     </a>
   </div>
-</div> -->
+</div>
 <!---------------- SPOTLIGHT ----------------->
 
 <!---------------- FAQS ----------------->

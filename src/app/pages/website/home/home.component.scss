@@ -247,10 +247,11 @@
   font-style: italic;
 }
 
-.spotlight-section > .card-section {
+.card-section {
   margin-block: 2.5rem;
   gap: 2.5rem;
   width: calc(100% - 23rem);
+  display: flex;
   margin-inline: auto;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -305,6 +306,14 @@
 .faqs-section .read-more {
   padding: 1rem 1.75rem;
   width: 12rem;
+}
+
+.player-container {
+  display: flex;
+}
+
+.carousel-item::before{
+  pointer-events: none;
 }
 
 @media screen and (max-width: 48em) {
